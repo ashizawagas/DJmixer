@@ -958,7 +958,7 @@
             <div class="sample-upload">
                 <label class="file-input-wrapper">
                     <input type="file" id="sampleFiles" accept="audio/*" multiple>
-                    追加サンプル音声を選択（最大23個）
+                    サンプル音声を選択（最大50個）
                 </label>
             </div>
             
@@ -984,15 +984,14 @@
             <h3>使い方</h3>
             <ul>
                 <li>デッキAとBに音楽ファイルを読み込んで再生できます</li>
-                <li>ターンテーブルをドラッグして微調整・スクラッチ音を生成</li>
+                <li>ターンテーブルをドラッグして微調整・動的スクラッチ音を生成</li>
                 <li>ピッチスライダーで再生速度を調整（-50%〜+50%）</li>
                 <li>音程保持チェックボックスで、ピッチ変更時の音程変化を制御</li>
                 <li>クロスフェーダーでデッキA/B間の音量バランスを調整</li>
                 <li>BPM表示で楽曲の元テンポと現在のテンポを確認</li>
                 <li>モニターボタンで各デッキの音源をヘッドフォンで確認可能</li>
                 <li>再生中のファイル名がリアルタイムで表示されます</li>
-                <li>プリセット音源27個が自動で読み込まれます</li>
-                <li>追加で最大23個のサンプル音声ファイルを読み込めます（合計50個）</li>
+                <li>最大50個のサンプル音声ファイルを読み込めます</li>
                 <li>キーボードのボタンまたはキー（1-9, 0, Q-P, A-L, Z-N）でサンプル音を再生</li>
                 <li>録音ボタンで全ての音を同時録音できます</li>
                 <li>録音した音声はMP3形式で自動ダウンロードされます</li>
@@ -1032,7 +1031,6 @@
                 // サンプリング
                 this.samples = [];
                 this.playingSamples = new Set();
-                this.samplesLoaded = false;
                 
                 // 録音
                 this.mediaRecorder = null;
@@ -1051,7 +1049,6 @@
                 this.monitorGainB = null;
                 this.scratchGainA = null;
                 this.scratchGainB = null;
-                this.presetEnabled = true;
                 this.monitoringA = false;
                 this.monitoringB = false;
                 
@@ -1061,17 +1058,6 @@
                 this.currentFilenameA = null;
                 this.currentFilenameB = null;
                 this.objectUrls = new Set();
-                
-                // プリセットサンプル
-                this.presetSamples = [
-                    './01Laser1.mp3', './2Laser2.mp3', './3Laser3.mp3', './4explo1.mp3',
-                    './5explo2.mp3', './6expro3.mp3', './7heyDJ.mp3', './8GiveMeafatbeat.mp3',
-                    './9Hah.mp3', './10Fuh.mp3', './11Letsgo.mp3', './12comon.mp3',
-                    './13AhYhe.mp3', './14DoIt.mp3', './15.123Doit.mp3', './16AHaHa.mp3',
-                    './17sweet.mp3', './18Hoo.mp3', './19scratch.mp3', './20James.mp3',
-                    './21partytime.mp3', './22Unity.mp3', './23tonty.mp3', './24.123Hoo.mp3',
-                    './25AaaHa.mp3', './26.Swing.mp3', './27.Hit.mp3'
-                ];
                 
                 this.keyMapping = [
                     '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
@@ -1182,7 +1168,6 @@
                     this.crossfaderGainB.gain.value = 0.5;
                     this.monitorGainA.gain.value = 0;
                     this.monitorGainB.gain.value = 0;
-                    // スクラッチ音量を大きく設定
                     this.scratchGainA.gain.value = 1.2;
                     this.scratchGainB.gain.value = 1.2;
                     
@@ -1210,9 +1195,6 @@
                     
                     // ターンテーブル初期化
                     this.initializeTurntables();
-                    
-                    // プリセットサンプルを自動で読み込み
-                    await this.loadPresetSamples();
                     
                     this.updateStatus('オーディオシステムが初期化されました');
                     
@@ -1291,9 +1273,9 @@
                 const rotation = (angle * 180 / Math.PI);
                 turntable.style.transform = `rotate(${rotation}deg)`;
                 
-                // より小さな動きでもスクラッチ音を生成（感度向上）
+                // スクラッチ音を生成
                 if (Math.abs(angleDiff) > 0.03) {
-                    this.playScratchSound(deck, Math.abs(angleDiff));
+                    this.generateScratchSound(deck, Math.abs(angleDiff));
                 }
                 
                 // 微調整（再生位置の調整）
@@ -1313,26 +1295,13 @@
                 this.isDraggingB = false;
             }
             
-            playScratchSound(deck, intensity) {
+            // 動的スクラッチ音生成（Web Audio APIを使用）
+            generateScratchSound(deck, intensity) {
                 try {
-                    // AudioContextとサンプルの存在確認
-                    if (!this.audioContext || !this.samplesLoaded) {
-                        console.warn('Audio context or samples not ready');
-                        return;
-                    }
-                    
-                    // スクラッチサンプル（19scratch.mp3）を使用
-                    const scratchSample = this.samples[18]; // インデックス18が19scratch.mp3
-                    if (!scratchSample || !scratchSample.buffer) {
-                        console.warn('Scratch sample not available at index 18');
-                        return;
-                    }
+                    if (!this.audioContext) return;
                     
                     const scratchGain = deck === 'A' ? this.scratchGainA : this.scratchGainB;
-                    if (!scratchGain) {
-                        console.warn('Scratch gain node not available');
-                        return;
-                    }
+                    if (!scratchGain) return;
                     
                     // 既存のスクラッチ音を停止
                     const existingSource = deck === 'A' ? this.scratchSourceA : this.scratchSourceB;
@@ -1347,18 +1316,40 @@
                     // 現在時刻を取得
                     const currentTime = Date.now();
                     const lastScratchTime = deck === 'A' ? this.lastScratchTimeA : this.lastScratchTimeB;
-                    
-                    // 連続スクラッチの時間間隔を計算
                     const timeDiff = Math.max(currentTime - lastScratchTime, 10);
                     
-                                       // 新しいスクラッチ音を生成
-                    const source = this.audioContext.createBufferSource();
-                    source.buffer = scratchSample.buffer;
+                    // ノイズジェネレーターとオシレーターを組み合わせてスクラッチ音を生成
+                    const bufferSize = this.audioContext.sampleRate * 0.1; // 0.1秒
+                    const buffer = this.audioContext.createBuffer(1, bufferSize, this.audioContext.sampleRate);
+                    const data = buffer.getChannelData(0);
                     
-                    // 強度と時間間隔に応じてピッチとボリュームを調整
-                    const pitchMultiplier = 0.5 + intensity * 3; // より大きなピッチ変化
-                    const speedMultiplier = Math.max(timeDiff / 100, 0.5); // 速い動きほど高速再生
-                    source.playbackRate.value = Math.min(pitchMultiplier * speedMultiplier, 4.0);
+                    // ピンクノイズ生成（スクラッチ音らしい音）
+                    let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+                    for (let i = 0; i < bufferSize; i++) {
+                        const white = Math.random() * 2 - 1;
+                        b0 = 0.99886 * b0 + white * 0.0555179;
+                        b1 = 0.99332 * b1 + white * 0.0750759;
+                        b2 = 0.96900 * b2 + white * 0.1538520;
+                        b3 = 0.86650 * b3 + white * 0.3104856;
+                        b4 = 0.55000 * b4 + white * 0.5329522;
+                        b5 = -0.7616 * b5 - white * 0.0168980;
+                        const pink = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
+                        b6 = white * 0.115926;
+                        
+                        // フェードアウト効果とフィルタリング
+                        const fadeOut = 1 - (i / bufferSize);
+                        const filtered = pink * fadeOut * 0.3;
+                        data[i] = filtered;
+                    }
+                    
+                    // BufferSourceを作成
+                    const source = this.audioContext.createBufferSource();
+                    source.buffer = buffer;
+                    
+                                        // 強度と時間間隔に応じてピッチとボリュームを調整
+                    const pitchMultiplier = 0.5 + intensity * 4;
+                    const speedMultiplier = Math.max(timeDiff / 100, 0.5);
+                    source.playbackRate.value = Math.min(pitchMultiplier * speedMultiplier, 6.0);
                     
                     // 追加のゲインノードでボリュームを調整
                     const amplifierGain = this.audioContext.createGain();
@@ -2157,91 +2148,43 @@
             }
             
             // サンプリング機能
-            async loadPresetSamples() {
-                this.updateStatus('プリセットサンプルを読み込み中...');
-                
-                let loadedCount = 0;
-                
-                for (let i = 0; i < this.presetSamples.length; i++) {
-                    try {
-                        const response = await fetch(this.presetSamples[i]);
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        
-                        const arrayBuffer = await response.arrayBuffer();
-                        const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
-                        
-                        const fileName = this.presetSamples[i].split('/').pop().split('.')[0];
-                        this.samples[i] = {
-                            buffer: audioBuffer,
-                            name: fileName,
-                            isPreset: true
-                        };
-                        
-                        const keyElement = document.querySelector(`[data-index="${i}"]`);
-                        if (keyElement) {
-                            const label = keyElement.querySelector('.key-label');
-                            label.textContent = fileName.substring(0, 6);
-                        }
-                        
-                        loadedCount++;
-                        
-                    } catch (error) {
-                        console.error(`Sample ${this.presetSamples[i]} loading error:`, error);
-                        const keyElement = document.querySelector(`[data-index="${i}"]`);
-                        if (keyElement) {
-                            const label = keyElement.querySelector('.key-label');
-                            label.textContent = 'Error';
-                        }
-                    }
-                }
-                
-                this.samplesLoaded = true;
-                this.updateStatus(`${loadedCount}個のプリセットサンプルを読み込みました`);
-            }
-            
             async loadSampleFiles(event) {
                 const files = Array.from(event.target.files);
-                const maxAdditionalSamples = 23;
-                const startIndex = this.presetSamples.length;
+                const maxSamples = 50;
                 
-                if (files.length > maxAdditionalSamples) {
-                    alert(`最大${maxAdditionalSamples}個のサンプルファイルまで選択できます。`);
+                if (files.length > maxSamples) {
+                    alert(`最大${maxSamples}個のサンプルファイルまで選択できます。`);
                     return;
                 }
                 
-                // 既存の追加サンプルをクリア
-                for (let i = startIndex; i < 50; i++) {
-                    if (this.samples[i] && !this.samples[i].isPreset) {
-                        this.samples[i] = null;
-                        const keyElement = document.querySelector(`[data-index="${i}"]`);
-                        if (keyElement) {
-                            const label = keyElement.querySelector('.key-label');
-                            label.textContent = 'Empty';
-                        }
+                // 既存のサンプルをクリア
+                for (let i = 0; i < 50; i++) {
+                    this.samples[i] = null;
+                    const keyElement = document.querySelector(`[data-index="${i}"]`);
+                    if (keyElement) {
+                        const label = keyElement.querySelector('.key-label');
+                        label.textContent = 'Empty';
                     }
                 }
                 
                 let loadedCount = 0;
                 
-                for (let i = 0; i < files.length && (startIndex + i) < 50; i++) {
+                for (let i = 0; i < files.length && i < 50; i++) {
                     const file = files[i];
                     try {
                         const arrayBuffer = await file.arrayBuffer();
                         const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
                         
-                        const sampleIndex = startIndex + i;
-                        this.samples[sampleIndex] = {
+                        this.samples[i] = {
                             buffer: audioBuffer,
                             name: file.name.split('.')[0],
                             isPreset: false
                         };
                         
-                        const keyElement = document.querySelector(`[data-index="${sampleIndex}"]`);
+                        const keyElement = document.querySelector(`[data-index="${i}"]`);
                         if (keyElement) {
                             const label = keyElement.querySelector('.key-label');
-                            label.textContent = this.samples[sampleIndex].name.substring(0, 6);
+                            label.textContent = this.samples[i].name.substring(0, 6);
                         }
                         
                         loadedCount++;
@@ -2250,7 +2193,7 @@
                     }
                 }
                 
-                this.updateStatus(`${loadedCount}個の追加サンプル音声を読み込みました`);
+                this.updateStatus(`${loadedCount}個のサンプル音声を読み込みました`);
             }
             
             playSample(index) {
