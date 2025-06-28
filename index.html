@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DJ繝溘く繧ｵ繝ｼ</title>
+    <title>DJミキサー</title>
     <script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.0/lame.min.js"></script>
     <style>
         * {
@@ -74,17 +74,6 @@
         @keyframes scanLine {
             0% { left: -100%; }
             100% { left: 100%; }
-        }
-        
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            text-align: center;
-            color: #00ffff;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
         }
         
         .dj-controls {
@@ -786,7 +775,7 @@
         }
         
         .instructions li::before {
-            content: '笙ｪ';
+            content: '♪';
             position: absolute;
             left: 0;
             color: #ff00ff;
@@ -838,50 +827,49 @@
 <body>
     <div class="container">
         <div class="dj-section">
-            <h2 class="section-title">而 DJ 繧ｳ繝ｳ繝医Ο繝ｼ繝ｫ</h2>
             <div class="dj-controls">
-                <!-- 繝�ャ繧ｭA -->
+                <!-- デッキA -->
                 <div class="deck deck-a">
-                    <div class="deck-title">七 繝�ャ繧ｭ A</div>
+                    <div class="deck-title">🎵 デッキ A</div>
                     <label class="file-input-wrapper">
                         <input type="file" id="audioFileA" accept="audio/*">
-                        髻ｳ讌ｽ繝輔ぃ繧､繝ｫ繧帝∈謚�
+                        音楽ファイルを選択
                     </label>
                     
                     <div class="turntable-container">
                         <div class="turntable" id="turntableA"></div>
                     </div>
-                    <div class="turntable-label">繧ｿ繝ｼ繝ｳ繝��繝悶Ν�亥ｾｮ隱ｿ謨ｴ繝ｻ繧ｹ繧ｯ繝ｩ繝�メ��</div>
+                    <div class="turntable-label">ターンテーブル（微調整・スクラッチ）</div>
                     
                     <div class="deck-controls">
                         <div class="control-row">
-                            <button class="control-btn" id="playBtnA" disabled>蜀咲函</button>
-                            <button class="control-btn" id="pauseBtnA" disabled>荳譎ょ●豁｢</button>
-                            <button class="control-btn" id="stopBtnA" disabled>蛛懈ｭ｢</button>
-                            <button class="control-btn monitor-btn" id="monitorBtnA" disabled>繝｢繝九ち繝ｼ</button>
+                            <button class="control-btn" id="playBtnA" disabled>再生</button>
+                            <button class="control-btn" id="pauseBtnA" disabled>一時停止</button>
+                            <button class="control-btn" id="stopBtnA" disabled>停止</button>
+                            <button class="control-btn monitor-btn" id="monitorBtnA" disabled>モニター</button>
                         </div>
                     </div>
                     
                     <div class="pitch-control">
-                        <div class="pitch-label">繝斐ャ繝∬ｪｿ謨ｴ</div>
+                        <div class="pitch-label">ピッチ調整</div>
                         <div class="pitch-slider-container">
                             <span>-</span>
                             <input type="range" class="pitch-slider" id="pitchSliderA" min="-50" max="50" value="0" step="1">
                             <span>+</span>
                             <span class="pitch-value" id="pitchValueA">0%</span>
                         </div>
-                        <button class="pitch-reset" id="pitchResetA">繝ｪ繧ｻ繝�ヨ</button>
+                        <button class="pitch-reset" id="pitchResetA">リセット</button>
                         <label>
-                            <input type="checkbox" id="preservePitchA" checked> 髻ｳ遞倶ｿ晄戟
+                            <input type="checkbox" id="preservePitchA" checked> 音程保持
                         </label>
                     </div>
                     
                     <div class="volume-control">
-                        <div class="volume-label">髻ｳ驥�</div>
+                        <div class="volume-label">音量</div>
                         <div class="volume-slider-container">
-                            <span>這</span>
+                            <span>🔇</span>
                             <input type="range" class="volume-slider" id="volumeSliderA" min="0" max="100" value="75">
-                            <span>矧</span>
+                            <span>🔊</span>
                             <span id="volumeValueA">75%</span>
                         </div>
                     </div>
@@ -896,10 +884,10 @@
                     </div>
                 </div>
                 
-                <!-- 繧ｯ繝ｭ繧ｹ繝輔ぉ繝ｼ繝繝ｼ -->
+                <!-- クロスフェーダー -->
                 <div class="crossfader-section">
                     <div class="crossfader-container">
-                        <div class="crossfader-label">繧ｯ繝ｭ繧ｹ繝輔ぉ繝ｼ繝繝ｼ</div>
+                        <div class="crossfader-label">クロスフェーダー</div>
                         <input type="range" class="crossfader" id="crossfader" min="0" max="100" value="50">
                         <div class="crossfader-indicators">
                             <span class="indicator-a">A</span>
@@ -909,76 +897,76 @@
                     
                     <div class="info-section">
                         <div class="bpm-display">
-                            <div class="bpm-label">繝�ャ繧ｭA BPM</div>
+                            <div class="bpm-label">デッキA BPM</div>
                             <div class="bpm-value" id="bpmValueA">--</div>
-                            <div class="current-bpm">迴ｾ蝨ｨ: <span id="currentBpmA">--</span></div>
+                            <div class="current-bpm">現在: <span id="currentBpmA">--</span></div>
                         </div>
                         
                         <div class="bpm-display">
-                            <div class="bpm-label">繝�ャ繧ｭB BPM</div>
+                            <div class="bpm-label">デッキB BPM</div>
                             <div class="bpm-value" id="bpmValueB">--</div>
-                            <div class="current-bpm">迴ｾ蝨ｨ: <span id="currentBpmB">--</span></div>
+                            <div class="current-bpm">現在: <span id="currentBpmB">--</span></div>
                         </div>
                         
                         <div class="filename-display">
-                            <div class="filename-label">繝�ャ繧ｭA</div>
-                            <div class="filename-value" id="filenameA">繝輔ぃ繧､繝ｫ縺ｪ縺�</div>
+                            <div class="filename-label">デッキA</div>
+                            <div class="filename-value" id="filenameA">ファイルなし</div>
                         </div>
                         
                         <div class="filename-display">
-                            <div class="filename-label">繝�ャ繧ｭB</div>
-                            <div class="filename-value" id="filenameB">繝輔ぃ繧､繝ｫ縺ｪ縺�</div>
+                            <div class="filename-label">デッキB</div>
+                            <div class="filename-value" id="filenameB">ファイルなし</div>
                         </div>
                     </div>
                     
                     <div class="master-controls">
-                        <button class="control-btn record-btn" id="recordBtn" disabled>骭ｲ髻ｳ髢句ｧ�</button>
-                        <button class="control-btn" id="stopAllBtn">蜈ｨ蛛懈ｭ｢</button>
+                        <button class="control-btn record-btn" id="recordBtn" disabled>録音開始</button>
+                        <button class="control-btn" id="stopAllBtn">全停止</button>
                     </div>
                 </div>
                 
-                <!-- 繝�ャ繧ｭB -->
+                <!-- デッキB -->
                 <div class="deck deck-b">
-                    <div class="deck-title">七 繝�ャ繧ｭ B</div>
+                    <div class="deck-title">🎵 デッキ B</div>
                     <label class="file-input-wrapper">
                         <input type="file" id="audioFileB" accept="audio/*">
-                        髻ｳ讌ｽ繝輔ぃ繧､繝ｫ繧帝∈謚�
+                        音楽ファイルを選択
                     </label>
                     
                     <div class="turntable-container">
                         <div class="turntable" id="turntableB"></div>
                     </div>
-                    <div class="turntable-label">繧ｿ繝ｼ繝ｳ繝��繝悶Ν�亥ｾｮ隱ｿ謨ｴ繝ｻ繧ｹ繧ｯ繝ｩ繝�メ��</div>
+                    <div class="turntable-label">ターンテーブル（微調整・スクラッチ）</div>
                     
                     <div class="deck-controls">
                         <div class="control-row">
-                            <button class="control-btn" id="playBtnB" disabled>蜀咲函</button>
-                            <button class="control-btn" id="pauseBtnB" disabled>荳譎ょ●豁｢</button>
-                            <button class="control-btn" id="stopBtnB" disabled>蛛懈ｭ｢</button>
-                            <button class="control-btn monitor-btn" id="monitorBtnB" disabled>繝｢繝九ち繝ｼ</button>
+                            <button class="control-btn" id="playBtnB" disabled>再生</button>
+                            <button class="control-btn" id="pauseBtnB" disabled>一時停止</button>
+                            <button class="control-btn" id="stopBtnB" disabled>停止</button>
+                            <button class="control-btn monitor-btn" id="monitorBtnB" disabled>モニター</button>
                         </div>
                     </div>
                     
                     <div class="pitch-control">
-                        <div class="pitch-label">繝斐ャ繝∬ｪｿ謨ｴ</div>
+                        <div class="pitch-label">ピッチ調整</div>
                         <div class="pitch-slider-container">
                             <span>-</span>
                             <input type="range" class="pitch-slider" id="pitchSliderB" min="-50" max="50" value="0" step="1">
                             <span>+</span>
                             <span class="pitch-value" id="pitchValueB">0%</span>
                         </div>
-                        <button class="pitch-reset" id="pitchResetB">繝ｪ繧ｻ繝�ヨ</button>
+                        <button class="pitch-reset" id="pitchResetB">リセット</button>
                         <label>
-                            <input type="checkbox" id="preservePitchB" checked> 髻ｳ遞倶ｿ晄戟
+                            <input type="checkbox" id="preservePitchB" checked> 音程保持
                         </label>
                     </div>
                     
                     <div class="volume-control">
-                        <div class="volume-label">髻ｳ驥�</div>
+                        <div class="volume-label">音量</div>
                         <div class="volume-slider-container">
-                            <span>這</span>
+                            <span>🔇</span>
                             <input type="range" class="volume-slider" id="volumeSliderB" min="0" max="100" value="75">
-                            <span>矧</span>
+                            <span>🔊</span>
                             <span id="volumeValueB">75%</span>
                         </div>
                     </div>
@@ -999,21 +987,21 @@
             <div class="sample-upload">
                 <label class="file-input-wrapper">
                     <input type="file" id="sampleFiles" accept="audio/*" multiple>
-                    繧ｵ繝ｳ繝励Ν髻ｳ螢ｰ繧定ｿｽ蜉�驕ｸ謚橸ｼ域怙螟ｧ23蛟具ｼ�
+                    サンプル音声を追加選択（最大23個）
                 </label>
             </div>
             
             <div class="preset-controls">
-                <button class="preset-btn" id="loadPresetSamples">繝励Μ繧ｻ繝�ヨ髻ｳ貅占ｪｭ縺ｿ霎ｼ縺ｿ</button>
-                <button class="preset-btn" id="clearAllSamples">蜈ｨ繧ｵ繝ｳ繝励Ν繧ｯ繝ｪ繧｢</button>
+                <button class="preset-btn" id="loadPresetSamples">プリセット音源読み込み</button>
+                <button class="preset-btn" id="clearAllSamples">全サンプルクリア</button>
             </div>
             
             <div class="volume-control">
-                <div class="volume-label">嫉 繧ｵ繝ｳ繝励Ν髻ｳ驥�</div>
+                <div class="volume-label">🎹 サンプル音量</div>
                 <div class="volume-slider-container">
-                    <span>這</span>
+                    <span>🔇</span>
                     <input type="range" class="volume-slider" id="sampleVolumeSlider" min="0" max="100" value="70">
-                    <span>矧</span>
+                    <span>🔊</span>
                     <span id="sampleVolumeValue">70%</span>
                 </div>
             </div>
@@ -1023,25 +1011,25 @@
         </div>
         
         <div class="status" id="status">
-            繧ｯ繝ｪ繝�け縺励※繧ｪ繝ｼ繝�ぅ繧ｪ繧ｷ繧ｹ繝�Β繧帝幕蟋九＠縺ｦ縺上□縺輔＞
+            クリックしてオーディオシステムを開始してください
         </div>
         
         <div class="instructions">
-            <h3>菴ｿ縺�婿</h3>
+            <h3>使い方</h3>
             <ul>
-                <li>繝�ャ繧ｭA縺ｨB縺ｫ髻ｳ讌ｽ繝輔ぃ繧､繝ｫ繧定ｪｭ縺ｿ霎ｼ繧薙〒蜀咲函縺ｧ縺阪∪縺�</li>
-                <li>繧ｿ繝ｼ繝ｳ繝��繝悶Ν繧偵ラ繝ｩ繝�げ縺励※蠕ｮ隱ｿ謨ｴ繝ｻ蜍慕噪繧ｹ繧ｯ繝ｩ繝�メ髻ｳ繧堤函謌�</li>
-                <li>繝斐ャ繝√せ繝ｩ繧､繝繝ｼ縺ｧ蜀咲函騾溷ｺｦ繧定ｪｿ謨ｴ��-50%縲�+50%��</li>
-                <li>髻ｳ遞倶ｿ晄戟繝√ぉ繝�け繝懊ャ繧ｯ繧ｹ縺ｧ縲√ヴ繝�メ螟画峩譎ゅ�髻ｳ遞句､牙喧繧貞宛蠕｡</li>
-                <li>繧ｯ繝ｭ繧ｹ繝輔ぉ繝ｼ繝繝ｼ縺ｧ繝�ャ繧ｭA/B髢薙�髻ｳ驥上ヰ繝ｩ繝ｳ繧ｹ繧定ｪｿ謨ｴ</li>
-                <li>BPM陦ｨ遉ｺ縺ｧ讌ｽ譖ｲ縺ｮ蜈�ユ繝ｳ繝昴→迴ｾ蝨ｨ縺ｮ繝�Φ繝昴ｒ遒ｺ隱�</li>
-                <li>繝｢繝九ち繝ｼ繝懊ち繝ｳ縺ｧ蜷�ョ繝�く縺ｮ髻ｳ貅舌ｒ繝倥ャ繝峨ヵ繧ｩ繝ｳ縺ｧ遒ｺ隱榊庄閭ｽ</li>
-                <li>蜀咲函荳ｭ縺ｮ繝輔ぃ繧､繝ｫ蜷阪′繝ｪ繧｢繝ｫ繧ｿ繧､繝�縺ｧ陦ｨ遉ｺ縺輔ｌ縺ｾ縺�</li>
-                <li>繝励Μ繧ｻ繝�ヨ髻ｳ貅占ｪｭ縺ｿ霎ｼ縺ｿ繝懊ち繝ｳ縺ｧ27蛟九�蜀�鳩繧ｵ繝ｳ繝励Ν髻ｳ繧定ｪｭ縺ｿ霎ｼ繧√∪縺�</li>
-                <li>谿九ｊ23蛟九�繧ｹ繝ｭ繝�ヨ縺ｫ霑ｽ蜉�縺ｮ繧ｵ繝ｳ繝励Ν髻ｳ螢ｰ繝輔ぃ繧､繝ｫ繧定ｪｭ縺ｿ霎ｼ繧√∪縺�</li>
-                <li>繧ｭ繝ｼ繝懊�繝峨�繝懊ち繝ｳ縺ｾ縺溘�繧ｭ繝ｼ��1-9, 0, Q-P, A-L, Z-N�峨〒繧ｵ繝ｳ繝励Ν髻ｳ繧貞�逕�</li>
-                <li>骭ｲ髻ｳ繝懊ち繝ｳ縺ｧ蜈ｨ縺ｦ縺ｮ髻ｳ繧貞酔譎る鹸髻ｳ縺ｧ縺阪∪縺�</li>
-                <li>骭ｲ髻ｳ縺励◆髻ｳ螢ｰ縺ｯMP3蠖｢蠑上〒閾ｪ蜍輔ム繧ｦ繝ｳ繝ｭ繝ｼ繝峨＆繧後∪縺�</li>
+                <li>デッキAとBに音楽ファイルを読み込んで再生できます</li>
+                <li>ターンテーブルをドラッグして微調整・動的スクラッチ音を生成</li>
+                <li>ピッチスライダーで再生速度を調整（-50%〜+50%）</li>
+                <li>音程保持チェックボックスで、ピッチ変更時の音程変化を制御</li>
+                <li>クロスフェーダーでデッキA/B間の音量バランスを調整</li>
+                <li>BPM表示で楽曲の元テンポと現在のテンポを確認</li>
+                <li>モニターボタンで各デッキの音源をヘッドフォンで確認可能</li>
+                <li>再生中のファイル名がリアルタイムで表示されます</li>
+                <li>プリセット音源読み込みボタンで27個の内蔵サンプル音を読み込めます</li>
+                <li>残り23個のスロットに追加のサンプル音声ファイルを読み込めます</li>
+                <li>キーボードのボタンまたはキー（1-9, 0, Q-P, A-L, Z-N）でサンプル音を再生</li>
+                <li>録音ボタンで全ての音を同時録音できます</li>
+                <li>録音した音声はMP3形式で自動ダウンロードされます</li>
             </ul>
         </div>
     </div>
@@ -1049,7 +1037,7 @@
     <script>
         class DJMixer {
             constructor() {
-                // 髻ｳ讌ｽ蜀咲函逕ｨ縺ｮBufferSource繧剃ｽｿ逕ｨ
+                // 音楽再生用のBufferSourceを使用
                 this.audioBufferA = null;
                 this.audioBufferB = null;
                 this.bufferSourceA = null;
@@ -1063,7 +1051,7 @@
                 this.playbackRateA = 1;
                 this.playbackRateB = 1;
                 
-                // 繧ｿ繝ｼ繝ｳ繝��繝悶Ν
+                // ターンテーブル
                 this.turntableA = null;
                 this.turntableB = null;
                 this.isDraggingA = false;
@@ -1075,11 +1063,11 @@
                 this.lastScratchTimeA = 0;
                 this.lastScratchTimeB = 0;
                 
-                // 繧ｵ繝ｳ繝励Μ繝ｳ繧ｰ
+                // サンプリング
                 this.samples = [];
                 this.playingSamples = new Set();
                 
-                // 骭ｲ髻ｳ
+                // 録音
                 this.mediaRecorder = null;
                 this.recordedChunks = [];
                 this.isRecording = false;
@@ -1099,14 +1087,14 @@
                 this.monitoringA = false;
                 this.monitoringB = false;
                 
-                // 繝輔ぃ繧､繝ｫ邂｡逅�
+                // ファイル管理
                 this.originalBpmA = null;
                 this.originalBpmB = null;
                 this.currentFilenameA = null;
                 this.currentFilenameB = null;
                 this.objectUrls = new Set();
                 
-                // 繝励Μ繧ｻ繝�ヨ繧ｵ繝ｳ繝励Ν縺ｮ繝輔ぃ繧､繝ｫ蜷阪Μ繧ｹ繝�
+                // プリセットサンプルのファイル名リスト
                 this.presetSampleFiles = [
                     '01Laser1.mp3',
                     '2Laser2.mp3',
@@ -1149,11 +1137,11 @@
                 this.bindEvents();
                 this.createKeyboard();
                 
-                // 繝励Ο繧ｰ繝ｬ繧ｹ譖ｴ譁ｰ逕ｨ繧ｿ繧､繝槭�
+                // プログレス更新用タイマー
                 this.progressIntervalA = null;
                 this.progressIntervalB = null;
                 
-                // 繝壹�繧ｸ髮｢閼ｱ譎ゅ�繧ｯ繝ｪ繝ｼ繝ｳ繧｢繝��
+                // ページ離脱時のクリーンアップ
                 window.addEventListener('beforeunload', () => {
                     this.cleanup();
                 });
@@ -1161,7 +1149,7 @@
             
             initializeElements() {
                 this.elements = {
-                    // 繝�ャ繧ｭA
+                    // デッキA
                     audioFileA: document.getElementById('audioFileA'),
                     playBtnA: document.getElementById('playBtnA'),
                     pauseBtnA: document.getElementById('pauseBtnA'),
@@ -1182,7 +1170,7 @@
                     filenameA: document.getElementById('filenameA'),
                     turntableA: document.getElementById('turntableA'),
                     
-                    // 繝�ャ繧ｭB
+                    // デッキB
                     audioFileB: document.getElementById('audioFileB'),
                     playBtnB: document.getElementById('playBtnB'),
                     pauseBtnB: document.getElementById('pauseBtnB'),
@@ -1203,19 +1191,19 @@
                     filenameB: document.getElementById('filenameB'),
                     turntableB: document.getElementById('turntableB'),
                     
-                    // 蜈ｱ騾壹さ繝ｳ繝医Ο繝ｼ繝ｫ
+                    // 共通コントロール
                     crossfader: document.getElementById('crossfader'),
                     recordBtn: document.getElementById('recordBtn'),
                     stopAllBtn: document.getElementById('stopAllBtn'),
                     
-                    // 繧ｵ繝ｳ繝励Μ繝ｳ繧ｰ
+                    // サンプリング
                     sampleFiles: document.getElementById('sampleFiles'),
                     sampleVolumeSlider: document.getElementById('sampleVolumeSlider'),
                     sampleVolumeValue: document.getElementById('sampleVolumeValue'),
                     keyboard: document.getElementById('keyboard'),
                     status: document.getElementById('status'),
                     
-                    // 繝励Μ繧ｻ繝�ヨ繝懊ち繝ｳ
+                    // プリセットボタン
                     loadPresetSamples: document.getElementById('loadPresetSamples'),
                     clearAllSamples: document.getElementById('clearAllSamples')
                 };
@@ -1225,12 +1213,12 @@
                 try {
                     this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
                     
-                    // AudioContext縺� suspended 迥ｶ諷九�蝣ｴ蜷医� resume
+                    // AudioContextが suspended 状態の場合は resume
                     if (this.audioContext.state === 'suspended') {
                         await this.audioContext.resume();
                     }
                     
-                    // 繧ｲ繧､繝ｳ繝弱�繝峨�菴懈�
+                    // ゲインノードの作成
                     this.deckAGainNode = this.audioContext.createGain();
                     this.deckBGainNode = this.audioContext.createGain();
                     this.sampleGainNode = this.audioContext.createGain();
@@ -1242,7 +1230,7 @@
                     this.scratchGainB = this.audioContext.createGain();
                     this.destination = this.audioContext.createMediaStreamDestination();
                     
-                    // 蛻晄悄蛟､險ｭ螳�
+                    // 初期値設定
                     this.deckAGainNode.gain.value = 0.75;
                     this.deckBGainNode.gain.value = 0.75;
                     this.sampleGainNode.gain.value = 0.7;
@@ -1253,7 +1241,7 @@
                     this.scratchGainA.gain.value = 1.2;
                     this.scratchGainB.gain.value = 1.2;
                     
-                    // 謗･邯夊ｨｭ螳�
+                    // 接続設定
                     this.deckAGainNode.connect(this.crossfaderGainA);
                     this.deckBGainNode.connect(this.crossfaderGainB);
                     this.deckAGainNode.connect(this.monitorGainA);
@@ -1275,14 +1263,14 @@
                     this.scratchGainB.connect(this.audioContext.destination);
                     this.scratchGainB.connect(this.destination);
                     
-                    // 繧ｿ繝ｼ繝ｳ繝��繝悶Ν蛻晄悄蛹�
+                    // ターンテーブル初期化
                     this.initializeTurntables();
                     
-                    this.updateStatus('繧ｪ繝ｼ繝�ぅ繧ｪ繧ｷ繧ｹ繝�Β縺悟�譛溷喧縺輔ｌ縺ｾ縺励◆');
+                    this.updateStatus('オーディオシステムが初期化されました');
                     
                 } catch (error) {
                     console.error('Audio Context initialization error:', error);
-                    this.updateStatus('繧ｪ繝ｼ繝�ぅ繧ｪ繧ｷ繧ｹ繝�Β縺ｮ蛻晄悄蛹悶↓螟ｱ謨励＠縺ｾ縺励◆');
+                    this.updateStatus('オーディオシステムの初期化に失敗しました');
                 }
             }
             
@@ -1290,15 +1278,15 @@
                 this.turntableA = this.elements.turntableA;
                 this.turntableB = this.elements.turntableB;
                 
-                // 繧ｿ繝ｼ繝ｳ繝��繝悶ΝA縺ｮ繧､繝吶Φ繝�
+                // ターンテーブルAのイベント
                 this.turntableA.addEventListener('mousedown', (e) => this.startTurntableDrag(e, 'A'));
                 this.turntableA.addEventListener('touchstart', (e) => this.startTurntableDrag(e, 'A'));
                 
-                // 繧ｿ繝ｼ繝ｳ繝��繝悶ΝB縺ｮ繧､繝吶Φ繝�
+                // ターンテーブルBのイベント
                 this.turntableB.addEventListener('mousedown', (e) => this.startTurntableDrag(e, 'B'));
                 this.turntableB.addEventListener('touchstart', (e) => this.startTurntableDrag(e, 'B'));
                 
-                // 繧ｰ繝ｭ繝ｼ繝舌Ν繧､繝吶Φ繝�
+                // グローバルイベント
                 document.addEventListener('mousemove', (e) => this.handleTurntableDrag(e));
                 document.addEventListener('touchmove', (e) => this.handleTurntableDrag(e));
                 document.addEventListener('mouseup', () => this.stopTurntableDrag());
@@ -1347,20 +1335,20 @@
                 const angle = Math.atan2(clientY - centerY, clientX - centerX);
                 let angleDiff = angle - lastAngle;
                 
-                // 隗貞ｺｦ縺ｮ豁｣隕丞喧
+                // 角度の正規化
                 if (angleDiff > Math.PI) angleDiff -= 2 * Math.PI;
                 if (angleDiff < -Math.PI) angleDiff += 2 * Math.PI;
                 
-                // 繧ｿ繝ｼ繝ｳ繝��繝悶Ν縺ｮ蝗櫁ｻ｢陦ｨ遉ｺ
+                // ターンテーブルの回転表示
                 const rotation = (angle * 180 / Math.PI);
                 turntable.style.transform = `rotate(${rotation}deg)`;
                 
-                // 繧ｹ繧ｯ繝ｩ繝�メ髻ｳ繧堤函謌�
+                // スクラッチ音を生成
                 if (Math.abs(angleDiff) > 0.03) {
                     this.generateScratchSound(deck, Math.abs(angleDiff));
                 }
                 
-                // 蠕ｮ隱ｿ謨ｴ�亥�逕滉ｽ咲ｽｮ縺ｮ隱ｿ謨ｴ��
+                // 微調整（再生位置の調整）
                 if (Math.abs(angleDiff) > 0.02) {
                     this.adjustPlaybackPosition(deck, angleDiff);
                 }
@@ -1377,7 +1365,7 @@
                 this.isDraggingB = false;
             }
             
-           // 蜍慕噪繧ｹ繧ｯ繝ｩ繝�メ髻ｳ逕滓���Web Audio API繧剃ｽｿ逕ｨ��
+           // 動的スクラッチ音生成（Web Audio APIを使用）
 generateScratchSound(deck, intensity) {
     try {
         if (!this.audioContext) return;
@@ -1385,27 +1373,27 @@ generateScratchSound(deck, intensity) {
         const scratchGain = deck === 'A' ? this.scratchGainA : this.scratchGainB;
         if (!scratchGain) return;
         
-        // 譌｢蟄倥�繧ｹ繧ｯ繝ｩ繝�メ髻ｳ繧貞●豁｢
+        // 既存のスクラッチ音を停止
         const existingSource = deck === 'A' ? this.scratchSourceA : this.scratchSourceB;
         if (existingSource) {
             try {
                 existingSource.stop();
             } catch (error) {
-                // 繧ｨ繝ｩ繝ｼ繧堤┌隕�
+                // エラーを無視
             }
         }
         
-        // 迴ｾ蝨ｨ譎ょ綾繧貞叙蠕�
+                // 現在時刻を取得
         const currentTime = Date.now();
         const lastScratchTime = deck === 'A' ? this.lastScratchTimeA : this.lastScratchTimeB;
         const timeDiff = Math.max(currentTime - lastScratchTime, 10);
         
-        // 繝弱う繧ｺ繧ｸ繧ｧ繝阪Ξ繝ｼ繧ｿ繝ｼ縺ｨ繧ｪ繧ｷ繝ｬ繝ｼ繧ｿ繝ｼ繧堤ｵ�∩蜷医ｏ縺帙※繧ｹ繧ｯ繝ｩ繝�メ髻ｳ繧堤函謌�
-        const bufferSize = this.audioContext.sampleRate * 0.1; // 0.1遘�
+        // ノイズジェネレーターとオシレーターを組み合わせてスクラッチ音を生成
+        const bufferSize = this.audioContext.sampleRate * 0.1; // 0.1秒
         const buffer = this.audioContext.createBuffer(1, bufferSize, this.audioContext.sampleRate);
         const data = buffer.getChannelData(0);
         
-        // 繝斐Φ繧ｯ繝弱う繧ｺ逕滓��医せ繧ｯ繝ｩ繝�メ髻ｳ繧峨＠縺�浹��
+        // ピンクノイズ生成（スクラッチ音らしい音）
         let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
         for (let i = 0; i < bufferSize; i++) {
             const white = Math.random() * 2 - 1;
@@ -1418,27 +1406,27 @@ generateScratchSound(deck, intensity) {
             const pink = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
             b6 = white * 0.115926;
             
-            // 繝輔ぉ繝ｼ繝峨い繧ｦ繝亥柑譫懊→繝輔ぅ繝ｫ繧ｿ繝ｪ繝ｳ繧ｰ
+            // フェードアウト効果とフィルタリング
             const fadeOut = 1 - (i / bufferSize);
             const filtered = pink * fadeOut * 0.3;
             data[i] = filtered;
         }
         
-        // BufferSource繧剃ｽ懈�
+        // BufferSourceを作成
         const source = this.audioContext.createBufferSource();
         source.buffer = buffer;
         
-        // 蠑ｷ蠎ｦ縺ｨ譎る俣髢馴囈縺ｫ蠢懊§縺ｦ繝斐ャ繝√→繝懊Μ繝･繝ｼ繝�繧定ｪｿ謨ｴ
+        // 強度と時間間隔に応じてピッチとボリュームを調整
         const pitchMultiplier = 0.5 + intensity * 4;
         const speedMultiplier = Math.max(timeDiff / 100, 0.5);
         source.playbackRate.value = Math.min(pitchMultiplier * speedMultiplier, 6.0);
         
-        // 霑ｽ蜉�縺ｮ繧ｲ繧､繝ｳ繝弱�繝峨〒繝懊Μ繝･繝ｼ繝�繧定ｪｿ謨ｴ
+        // 追加のゲインノードでボリュームを調整
         const amplifierGain = this.audioContext.createGain();
         const volumeMultiplier = Math.min(1.0 + intensity * 2, 3.0);
         amplifierGain.gain.value = volumeMultiplier;
         
-        // 蜍輔″縺ｮ騾溘＆縺ｫ蠢懊§縺ｦ蜀咲函譎る俣繧定ｪｿ謨ｴ
+        // 動きの速さに応じて再生時間を調整
         const playDuration = Math.max(100, Math.min(400 - timeDiff, 400));
         
         source.connect(amplifierGain);
@@ -1453,12 +1441,12 @@ generateScratchSound(deck, intensity) {
             this.lastScratchTimeB = currentTime;
         }
         
-        // 蜍慕噪縺ｪ譎る俣縺ｧ閾ｪ蜍募●豁｢
+        // 動的な時間で自動停止
         setTimeout(() => {
             try {
                 source.stop();
             } catch (error) {
-                // 繧ｨ繝ｩ繝ｼ繧堤┌隕�
+                // エラーを無視
             }
         }, playDuration);
         
@@ -1473,8 +1461,8 @@ adjustPlaybackPosition(deck, angleDiff) {
     
     if (!audioBuffer) return;
     
-    // 隗貞ｺｦ蟾ｮ繧呈凾髢灘ｷｮ縺ｫ螟画鋤�亥ｾｮ隱ｿ謨ｴ��
-    const timeAdjustment = angleDiff * 0.1; // 隱ｿ謨ｴ菫よ焚
+    // 角度差を時間差に変換（微調整）
+    const timeAdjustment = angleDiff * 0.1; // 調整係数
     
     if (deck === 'A') {
         this.pauseTimeA = Math.max(0, Math.min(this.pauseTimeA + timeAdjustment, audioBuffer.duration));
@@ -1482,7 +1470,7 @@ adjustPlaybackPosition(deck, angleDiff) {
         this.pauseTimeB = Math.max(0, Math.min(this.pauseTimeB + timeAdjustment, audioBuffer.duration));
     }
     
-    // 蜀咲函荳ｭ縺ｮ蝣ｴ蜷医�蜀埼幕
+    // 再生中の場合は再開
     if (isPlaying) {
         this.pauseAudio(deck);
         setTimeout(() => this.playAudio(deck), 10);
@@ -1491,7 +1479,7 @@ adjustPlaybackPosition(deck, angleDiff) {
     }
 }
 
-// 繝励Μ繧ｻ繝�ヨ繧ｵ繝ｳ繝励Ν縺ｮ繝輔ぃ繧､繝ｫ蜷阪Μ繧ｹ繝�
+// プリセットサンプルのファイル名リスト
 initializePresetSamples() {
     this.presetSampleFiles = [
         '01Laser1.mp3',
@@ -1524,17 +1512,17 @@ initializePresetSamples() {
     ];
 }
 
-// 繝励Μ繧ｻ繝�ヨ髻ｳ貅占ｪｭ縺ｿ霎ｼ縺ｿ
+// プリセット音源読み込み
 async loadPresetSamples() {
     if (!this.audioContext) {
-        this.updateStatus('繧ｪ繝ｼ繝�ぅ繧ｪ繧ｷ繧ｹ繝�Β縺悟�譛溷喧縺輔ｌ縺ｦ縺�∪縺帙ｓ');
+        this.updateStatus('オーディオシステムが初期化されていません');
         return;
     }
     
     try {
-        this.updateStatus('繝励Μ繧ｻ繝�ヨ髻ｳ貅舌ｒ隱ｭ縺ｿ霎ｼ縺ｿ荳ｭ...');
+        this.updateStatus('プリセット音源を読み込み中...');
         
-        // 譌｢蟄倥�繧ｵ繝ｳ繝励Ν繧偵け繝ｪ繧｢
+        // 既存のサンプルをクリア
         for (let i = 0; i < 50; i++) {
             this.samples[i] = null;
             const keyElement = document.querySelector(`[data-index="${i}"]`);
@@ -1546,7 +1534,7 @@ async loadPresetSamples() {
         
         let loadedCount = 0;
         
-        // 譛蛻昴�27蛟九↓繝励Μ繧ｻ繝�ヨ髻ｳ貅舌ｒ隱ｭ縺ｿ霎ｼ縺ｿ
+        // 最初の27個にプリセット音源を読み込み
         for (let i = 0; i < this.presetSampleFiles.length && i < 27; i++) {
             try {
                 const response = await fetch(this.presetSampleFiles[i]);
@@ -1575,30 +1563,30 @@ async loadPresetSamples() {
             }
         }
         
-        this.updateStatus(`繝励Μ繧ｻ繝�ヨ髻ｳ貅舌ｒ${loadedCount}蛟玖ｪｭ縺ｿ霎ｼ縺ｿ縺ｾ縺励◆�域ｮ九ｊ23蛟九�霑ｽ蜉�繝輔ぃ繧､繝ｫ縺ｧ逋ｻ骭ｲ蜿ｯ閭ｽ�荏);
+        this.updateStatus(`プリセット音源を${loadedCount}個読み込みました（残り23個は追加ファイルで登録可能）`);
         
     } catch (error) {
         console.error('Preset sample loading error:', error);
-        this.updateStatus(`繝励Μ繧ｻ繝�ヨ髻ｳ貅舌�隱ｭ縺ｿ霎ｼ縺ｿ縺ｫ螟ｱ謨励＠縺ｾ縺励◆: ${error.message}`);
+        this.updateStatus(`プリセット音源の読み込みに失敗しました: ${error.message}`);
     }
 }
 
-// 繧ｵ繝ｳ繝励Ν繝輔ぃ繧､繝ｫ隱ｭ縺ｿ霎ｼ縺ｿ�郁ｿｽ蜉�蛻�ｼ�
+// サンプルファイル読み込み（追加分）
 async loadSampleFiles(event) {
     const files = Array.from(event.target.files);
-    const maxAdditionalSamples = 23; // 谿九ｊ縺ｮ23蛟�
+    const maxAdditionalSamples = 23; // 残りの23個
     
     if (files.length > maxAdditionalSamples) {
-        alert(`霑ｽ蜉�縺ｧ縺阪ｋ繧ｵ繝ｳ繝励Ν繝輔ぃ繧､繝ｫ縺ｯ譛螟ｧ${maxAdditionalSamples}蛟九〒縺吶Ａ);
+        alert(`追加できるサンプルファイルは最大${maxAdditionalSamples}個です。`);
         return;
     }
     
     let loadedCount = 0;
     
-    // 28逡ｪ逶ｮ縺九ｉ50逡ｪ逶ｮ縺ｮ繧ｹ繝ｭ繝�ヨ縺ｫ霑ｽ蜉�繝輔ぃ繧､繝ｫ繧定ｪｭ縺ｿ霎ｼ縺ｿ
+    // 28番目から50番目のスロットに追加ファイルを読み込み
     for (let i = 0; i < files.length && i < maxAdditionalSamples; i++) {
         const file = files[i];
-        const slotIndex = 27 + i; // 28逡ｪ逶ｮ縺九ｉ髢句ｧ�
+        const slotIndex = 27 + i; // 28番目から開始
         
         try {
             const arrayBuffer = await file.arrayBuffer();
@@ -1622,10 +1610,10 @@ async loadSampleFiles(event) {
         }
     }
     
-    this.updateStatus(`霑ｽ蜉�繧ｵ繝ｳ繝励Ν髻ｳ螢ｰ繧�${loadedCount}蛟玖ｪｭ縺ｿ霎ｼ縺ｿ縺ｾ縺励◆`);
+    this.updateStatus(`追加サンプル音声を${loadedCount}個読み込みました`);
 }
 
-// 蜈ｨ繧ｵ繝ｳ繝励Ν繧ｯ繝ｪ繧｢
+// 全サンプルクリア
 clearAllSamples() {
     for (let i = 0; i < 50; i++) {
         this.samples[i] = null;
@@ -1635,11 +1623,11 @@ clearAllSamples() {
             label.textContent = 'Empty';
         }
     }
-    this.updateStatus('蜈ｨ縺ｦ縺ｮ繧ｵ繝ｳ繝励Ν繧偵け繝ｪ繧｢縺励∪縺励◆');
+    this.updateStatus('全てのサンプルをクリアしました');
 }
 
 bindEvents() {
-    // 繝�ャ繧ｭA
+    // デッキA
     this.elements.audioFileA.addEventListener('change', (e) => this.loadAudioFile(e, 'A'));
     this.elements.playBtnA.addEventListener('click', () => this.playAudio('A'));
     this.elements.pauseBtnA.addEventListener('click', () => this.pauseAudio('A'));
@@ -1651,7 +1639,7 @@ bindEvents() {
     this.elements.volumeSliderA.addEventListener('input', (e) => this.updateVolume(e, 'A'));
     this.elements.progressBarA.addEventListener('click', (e) => this.seekAudio(e, 'A'));
     
-    // 繝�ャ繧ｭB
+    // デッキB
     this.elements.audioFileB.addEventListener('change', (e) => this.loadAudioFile(e, 'B'));
     this.elements.playBtnB.addEventListener('click', () => this.playAudio('B'));
     this.elements.pauseBtnB.addEventListener('click', () => this.pauseAudio('B'));
@@ -1663,29 +1651,29 @@ bindEvents() {
     this.elements.volumeSliderB.addEventListener('input', (e) => this.updateVolume(e, 'B'));
     this.elements.progressBarB.addEventListener('click', (e) => this.seekAudio(e, 'B'));
     
-    // 蜈ｱ騾壹さ繝ｳ繝医Ο繝ｼ繝ｫ
+    // 共通コントロール
     this.elements.crossfader.addEventListener('input', (e) => this.updateCrossfader(e));
     this.elements.recordBtn.addEventListener('click', () => this.toggleRecording());
     this.elements.stopAllBtn.addEventListener('click', () => this.stopAllSounds());
     
-    // 繧ｵ繝ｳ繝励Μ繝ｳ繧ｰ
+    // サンプリング
     this.elements.sampleFiles.addEventListener('change', (e) => this.loadSampleFiles(e));
     this.elements.sampleVolumeSlider.addEventListener('input', (e) => this.updateSampleVolume(e));
     
-    // 繝励Μ繧ｻ繝�ヨ繝懊ち繝ｳ
+    // プリセットボタン
     this.elements.loadPresetSamples.addEventListener('click', () => this.loadPresetSamples());
     this.elements.clearAllSamples.addEventListener('click', () => this.clearAllSamples());
     
-  // 繧ｭ繝ｼ繝懊�繝峨う繝吶Φ繝�
-document.addEventListener('keydown', (e) => this.handleKeyPress(e));
-document.addEventListener('keyup', (e) => this.handleKeyRelease(e));
+    // キーボードイベント
+    document.addEventListener('keydown', (e) => this.handleKeyPress(e));
+    document.addEventListener('keyup', (e) => this.handleKeyRelease(e));
 
-// 繧ｪ繝ｼ繝�ぅ繧ｪ繧ｳ繝ｳ繝�く繧ｹ繝亥�譛溷喧�医Θ繝ｼ繧ｶ繝ｼ繧｢繧ｯ繧ｷ繝ｧ繝ｳ蠕鯉ｼ�
-document.addEventListener('click', async () => {
-    if (!this.audioContext) {
-        await this.initializeAudioContext();
-    }
-}, { once: true });
+    // オーディオコンテキスト初期化（ユーザーアクション後）
+    document.addEventListener('click', async () => {
+        if (!this.audioContext) {
+            await this.initializeAudioContext();
+        }
+    }, { once: true });
 }
 
 createKeyboard() {
@@ -1706,254 +1694,26 @@ createKeyboard() {
     });
 }
 
-// 繝励Μ繧ｻ繝�ヨ繧ｵ繝ｳ繝励Ν蛻晄悄蛹�
-initializePresetSamples() {
-    this.presetSamples = {
-        drumKit: [
-            { name: 'Kick', frequency: 60, type: 'sine', duration: 0.5 },
-            { name: 'Snare', frequency: 200, type: 'noise', duration: 0.2 },
-            { name: 'HiHat', frequency: 8000, type: 'noise', duration: 0.1 },
-            { name: 'OpenHat', frequency: 6000, type: 'noise', duration: 0.3 },
-            { name: 'Crash', frequency: 4000, type: 'noise', duration: 1.0 },
-            { name: 'Ride', frequency: 3000, type: 'noise', duration: 0.8 },
-            { name: 'Tom1', frequency: 100, type: 'sine', duration: 0.4 },
-            { name: 'Tom2', frequency: 80, type: 'sine', duration: 0.4 },
-            { name: 'Clap', frequency: 1000, type: 'noise', duration: 0.15 },
-            { name: 'Cowbell', frequency: 800, type: 'square', duration: 0.3 }
-        ],
-        electro: [
-            { name: 'Bass1', frequency: 40, type: 'sawtooth', duration: 0.8 },
-            { name: 'Bass2', frequency: 50, type: 'square', duration: 0.6 },
-            { name: 'Lead1', frequency: 440, type: 'sawtooth', duration: 0.5 },
-            { name: 'Lead2', frequency: 880, type: 'square', duration: 0.4 },
-            { name: 'Pluck', frequency: 660, type: 'triangle', duration: 0.2 },
-            { name: 'Zap', frequency: 1200, type: 'sawtooth', duration: 0.3 },
-            { name: 'Wobble', frequency: 80, type: 'sawtooth', duration: 1.0 },
-            { name: 'Stab', frequency: 220, type: 'square', duration: 0.3 },
-            { name: 'Sweep', frequency: 200, type: 'sawtooth', duration: 2.0 },
-            { name: 'Blip', frequency: 1000, type: 'sine', duration: 0.1 }
-        ],
-        vocal: [
-            { name: 'Ah', frequency: 440, type: 'sine', duration: 0.5 },
-            { name: 'Oh', frequency: 330, type: 'sine', duration: 0.6 },
-            { name: 'Eh', frequency: 550, type: 'triangle', duration: 0.4 },
-            { name: 'Uh', frequency: 220, type: 'sine', duration: 0.7 },
-            { name: 'Yeah', frequency: 660, type: 'triangle', duration: 0.8 },
-            { name: 'Hey', frequency: 880, type: 'square', duration: 0.3 },
-            { name: 'Woo', frequency: 1100, type: 'sine', duration: 1.0 },
-            { name: 'Vocal1', frequency: 440, type: 'triangle', duration: 0.9 },
-            { name: 'Vocal2', frequency: 330, type: 'sine', duration: 1.2 },
-            { name: 'Chop', frequency: 770, type: 'sawtooth', duration: 0.2 }
-        ],
-        effects: [
-            { name: 'Whoosh', frequency: 200, type: 'noise', duration: 1.5 },
-            { name: 'Riser', frequency: 100, type: 'sawtooth', duration: 2.0 },
-            { name: 'Drop', frequency: 1000, type: 'sine', duration: 0.8 },
-            { name: 'Laser', frequency: 2000, type: 'square', duration: 0.4 },
-            { name: 'Explosion', frequency: 80, type: 'noise', duration: 1.0 },
-            { name: 'Reverse', frequency: 440, type: 'sawtooth', duration: 1.2 },
-            { name: 'Glitch', frequency: 1500, type: 'square', duration: 0.3 },
-            { name: 'Impact', frequency: 60, type: 'sine', duration: 0.6 },
-            { name: 'Sweep2', frequency: 300, type: 'triangle', duration: 1.8 },
-            { name: 'Stutter', frequency: 800, type: 'square', duration: 0.5 }
-        ]
-    };
-}
-
-// 繝励Μ繧ｻ繝�ヨ繧ｵ繝ｳ繝励Ν隱ｭ縺ｿ霎ｼ縺ｿ
-async loadPresetSamples(presetType) {
-    if (!this.audioContext) {
-        this.updateStatus('繧ｪ繝ｼ繝�ぅ繧ｪ繧ｷ繧ｹ繝�Β縺悟�譛溷喧縺輔ｌ縺ｦ縺�∪縺帙ｓ');
-        return;
-    }
-    
-    try {
-        this.updateStatus(`${presetType}繧ｵ繝ｳ繝励Ν繧堤函謌蝉ｸｭ...`);
-        
-        const presetData = this.presetSamples[presetType];
-        if (!presetData) {
-            throw new Error(`Unknown preset type: ${presetType}`);
-        }
-        
-        // 譌｢蟄倥�繧ｵ繝ｳ繝励Ν繧偵け繝ｪ繧｢
-        for (let i = 0; i < 50; i++) {
-            this.samples[i] = null;
-            const keyElement = document.querySelector(`[data-index="${i}"]`);
-            if (keyElement) {
-                const label = keyElement.querySelector('.key-label');
-                label.textContent = 'Empty';
-            }
-        }
-        
-        // 繝励Μ繧ｻ繝�ヨ繧ｵ繝ｳ繝励Ν繧堤函謌�
-        for (let i = 0; i < presetData.length && i < 50; i++) {
-            const preset = presetData[i];
-            const audioBuffer = await this.generateSynthSound(preset);
-            
-            this.samples[i] = {
-                buffer: audioBuffer,
-                name: preset.name,
-                isPreset: true
-            };
-            
-            const keyElement = document.querySelector(`[data-index="${i}"]`);
-            if (keyElement) {
-                const label = keyElement.querySelector('.key-label');
-                label.textContent = preset.name;
-            }
-        }
-        
-        this.updateStatus(`${presetType}繧ｵ繝ｳ繝励Ν繧定ｪｭ縺ｿ霎ｼ縺ｿ縺ｾ縺励◆`);
-        
-    } catch (error) {
-        console.error('Preset sample loading error:', error);
-        this.updateStatus(`繝励Μ繧ｻ繝�ヨ繧ｵ繝ｳ繝励Ν縺ｮ隱ｭ縺ｿ霎ｼ縺ｿ縺ｫ螟ｱ謨励＠縺ｾ縺励◆: ${error.message}`);
-    }
-}
-
-// 繧ｷ繝ｳ繧ｻ繧ｵ繧､繧ｶ繝ｼ髻ｳ逕滓�
-async generateSynthSound(preset) {
-    const { frequency, type, duration, name } = preset;
-    const sampleRate = this.audioContext.sampleRate;
-    const bufferLength = Math.floor(sampleRate * duration);
-    const buffer = this.audioContext.createBuffer(1, bufferLength, sampleRate);
-    const data = buffer.getChannelData(0);
-    
-    if (type === 'noise') {
-        // 繝弱う繧ｺ逕滓��医ラ繝ｩ繝�邉ｻ��
-        for (let i = 0; i < bufferLength; i++) {
-            const envelope = Math.exp(-i / (sampleRate * 0.1));
-            let sample;
-            
-            if (name.includes('Snare') || name.includes('Clap')) {
-                // 繧ｹ繝阪い/繧ｯ繝ｩ繝��逕ｨ縺ｮ繝輔ぅ繝ｫ繧ｿ繝ｼ繝峨ヮ繧､繧ｺ
-                const noise = (Math.random() * 2 - 1);
-                const filtered = this.applyBandpassFilter(noise, frequency, sampleRate);
-                sample = filtered * envelope * 0.8;
-            } else if (name.includes('HiHat') || name.includes('Hat')) {
-                // 繝上う繝上ャ繝育畑縺ｮ鬮伜捉豕｢繝弱う繧ｺ
-                const noise = (Math.random() * 2 - 1);
-                const highpass = this.applyHighpassFilter(noise, frequency, sampleRate);
-                sample = highpass * envelope * 0.6;
-            } else {
-                // 荳闊ｬ逧�↑繝弱う繧ｺ
-                sample = (Math.random() * 2 - 1) * envelope * 0.7;
-            }
-            
-            data[i] = sample;
-        }
-    } else {
-        // 繧ｪ繧ｷ繝ｬ繝ｼ繧ｿ繝ｼ逕滓�
-        for (let i = 0; i < bufferLength; i++) {
-            const t = i / sampleRate;
-            let sample = 0;
-            
-            // 繧ｨ繝ｳ繝吶Ο繝ｼ繝暦ｼ�ADSR鬚ｨ��
-            let envelope;
-            const attackTime = 0.01;
-            const decayTime = 0.1;
-            const sustainLevel = 0.3;
-            const releaseTime = duration * 0.7;
-            
-            if (t < attackTime) {
-                envelope = t / attackTime;
-            } else if (t < attackTime + decayTime) {
-                envelope = 1 - (1 - sustainLevel) * (t - attackTime) / decayTime;
-            } else if (t < duration - releaseTime) {
-                envelope = sustainLevel;
-            } else {
-                envelope = sustainLevel * (duration - t) / releaseTime;
-            }
-            
-            // 豕｢蠖｢逕滓�
-            const phase = 2 * Math.PI * frequency * t;
-            
-            switch (type) {
-                case 'sine':
-                    sample = Math.sin(phase);
-                    break;
-                case 'square':
-                    sample = Math.sign(Math.sin(phase));
-                    break;
-                case 'sawtooth':
-                    sample = 2 * (phase / (2 * Math.PI) - Math.floor(phase / (2 * Math.PI) + 0.5));
-                    break;
-                case 'triangle':
-                    sample = 2 * Math.abs(2 * (phase / (2 * Math.PI) - Math.floor(phase / (2 * Math.PI) + 0.5))) - 1;
-                    break;
-            }
-            
-            // 迚ｹ谿雁柑譫�
-            if (name.includes('Wobble')) {
-                const lfoFreq = 4;
-                const lfo = Math.sin(2 * Math.PI * lfoFreq * t);
-                const modFreq = frequency + lfo * frequency * 0.5;
-                const modPhase = 2 * Math.PI * modFreq * t;
-                sample = Math.sin(modPhase);
-            } else if (name.includes('Sweep') || name.includes('Riser')) {
-                const sweepFreq = frequency + (frequency * 2 * t / duration);
-                const sweepPhase = 2 * Math.PI * sweepFreq * t;
-                sample = Math.sin(sweepPhase);
-            } else if (name.includes('Drop')) {
-                const dropFreq = frequency * Math.exp(-t * 3);
-                const dropPhase = 2 * Math.PI * dropFreq * t;
-                sample = Math.sin(dropPhase);
-            }
-            
-            data[i] = sample * envelope * 0.5;
-        }
-    }
-    
-    return buffer;
-}
-
-// 繝舌Φ繝峨ヱ繧ｹ繝輔ぅ繝ｫ繧ｿ繝ｼ�育ｰ｡譏鍋沿��
-applyBandpassFilter(sample, centerFreq, sampleRate) {
-    // 邁｡譏鍋噪縺ｪ繝舌Φ繝峨ヱ繧ｹ繝輔ぅ繝ｫ繧ｿ繝ｼ螳溯｣�
-    const q = 2.0;
-    const omega = 2 * Math.PI * centerFreq / sampleRate;
-    const sin = Math.sin(omega);
-    const cos = Math.cos(omega);
-    const alpha = sin / (2 * q);
-    
-    const b0 = alpha;
-    const b1 = 0;
-    const b2 = -alpha;
-    const a0 = 1 + alpha;
-    const a1 = -2 * cos;
-    const a2 = 1 - alpha;
-    
-    return sample * (b0 / a0);
-}
-
-// 繝上う繝代せ繝輔ぅ繝ｫ繧ｿ繝ｼ�育ｰ｡譏鍋沿��
-applyHighpassFilter(sample, cutoffFreq, sampleRate) {
-    const rc = 1.0 / (cutoffFreq * 2 * Math.PI);
-    const dt = 1.0 / sampleRate;
-    const alpha = rc / (rc + dt);
-    return sample * (1 - alpha);
-}
-
 async loadAudioFile(event, deck) {
     const file = event.target.files[0];
     if (!file) return;
     
     try {
-        this.updateStatus(`繝�ャ繧ｭ${deck}縺ｫ繝輔ぃ繧､繝ｫ繧定ｪｭ縺ｿ霎ｼ縺ｿ荳ｭ...`);
+        this.updateStatus(`デッキ${deck}にファイルを読み込み中...`);
         
-        // AudioContext縺ｮ迥ｶ諷九ｒ遒ｺ隱阪�蠕ｩ蟶ｰ
+        // AudioContextの状態を確認・復帰
         if (this.audioContext && this.audioContext.state === 'suspended') {
             await this.audioContext.resume();
         }
         
-        // 譌｢蟄倥�繝ｪ繧ｽ繝ｼ繧ｹ繧貞ｮ悟�縺ｫ繧ｯ繝ｪ繝ｼ繝ｳ繧｢繝��
+        // 既存のリソースを完全にクリーンアップ
         await this.cleanupDeck(deck);
         
-        // 繝輔ぃ繧､繝ｫ繧但rrayBuffer縺ｨ縺励※隱ｭ縺ｿ霎ｼ縺ｿ
+        // ファイルをArrayBufferとして読み込み
         const arrayBuffer = await file.arrayBuffer();
         const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
         
-        // AudioBuffer繧剃ｿ晏ｭ�
+        // AudioBufferを保存
         if (deck === 'A') {
             this.audioBufferA = audioBuffer;
             this.currentFilenameA = file.name;
@@ -1964,28 +1724,28 @@ async loadAudioFile(event, deck) {
             this.elements.filenameB.textContent = file.name;
         }
         
-        // 邱丞�逕滓凾髢薙ｒ譖ｴ譁ｰ
+        // 総再生時間を更新
         this.updateTotalTime(deck);
         
-        // UI隕∫ｴ�繧呈怏蜉ｹ蛹�
+        // UI要素を有効化
         this.enableDeckControls(deck);
         
-        // BPM讀懷��磯撼蜷梧悄縺ｧ螳溯｡鯉ｼ�
+        // BPM検出（非同期で実行）
         this.detectBPM(audioBuffer, deck).catch(error => {
             console.error('BPM detection failed:', error);
         });
         
-        this.updateStatus(`繝�ャ繧ｭ${deck}縺ｫ "${file.name}" 繧定ｪｭ縺ｿ霎ｼ縺ｿ縺ｾ縺励◆`);
+        this.updateStatus(`デッキ${deck}に "${file.name}" を読み込みました`);
         
     } catch (error) {
         console.error(`Failed to load audio file for deck ${deck}:`, error);
-        this.updateStatus(`繝�ャ繧ｭ${deck}縺ｮ繝輔ぃ繧､繝ｫ隱ｭ縺ｿ霎ｼ縺ｿ縺ｫ螟ｱ謨励＠縺ｾ縺励◆: ${error.message}`);
+        this.updateStatus(`デッキ${deck}のファイル読み込みに失敗しました: ${error.message}`);
         this.resetDeck(deck);
     }
 }
 
 async cleanupDeck(deck) {
-    // 蜀咲函荳ｭ縺ｮBufferSource繧貞●豁｢
+    // 再生中のBufferSourceを停止
     if (deck === 'A' && this.bufferSourceA) {
         try {
             this.bufferSourceA.stop();
@@ -2004,7 +1764,7 @@ async cleanupDeck(deck) {
         this.isPlayingB = false;
     }
     
-    // 繝励Ο繧ｰ繝ｬ繧ｹ譖ｴ譁ｰ繧ｿ繧､繝槭�繧偵け繝ｪ繧｢
+    // プログレス更新タイマーをクリア
     if (deck === 'A') {
         clearInterval(this.progressIntervalA);
         this.progressIntervalA = null;
@@ -2013,7 +1773,7 @@ async cleanupDeck(deck) {
         this.progressIntervalB = null;
     }
     
-    // 繝｢繝九ち繝ｼ繧貞ｼｷ蛻ｶ逧�↓繧ｪ繝包ｼ井ｿｮ豁｣迚茨ｼ�
+    // モニターを強制的にオフ（修正版）
     if ((deck === 'A' && this.monitoringA) || (deck === 'B' && this.monitoringB)) {
         this.forceMonitorOff(deck);
     }
@@ -2024,7 +1784,7 @@ forceMonitorOff(deck) {
     const monitorGain = deck === 'A' ? this.monitorGainA : this.monitorGainB;
     
     if (monitorGain) {
-        // 繧ｲ繧､繝ｳ繧呈ｮｵ髫守噪縺ｫ荳九￡縺ｦ髻ｳ縺梧ｭ｢縺ｾ繧峨↑縺�お繝ｩ繝ｼ繧帝亟縺�
+        // ゲインを段階的に下げて音が止まらないエラーを防ぐ
         const currentTime = this.audioContext.currentTime;
         monitorGain.gain.setValueAtTime(monitorGain.gain.value, currentTime);
         monitorGain.gain.linearRampToValueAtTime(0, currentTime + 0.1);
@@ -2032,7 +1792,7 @@ forceMonitorOff(deck) {
     
     if (monitorBtn) {
         monitorBtn.classList.remove('active');
-        monitorBtn.textContent = '繝｢繝九ち繝ｼ';
+        monitorBtn.textContent = 'モニター';
     }
     
     if (deck === 'A') {
@@ -2056,33 +1816,33 @@ enableDeckControls(deck) {
 
 resetDeck(deck) {
     try {
-        // 蜀咲函蛛懈ｭ｢
+        // 再生停止
         this.stopAudio(deck);
         
-        // UI隕∫ｴ�繧偵Μ繧ｻ繝�ヨ
+        // UI要素をリセット
         this.elements[`playBtn${deck}`].disabled = true;
         this.elements[`pauseBtn${deck}`].disabled = true;
         this.elements[`stopBtn${deck}`].disabled = true;
         this.elements[`monitorBtn${deck}`].disabled = true;
         
-        // 繝｢繝九ち繝ｼ繧貞ｼｷ蛻ｶ逧�↓繧ｪ繝�
+        // モニターを強制的にオフ
         this.forceMonitorOff(deck);
         
-        // 繝斐ャ繝√→繝懊Μ繝･繝ｼ繝�繧偵Μ繧ｻ繝�ヨ
+        // ピッチとボリュームをリセット
         this.elements[`pitchSlider${deck}`].value = 0;
         this.elements[`pitchValue${deck}`].textContent = '0%';
         this.elements[`volumeSlider${deck}`].value = 75;
         this.elements[`volumeValue${deck}`].textContent = '75%';
         
-        // 陦ｨ遉ｺ繧偵Μ繧ｻ繝�ヨ
-        this.elements[`filename${deck}`].textContent = '繝輔ぃ繧､繝ｫ縺ｪ縺�';
+        // 表示をリセット
+        this.elements[`filename${deck}`].textContent = 'ファイルなし';
         this.elements[`bpmValue${deck}`].textContent = '--';
         this.elements[`currentBpm${deck}`].textContent = '--';
         this.elements[`progressFill${deck}`].style.width = '0%';
         this.elements[`currentTime${deck}`].textContent = '0:00';
         this.elements[`totalTime${deck}`].textContent = '0:00';
         
-        // 繝��繧ｿ繧偵け繝ｪ繧｢
+        // データをクリア
         if (deck === 'A') {
             this.audioBufferA = null;
             this.currentFilenameA = null;
@@ -2104,7 +1864,7 @@ resetDeck(deck) {
 
 async detectBPM(audioBuffer, deck) {
     try {
-        this.updateStatus(`繝�ャ繧ｭ${deck}縺ｮBPM繧呈､懷�荳ｭ...`);
+        this.updateStatus(`デッキ${deck}のBPMを検出中...`);
         
         const bpm = await Promise.race([
             this.calculateBPMImproved(audioBuffer),
@@ -2122,7 +1882,7 @@ async detectBPM(audioBuffer, deck) {
         this.elements[`bpmValue${deck}`].textContent = Math.round(bpm);
         this.updateCurrentBPM(deck);
         
-        this.updateStatus(`繝�ャ繧ｭ${deck}縺ｮBPM讀懷�螳御ｺ�: ${Math.round(bpm)}`);
+        this.updateStatus(`デッキ${deck}のBPM検出完了: ${Math.round(bpm)}`);
         
     } catch (error) {
         console.error('BPM detection error:', error);
@@ -2135,7 +1895,7 @@ async detectBPM(audioBuffer, deck) {
             this.originalBpmB = 120;
         }
         
-        this.updateStatus(`繝�ャ繧ｭ${deck}縺ｮBPM讀懷�縺ｫ螟ｱ謨励√ョ繝輔か繝ｫ繝亥､(120)繧剃ｽｿ逕ｨ`);
+        this.updateStatus(`デッキ${deck}のBPM検出に失敗、デフォルト値(120)を使用`);
     }
 }
 
@@ -2144,14 +1904,14 @@ calculateBPMImproved(audioBuffer) {
         const sampleRate = audioBuffer.sampleRate;
         const samples = audioBuffer.getChannelData(0);
         
-        // 蛻�梵縺吶ｋ髟ｷ縺輔ｒ蛻ｶ髯撰ｼ域怙蛻昴�60遘偵∪縺溘�蜈ｨ菴薙�1/3��
+        // 分析する長さを制限（最初の60秒または全体の1/3）
         const maxSamples = Math.min(samples.length, sampleRate * 60, samples.length / 3);
         const analysisBuffer = samples.slice(0, maxSamples);
         
-        // 繝ｭ繝ｼ繝代せ繝輔ぅ繝ｫ繧ｿ繝ｼ繧帝←逕ｨ縺励※繝弱う繧ｺ繧帝勁蜴ｻ
+        // ローパスフィルターを適用してノイズを除去
         const filteredSamples = this.applyLowPassFilter(analysisBuffer, sampleRate);
         
-        // 繧ｨ繝阪Ν繧ｮ繝ｼ繝吶�繧ｹ縺ｮ繧ｪ繝ｳ繧ｻ繝�ヨ讀懷�
+        // エネルギーベースのオンセット検出
         const onsets = this.detectOnsets(filteredSamples, sampleRate);
         
         if (onsets.length < 4) {
@@ -2159,7 +1919,7 @@ calculateBPMImproved(audioBuffer) {
             return;
         }
         
-        // 繧､繝ｳ繧ｿ繝ｼ繝舌Ν蛻�梵
+        // インターバル分析
         const intervals = [];
         for (let i = 1; i < onsets.length; i++) {
             const interval = onsets[i] - onsets[i - 1];
@@ -2173,11 +1933,11 @@ calculateBPMImproved(audioBuffer) {
             return;
         }
         
-        // 繧､繝ｳ繧ｿ繝ｼ繝舌Ν縺ｮ繝偵せ繝医げ繝ｩ繝�蛻�梵
+        // インターバルのヒストグラム分析
         const bpmCandidates = intervals.map(interval => 60 / interval);
         const histogram = this.createBPMHistogram(bpmCandidates);
         
-        // 譛繧る�ｻ郢√↑BPM繧帝∈謚�
+        // 最も頻繁なBPMを選択
         let maxCount = 0;
         let bestBPM = 120;
         
@@ -2280,7 +2040,7 @@ playAudio(deck) {
             throw new Error(`Audio buffer for deck ${deck} not loaded`);
         }
         
-        // 譌｢蟄倥�BufferSource繧貞●豁｢
+        // 既存のBufferSourceを停止
         if (deck === 'A' && this.bufferSourceA) {
             this.bufferSourceA.stop();
             this.bufferSourceA = null;
@@ -2289,26 +2049,26 @@ playAudio(deck) {
             this.bufferSourceB = null;
         }
         
-        // 譁ｰ縺励＞BufferSource繧剃ｽ懈�
+        // 新しいBufferSourceを作成
         const bufferSource = this.audioContext.createBufferSource();
         bufferSource.buffer = audioBuffer;
         
-        // 繝斐ャ繝∬ｪｿ謨ｴ繧帝←逕ｨ
+        // ピッチ調整を適用
         const playbackRate = deck === 'A' ? this.playbackRateA : this.playbackRateB;
         bufferSource.playbackRate.value = playbackRate;
         
-        // 謗･邯�
+        // 接続
         const gainNode = deck === 'A' ? this.deckAGainNode : this.deckBGainNode;
         bufferSource.connect(gainNode);
         
-        // 蜀咲函髢句ｧ倶ｽ咲ｽｮ繧定ｨ育ｮ�
+        // 再生開始位置を計算
         const pauseTime = deck === 'A' ? this.pauseTimeA : this.pauseTimeB;
         const startOffset = Math.min(pauseTime, audioBuffer.duration - 0.1);
         
-        // 蜀咲函髢句ｧ�
+        // 再生開始
         bufferSource.start(0, startOffset);
         
-        // 迥ｶ諷区峩譁ｰ
+        // 状態更新
         if (deck === 'A') {
             this.bufferSourceA = bufferSource;
             this.isPlayingA = true;
@@ -2318,12 +2078,12 @@ playAudio(deck) {
             bufferSource.onended = () => {
                 this.isPlayingA = false;
                 this.bufferSourceA = null;
-                this.updateStatus('繝�ャ繧ｭA縺ｮ蜀咲函縺檎ｵゆｺ�＠縺ｾ縺励◆');
+                this.updateStatus('デッキAの再生が終了しました');
                 clearInterval(this.progressIntervalA);
                 this.updateProgress('A');
             };
             
-            // 蜀咲函騾ｲ謐玲峩譁ｰ
+            // 再生進捗更新
             this.progressIntervalA = setInterval(() => this.updateProgress('A'), 100);
         } else {
             this.bufferSourceB = bufferSource;
@@ -2334,20 +2094,20 @@ playAudio(deck) {
             bufferSource.onended = () => {
                 this.isPlayingB = false;
                 this.bufferSourceB = null;
-                this.updateStatus('繝�ャ繧ｭB縺ｮ蜀咲函縺檎ｵゆｺ�＠縺ｾ縺励◆');
+                this.updateStatus('デッキBの再生が終了しました');
                 clearInterval(this.progressIntervalB);
                 this.updateProgress('B');
             };
             
-            // 蜀咲函騾ｲ謐玲峩譁ｰ
+            // 再生進捗更新
             this.progressIntervalB = setInterval(() => this.updateProgress('B'), 100);
         }
         
-        this.updateStatus(`繝�ャ繧ｭ${deck}繧貞�逕滉ｸｭ...`);
+        this.updateStatus(`デッキ${deck}を再生中...`);
         
     } catch (error) {
         console.error(`Audio play error for deck ${deck}:`, error);
-        this.updateStatus(`繝�ャ繧ｭ${deck}縺ｮ蜀咲函縺ｧ繧ｨ繝ｩ繝ｼ縺檎匱逕溘＠縺ｾ縺励◆`);
+        this.updateStatus(`デッキ${deck}の再生でエラーが発生しました`);
     }
 }
 
@@ -2360,7 +2120,7 @@ pauseAudio(deck) {
         if (bufferSource && isPlaying) {
             bufferSource.stop();
             
-            // 迴ｾ蝨ｨ縺ｮ蜀咲函菴咲ｽｮ繧定ｨ育ｮ�
+            // 現在の再生位置を計算
             const currentTime = this.audioContext.currentTime;
             const elapsedTime = currentTime - startTime;
             const playbackRate = deck === 'A' ? this.playbackRateA : this.playbackRateB;
@@ -2378,7 +2138,7 @@ pauseAudio(deck) {
                 clearInterval(this.progressIntervalB);
             }
             
-            this.updateStatus(`繝�ャ繧ｭ${deck}繧剃ｸ譎ょ●豁｢荳ｭ`);
+            this.updateStatus(`デッキ${deck}を一時停止中`);
         }
     } catch (error) {
         console.error(`Pause error for deck ${deck}:`, error);
@@ -2406,7 +2166,7 @@ stopAudio(deck) {
         }
         
         this.updateProgress(deck);
-        this.updateStatus(`繝�ャ繧ｭ${deck}繧貞●豁｢縺励∪縺励◆`);
+        this.updateStatus(`デッキ${deck}を停止しました`);
     } catch (error) {
         console.error(`Stop error for deck ${deck}:`, error);
     }
@@ -2422,7 +2182,7 @@ updatePitch(event, deck) {
         this.playbackRateB = pitchMultiplier;
     }
     
-    // 蜀咲函荳ｭ縺ｮ蝣ｴ蜷医�蜀埼幕
+    // 再生中の場合は再開
     const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
     if (isPlaying) {
         this.pauseAudio(deck);
@@ -2442,7 +2202,7 @@ resetPitch(deck) {
         this.playbackRateB = 1;
     }
     
-    // 蜀咲函荳ｭ縺ｮ蝣ｴ蜷医�蜀埼幕
+    // 再生中の場合は再開
     const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
     if (isPlaying) {
         this.pauseAudio(deck);
@@ -2454,8 +2214,8 @@ resetPitch(deck) {
 }
 
 updatePreservePitch(event, deck) {
-    // BufferSourceNode縺ｧ縺ｯ髻ｳ遞倶ｿ晄戟讖溯�縺ｯ逶ｴ謗･繧ｵ繝昴�繝医＆繧後※縺�↑縺�◆繧√�
-    // 縺薙�讖溯�縺ｯ辟｡蜉ｹ蛹悶＆繧後∪縺�
+    // BufferSourceNodeでは音程保持機能は直接サポートされていないため、
+    // この機能は無効化されます
     console.log(`Preserve pitch setting for deck ${deck}: ${event.target.checked}`);
 }
 
@@ -2471,7 +2231,7 @@ updateVolume(event, deck) {
 updateCrossfader(event) {
     const value = parseInt(event.target.value);
     
-    // 繧ｯ繝ｭ繧ｹ繝輔ぉ繝ｼ繝繝ｼ縺ｮ蛟､縺ｫ蝓ｺ縺･縺�※繧ｲ繧､繝ｳ繧定ｪｿ謨ｴ
+    // クロスフェーダーの値に基づいてゲインを調整
     const gainA = Math.cos((value / 100) * (Math.PI / 2));
     const gainB = Math.sin((value / 100) * (Math.PI / 2));
     
@@ -2493,14 +2253,14 @@ seekAudio(event, deck) {
         const percentage = clickX / rect.width;
         const newPosition = percentage * audioBuffer.duration;
         
-        // 譁ｰ縺励＞菴咲ｽｮ繧定ｨｭ螳�
+        // 新しい位置を設定
         if (deck === 'A') {
             this.pauseTimeA = newPosition;
         } else {
             this.pauseTimeB = newPosition;
         }
         
-        // 蜀咲函荳ｭ縺ｮ蝣ｴ蜷医�蜀埼幕
+        // 再生中の場合は再開
         const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
         if (isPlaying) {
             this.pauseAudio(deck);
@@ -2539,7 +2299,7 @@ updateProgress(deck) {
             currentTime = pauseTime;
         }
         
-        // 遽�峇繝√ぉ繝�け
+        // 範囲チェック
         currentTime = Math.max(0, Math.min(currentTime, audioBuffer.duration));
         
         const percentage = (currentTime / audioBuffer.duration) * 100;
@@ -2556,35 +2316,35 @@ toggleMonitor(deck) {
     const monitorGain = deck === 'A' ? this.monitorGainA : this.monitorGainB;
     
     if (isMonitoring) {
-        // 繝｢繝九ち繝ｼ繧偵が繝輔↓縺吶ｋ�井ｿｮ豁｣迚茨ｼ�
+        // モニターをオフにする（修正版）
         if (monitorGain) {
             const currentTime = this.audioContext.currentTime;
             monitorGain.gain.setValueAtTime(monitorGain.gain.value, currentTime);
             monitorGain.gain.linearRampToValueAtTime(0, currentTime + 0.1);
         }
         monitorBtn.classList.remove('active');
-        monitorBtn.textContent = '繝｢繝九ち繝ｼ';
+        monitorBtn.textContent = 'モニター';
         if (deck === 'A') {
             this.monitoringA = false;
         } else {
             this.monitoringB = false;
         }
-        this.updateStatus(`繝�ャ繧ｭ${deck}縺ｮ繝｢繝九ち繝ｼ繧偵が繝輔↓縺励∪縺励◆`);
+        this.updateStatus(`デッキ${deck}のモニターをオフにしました`);
     } else {
-        // 繝｢繝九ち繝ｼ繧偵が繝ｳ縺ｫ縺吶ｋ�井ｿｮ豁｣迚茨ｼ�
+        // モニターをオンにする（修正版）
         if (monitorGain) {
             const currentTime = this.audioContext.currentTime;
             monitorGain.gain.setValueAtTime(monitorGain.gain.value, currentTime);
             monitorGain.gain.linearRampToValueAtTime(0.5, currentTime + 0.1);
         }
         monitorBtn.classList.add('active');
-        monitorBtn.textContent = '繝｢繝九ち繝ｼ荳ｭ';
+        monitorBtn.textContent = 'モニター中';
         if (deck === 'A') {
             this.monitoringA = true;
         } else {
             this.monitoringB = true;
         }
-        this.updateStatus(`繝�ャ繧ｭ${deck}縺ｮ繝｢繝九ち繝ｼ繧偵が繝ｳ縺ｫ縺励∪縺励◆`);
+        this.updateStatus(`デッキ${deck}のモニターをオンにしました`);
     }
 }
 
@@ -2596,7 +2356,7 @@ stopAllSounds() {
         try {
             source.stop();
         } catch (error) {
-            // 繧ｨ繝ｩ繝ｼ繧堤┌隕厄ｼ域里縺ｫ蛛懈ｭ｢貂医∩縺ｮ蝣ｴ蜷茨ｼ�
+            // エラーを無視（既に停止済みの場合）
         }
     });
     this.playingSamples.clear();
@@ -2605,56 +2365,7 @@ stopAllSounds() {
         key.classList.remove('active', 'playing');
     });
     
-    this.updateStatus('蜈ｨ縺ｦ縺ｮ髻ｳ繧貞●豁｢縺励∪縺励◆');
-}
-
-// 繧ｵ繝ｳ繝励Μ繝ｳ繧ｰ讖溯�
-async loadSampleFiles(event) {
-    const files = Array.from(event.target.files);
-    const maxSamples = 50;
-    
-    if (files.length > maxSamples) {
-        alert(`譛螟ｧ${maxSamples}蛟九�繧ｵ繝ｳ繝励Ν繝輔ぃ繧､繝ｫ縺ｾ縺ｧ驕ｸ謚槭〒縺阪∪縺吶Ａ);
-        return;
-    }
-    
-    // 譌｢蟄倥�繧ｵ繝ｳ繝励Ν繧偵け繝ｪ繧｢
-    for (let i = 0; i < 50; i++) {
-        this.samples[i] = null;
-        const keyElement = document.querySelector(`[data-index="${i}"]`);
-        if (keyElement) {
-            const label = keyElement.querySelector('.key-label');
-            label.textContent = 'Empty';
-        }
-    }
-    
-    let loadedCount = 0;
-    
-    for (let i = 0; i < files.length && i < 50; i++) {
-        const file = files[i];
-        try {
-            const arrayBuffer = await file.arrayBuffer();
-            const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
-            
-            this.samples[i] = {
-                buffer: audioBuffer,
-                name: file.name.split('.')[0],
-                isPreset: false
-            };
-            
-            const keyElement = document.querySelector(`[data-index="${i}"]`);
-            if (keyElement) {
-                const label = keyElement.querySelector('.key-label');
-                label.textContent = this.samples[i].name.substring(0, 6);
-            }
-            
-            loadedCount++;
-        } catch (error) {
-            console.error(`Sample ${file.name} loading error:`, error);
-        }
-    }
-    
-    this.updateStatus(`${loadedCount}蛟九�繧ｵ繝ｳ繝励Ν髻ｳ螢ｰ繧定ｪｭ縺ｿ霎ｼ縺ｿ縺ｾ縺励◆`);
+    this.updateStatus('全ての音を停止しました');
 }
 
 playSample(index) {
@@ -2723,7 +2434,7 @@ updateSampleVolume(event) {
     this.elements.sampleVolumeValue.textContent = event.target.value + '%';
 }
 
-// 骭ｲ髻ｳ讖溯�
+// 録音機能
 async toggleRecording() {
     if (!this.isRecording) {
         await this.startRecording();
@@ -2761,13 +2472,13 @@ async startRecording() {
         
         this.mediaRecorder.start(100);
         this.isRecording = true;
-        this.elements.recordBtn.textContent = '骭ｲ髻ｳ蛛懈ｭ｢';
+        this.elements.recordBtn.textContent = '録音停止';
         this.elements.recordBtn.classList.add('recording');
-        this.updateStatus('閥 骭ｲ髻ｳ荳ｭ... 蜈ｨ縺ｦ縺ｮ髻ｳ縺碁鹸髻ｳ縺輔ｌ縺ｦ縺�∪縺�');
+        this.updateStatus('🔴 録音中... 全ての音が録音されています');
         
     } catch (error) {
-        console.error('骭ｲ髻ｳ髢句ｧ九お繝ｩ繝ｼ:', error);
-        this.updateStatus('骭ｲ髻ｳ縺ｮ髢句ｧ九↓螟ｱ謨励＠縺ｾ縺励◆縲ゅヶ繝ｩ繧ｦ繧ｶ縺悟ｯｾ蠢懊＠縺ｦ縺�↑縺�庄閭ｽ諤ｧ縺後≠繧翫∪縺吶�');
+        console.error('録音開始エラー:', error);
+        this.updateStatus('録音の開始に失敗しました。ブラウザが対応していない可能性があります。');
     }
 }
 
@@ -2777,9 +2488,9 @@ stopRecording() {
     }
     
     this.isRecording = false;
-    this.elements.recordBtn.textContent = '骭ｲ髻ｳ髢句ｧ�';
+    this.elements.recordBtn.textContent = '録音開始';
     this.elements.recordBtn.classList.remove('recording');
-    this.updateStatus('骭ｲ髻ｳ繧貞●豁｢縺励∪縺励◆');
+    this.updateStatus('録音を停止しました');
 }
 
 async saveRecording() {
@@ -2794,7 +2505,7 @@ async saveRecording() {
 
 async convertToMP3(webmBlob) {
     try {
-        this.updateStatus('MP3蠖｢蠑上↓螟画鋤荳ｭ...');
+        this.updateStatus('MP3形式に変換中...');
         
         const arrayBuffer = await webmBlob.arrayBuffer();
         const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
@@ -2822,8 +2533,8 @@ async convertToMP3(webmBlob) {
         this.downloadFile(mp3Blob, 'mp3');
         
     } catch (error) {
-        console.error('MP3螟画鋤繧ｨ繝ｩ繝ｼ:', error);
-        this.updateStatus('MP3螟画鋤縺ｫ螟ｱ謨励＠縺ｾ縺励◆縲８ebM蠖｢蠑上〒繝繧ｦ繝ｳ繝ｭ繝ｼ繝峨＠縺ｾ縺吶�');
+        console.error('MP3変換エラー:', error);
+        this.updateStatus('MP3変換に失敗しました。WebM形式でダウンロードします。');
         this.downloadFile(webmBlob, 'webm');
     }
 }
@@ -2863,7 +2574,7 @@ downloadFile(blob, format) {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
     
-    this.updateStatus(`骭ｲ髻ｳ繝輔ぃ繧､繝ｫ��${format.toUpperCase()}蠖｢蠑擾ｼ峨ｒ繝繧ｦ繝ｳ繝ｭ繝ｼ繝峨＠縺ｾ縺励◆�～);
+    this.updateStatus(`録音ファイル（${format.toUpperCase()}形式）をダウンロードしました！`);
 }
 
 formatTime(seconds) {
@@ -2879,13 +2590,13 @@ updateStatus(message) {
 }
 
 cleanup() {
-    // ObjectURLs繧偵☆縺ｹ縺ｦ隗｣謾ｾ
+    // ObjectURLsをすべて解放
     this.objectUrls.forEach(url => {
         URL.revokeObjectURL(url);
     });
     this.objectUrls.clear();
     
-    // BufferSources繧貞●豁｢
+    // BufferSourcesを停止
     if (this.bufferSourceA) {
         this.bufferSourceA.stop();
         this.bufferSourceA = null;
@@ -2895,18 +2606,18 @@ cleanup() {
         this.bufferSourceB = null;
     }
     
-    // 繧､繝ｳ繧ｿ繝ｼ繝舌Ν繧偵け繝ｪ繧｢
+    // インターバルをクリア
     clearInterval(this.progressIntervalA);
     clearInterval(this.progressIntervalB);
     
-    // AudioContext繧帝哩縺倥ｋ
+    // AudioContextを閉じる
     if (this.audioContext && this.audioContext.state !== 'closed') {
         this.audioContext.close();
     }
 }
 }
 
-// 繧｢繝励Μ繧ｱ繝ｼ繧ｷ繝ｧ繝ｳ蛻晄悄蛹�
+// アプリケーション初期化
 document.addEventListener('DOMContentLoaded', () => {
     new DJMixer();
 });
