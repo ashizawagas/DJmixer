@@ -549,6 +549,10 @@
             box-shadow: 
                 0 0 15px rgba(0, 0, 0, 0.5),
                 inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            /* ファイル名表示枠の固定サイズ */
+            min-width: 120px;
+            max-width: 120px;
+            width: 120px;
         }
         
         .bpm-label, .filename-label {
@@ -583,8 +587,8 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 100%;
-            min-width: 0;
+            width: 100%;
+            display: block;
         }
         
         .info-section {
@@ -802,7 +806,7 @@
 <body>
     <div class="container">
         <div class="dj-section">
-            <h2 class="section-title">🎧 DJ ミキサー</h2>
+            <h2 class="section-title">🎧 DJ コントロール</h2>
             <div class="dj-controls">
                 <!-- デッキA -->
                 <div class="deck deck-a">
@@ -1351,23 +1355,23 @@
                     const source = this.audioContext.createBufferSource();
                     source.buffer = buffer;
                     
-                    // 強度と時間間隔に応じてピッチとボリュームを調整
+                                        // 強度と時間間隔に応じてピッチとボリュームを調整
                     const pitchMultiplier = 0.5 + intensity * 4;
                     const speedMultiplier = Math.max(timeDiff / 100, 0.5);
                     source.playbackRate.value = Math.min(pitchMultiplier * speedMultiplier, 6.0);
                     
-                                        // 追加のゲインノードでボリュームを調整
+                    // 追加のゲインノードでボリュームを調整
                     const amplifierGain = this.audioContext.createGain();
                     const volumeMultiplier = Math.min(1.0 + intensity * 2, 3.0);
                     amplifierGain.gain.value = volumeMultiplier;
-
+                    
                     // 動きの速さに応じて再生時間を調整
                     const playDuration = Math.max(100, Math.min(400 - timeDiff, 400));
-
+                    
                     source.connect(amplifierGain);
                     amplifierGain.connect(scratchGain);
                     source.start();
-
+                    
                     if (deck === 'A') {
                         this.scratchSourceA = source;
                         this.lastScratchTimeA = currentTime;
@@ -1375,8 +1379,8 @@
                         this.scratchSourceB = source;
                         this.lastScratchTimeB = currentTime;
                     }
-
-                                        // 動的な時間で自動停止
+                    
+                    // 動的な時間で自動停止
                     setTimeout(() => {
                         try {
                             source.stop();
