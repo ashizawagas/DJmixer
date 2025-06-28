@@ -797,7 +797,7 @@
 <body>
     <div class="container">
         <div class="dj-section">
-            <h2 class="section-title">🎧 DJ ミキサー</h2>
+            <h2 class="section-title">🎧 DJ コントロール</h2>
             <div class="dj-controls">
                 <!-- デッキA -->
                 <div class="deck deck-a">
@@ -977,7 +977,7 @@
         </div>
         
         <div class="status" id="status">
-            音楽ファイルとサンプル音声を読み込んでください
+            クリックしてオーディオシステムを開始してください
         </div>
         
         <div class="instructions">
@@ -1003,7 +1003,7 @@
     <script>
         class DJMixer {
             constructor() {
-                // 音楽再生用のBufferSourceを使用（MediaElementSourceを完全に回避）
+                // 音楽再生用のBufferSourceを使用
                 this.audioBufferA = null;
                 this.audioBufferB = null;
                 this.bufferSourceA = null;
@@ -1051,7 +1051,7 @@
                 this.monitorGainB = null;
                 this.scratchGainA = null;
                 this.scratchGainB = null;
-                this.presetEnabled = true; // プリセットは常にオン
+                this.presetEnabled = true;
                 this.monitoringA = false;
                 this.monitoringB = false;
                 
@@ -1093,9 +1093,6 @@
                 window.addEventListener('beforeunload', () => {
                     this.cleanup();
                 });
-                
-                // 初期化完了メッセージ
-                this.updateStatus('クリックしてオーディオシステムを開始してください');
             }
             
             initializeElements() {
@@ -1186,8 +1183,8 @@
                     this.monitorGainA.gain.value = 0;
                     this.monitorGainB.gain.value = 0;
                     // スクラッチ音量を大きく設定
-                    this.scratchGainA.gain.value = 1.0;
-                    this.scratchGainB.gain.value = 1.0;
+                    this.scratchGainA.gain.value = 1.2;
+                    this.scratchGainB.gain.value = 1.2;
                     
                     // 接続設定
                     this.deckAGainNode.connect(this.crossfaderGainA);
@@ -1295,7 +1292,7 @@
                 turntable.style.transform = `rotate(${rotation}deg)`;
                 
                 // より小さな動きでもスクラッチ音を生成（感度向上）
-                if (Math.abs(angleDiff) > 0.05) {
+                if (Math.abs(angleDiff) > 0.03) {
                     this.playScratchSound(deck, Math.abs(angleDiff));
                 }
                 
@@ -1320,18 +1317,22 @@
                 try {
                     // AudioContextとサンプルの存在確認
                     if (!this.audioContext || !this.samplesLoaded) {
+                        console.warn('Audio context or samples not ready');
                         return;
                     }
                     
                     // スクラッチサンプル（19scratch.mp3）を使用
                     const scratchSample = this.samples[18]; // インデックス18が19scratch.mp3
                     if (!scratchSample || !scratchSample.buffer) {
-                        console.warn('Scratch sample not available');
+                        console.warn('Scratch sample not available at index 18');
                         return;
                     }
                     
                     const scratchGain = deck === 'A' ? this.scratchGainA : this.scratchGainB;
-                    if (!scratchGain) return;
+                    if (!scratchGain) {
+                        console.warn('Scratch gain node not available');
+                        return;
+                    }
                     
                     // 既存のスクラッチ音を停止
                     const existingSource = deck === 'A' ? this.scratchSourceA : this.scratchSourceB;
@@ -1343,29 +1344,29 @@
                         }
                     }
                     
-                                      // 現在時刻を取得
+                    // 現在時刻を取得
                     const currentTime = Date.now();
                     const lastScratchTime = deck === 'A' ? this.lastScratchTimeA : this.lastScratchTimeB;
                     
                     // 連続スクラッチの時間間隔を計算
-                    const timeDiff = currentTime - lastScratchTime;
+                    const timeDiff = Math.max(currentTime - lastScratchTime, 10);
                     
-                    // 新しいスクラッチ音を生成
+                                       // 新しいスクラッチ音を生成
                     const source = this.audioContext.createBufferSource();
                     source.buffer = scratchSample.buffer;
                     
                     // 強度と時間間隔に応じてピッチとボリュームを調整
-                    const pitchMultiplier = 0.5 + intensity * 2; // より大きなピッチ変化
-                    const speedMultiplier = Math.min(timeDiff / 100, 2.0); // 速い動きほど高速再生
+                    const pitchMultiplier = 0.5 + intensity * 3; // より大きなピッチ変化
+                    const speedMultiplier = Math.max(timeDiff / 100, 0.5); // 速い動きほど高速再生
                     source.playbackRate.value = Math.min(pitchMultiplier * speedMultiplier, 4.0);
                     
                     // 追加のゲインノードでボリュームを調整
                     const amplifierGain = this.audioContext.createGain();
-                    const volumeMultiplier = Math.min(0.8 + intensity * 1.5, 2.0);
+                    const volumeMultiplier = Math.min(1.0 + intensity * 2, 3.0);
                     amplifierGain.gain.value = volumeMultiplier;
                     
                     // 動きの速さに応じて再生時間を調整
-                    const playDuration = Math.max(50, Math.min(300 - timeDiff, 300));
+                    const playDuration = Math.max(100, Math.min(400 - timeDiff, 400));
                     
                     source.connect(amplifierGain);
                     amplifierGain.connect(scratchGain);
