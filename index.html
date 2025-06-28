@@ -13,161 +13,107 @@
         }
         
         body {
-            font-family: 'Roboto', 'Arial', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #0f0f0f 50%, #1a1a1a 75%, #0a0a0a 100%);
-            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            color: #ffffff;
+            color: white;
             overflow-x: hidden;
-            position: relative;
-        }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 60%, rgba(255, 255, 0, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
         }
         
         .container {
             max-width: 1600px;
             margin: 0 auto;
             padding: 20px;
-            position: relative;
-            z-index: 1;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
         }
         
         .dj-section {
-            background: linear-gradient(145deg, rgba(20, 20, 20, 0.9), rgba(40, 40, 40, 0.8));
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
             margin-bottom: 30px;
-            border: 2px solid rgba(0, 255, 255, 0.3);
-            box-shadow: 
-                0 0 30px rgba(0, 255, 255, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                0 20px 40px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
-        .dj-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-            animation: scanLine 4s linear infinite;
-        }
-        
-        @keyframes scanLine {
-            0% { left: -100%; }
-            100% { left: 100%; }
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #fff;
         }
         
         .dj-controls {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
-            gap: 40px;
+            gap: 30px;
             align-items: start;
         }
         
         .deck {
-            background: linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(50, 50, 50, 0.9));
-            border-radius: 20px;
-            padding: 25px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 
-                0 0 25px rgba(0, 0, 0, 0.8),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .deck::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.8), transparent);
-            animation: deckGlow 3s ease-in-out infinite alternate;
-        }
-        
-        @keyframes deckGlow {
-            from { opacity: 0.3; }
-            to { opacity: 1; }
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .deck-title {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
             text-align: center;
-            color: #ffffff;
-            font-weight: 600;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            color: #4ecdc4;
         }
         
         .deck-a {
-            border-left: 4px solid #00ffff;
-            box-shadow: 
-                0 0 25px rgba(0, 0, 0, 0.8),
-                -5px 0 15px rgba(0, 255, 255, 0.3);
+            border-left: 4px solid #ff6b6b;
         }
         
         .deck-b {
-            border-right: 4px solid #ff00ff;
-            box-shadow: 
-                0 0 25px rgba(0, 0, 0, 0.8),
-                5px 0 15px rgba(255, 0, 255, 0.3);
+            border-right: 4px solid #4ecdc4;
         }
         
         .turntable-container {
             display: flex;
             justify-content: center;
-            margin: 25px 0;
+            margin: 20px 0;
         }
         
         .turntable {
-            width: 180px;
-            height: 180px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            background: 
-                radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 40%, #333 70%, #000 100%);
-            border: 4px solid #444;
+            background: radial-gradient(circle at center, #333 0%, #111 70%, #000 100%);
+            border: 3px solid #666;
             position: relative;
             cursor: grab;
             user-select: none;
-            box-shadow: 
-                0 0 30px rgba(0, 0, 0, 0.8),
-                inset 0 0 20px rgba(0, 255, 255, 0.2);
-            transition: all 0.2s ease;
-        }
-        
-        .turntable:hover {
-            box-shadow: 
-                0 0 40px rgba(0, 255, 255, 0.4),
-                inset 0 0 30px rgba(0, 255, 255, 0.3);
-            border-color: #00ffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.1s ease;
         }
         
         .turntable:active {
             cursor: grabbing;
-            box-shadow: 
-                0 0 50px rgba(255, 0, 255, 0.6),
-                inset 0 0 40px rgba(255, 0, 255, 0.4);
         }
         
         .turntable::before {
@@ -175,144 +121,122 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 12px;
-            height: 12px;
-            background: radial-gradient(circle, #00ffff, #0088aa);
+            width: 8px;
+            height: 8px;
+            background: #ff6b6b;
             border-radius: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
         }
         
         .turntable::after {
             content: '';
             position: absolute;
-            top: 25px;
+            top: 20px;
             left: 50%;
-            width: 3px;
-            height: 50px;
-            background: linear-gradient(to bottom, #666, #333);
+            width: 2px;
+            height: 40px;
+            background: #666;
             transform: translateX(-50%);
-            border-radius: 2px;
         }
         
         .turntable-label {
             text-align: center;
-            margin-top: 15px;
+            margin-top: 10px;
             font-size: 0.9rem;
-            color: #aaa;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            color: #ccc;
         }
         
         .crossfader-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 25px;
-            min-width: 250px;
+            gap: 20px;
+            min-width: 200px;
         }
         
         .crossfader-container {
-            background: linear-gradient(145deg, rgba(10, 10, 10, 0.95), rgba(30, 30, 30, 0.9));
-            border-radius: 20px;
-            padding: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
-            border: 2px solid rgba(255, 255, 0, 0.3);
-            box-shadow: 
-                0 0 25px rgba(255, 255, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            gap: 15px;
         }
         
         .crossfader-label {
-            font-weight: 700;
-            color: #ffff00;
-            font-size: 1.2rem;
-            text-shadow: 0 0 15px rgba(255, 255, 0, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-weight: bold;
+            color: #fff;
+            font-size: 1.1rem;
         }
         
         .crossfader {
-            width: 180px;
-            height: 10px;
-            border-radius: 5px;
-            background: linear-gradient(90deg, #00ffff 0%, rgba(255,255,255,0.3) 50%, #ff00ff 100%);
+            width: 150px;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #ff6b6b 0%, rgba(255,255,255,0.3) 50%, #4ecdc4 100%);
             outline: none;
             -webkit-appearance: none;
             cursor: pointer;
-            box-shadow: 
-                0 0 15px rgba(0, 0, 0, 0.5),
-                inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .crossfader::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            background: linear-gradient(145deg, #ffffff, #cccccc);
+            background: linear-gradient(45deg, #fff, #ddd);
             cursor: pointer;
-            box-shadow: 
-                0 0 20px rgba(255, 255, 255, 0.5),
-                0 4px 15px rgba(0, 0, 0, 0.8);
-            border: 3px solid #333;
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid #333;
         }
         
-        .crossfader::-webkit-slider-thumb:hover {
-            box-shadow: 
-                0 0 30px rgba(255, 255, 0, 0.8),
-                0 6px 20px rgba(0, 0, 0, 0.9);
+        .crossfader::-moz-range-thumb {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #fff, #ddd);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid #333;
         }
         
         .crossfader-indicators {
             display: flex;
             justify-content: space-between;
-            width: 180px;
-            font-size: 1rem;
+            width: 150px;
+            font-size: 0.9rem;
             font-weight: bold;
         }
         
         .indicator-a {
-            color: #00ffff;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+            color: #ff6b6b;
         }
         
         .indicator-b {
-            color: #ff00ff;
-            text-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
+            color: #4ecdc4;
         }
         
         .file-input-wrapper {
             position: relative;
             display: inline-block;
             cursor: pointer;
-            background: linear-gradient(145deg, #333, #555);
-            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            padding: 12px 24px;
             border-radius: 50px;
-            border: 2px solid rgba(0, 255, 255, 0.5);
+            border: none;
             color: white;
-            font-weight: 600;
+            font-weight: bold;
             transition: all 0.3s ease;
-            box-shadow: 
-                0 0 20px rgba(0, 255, 255, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            margin: 8px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            margin: 5px;
             width: 100%;
             text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
         
         .file-input-wrapper:hover {
-            transform: translateY(-3px);
-            box-shadow: 
-                0 0 30px rgba(0, 255, 255, 0.6),
-                0 10px 25px rgba(0, 0, 0, 0.5);
-            border-color: #00ffff;
-            background: linear-gradient(145deg, #444, #666);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
         }
         
         .file-input-wrapper input {
@@ -326,343 +250,357 @@
         .deck-controls {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 15px;
+            margin-top: 15px;
         }
         
         .control-row {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
         }
         
         .control-btn {
-            background: linear-gradient(145deg, #2a2a2a, #4a4a4a);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            padding: 10px 20px;
-            border-radius: 30px;
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 25px;
             color: white;
-            font-weight: 600;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 
-                0 0 15px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
             font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
         
         .control-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 
-                0 0 25px rgba(0, 255, 255, 0.4),
-                0 8px 20px rgba(0, 0, 0, 0.6);
-            border-color: #00ffff;
-            background: linear-gradient(145deg, #3a3a3a, #5a5a5a);
+            box-shadow: 0 6px 20px rgba(78, 205, 196, 0.6);
         }
         
         .control-btn:disabled {
-            opacity: 0.4;
+            opacity: 0.5;
             cursor: not-allowed;
             transform: none;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
         
         .monitor-btn {
-            background: linear-gradient(145deg, #4a2a4a, #6a4a6a);
-            border-color: rgba(255, 0, 255, 0.3);
+            background: linear-gradient(45deg, #9b59b6, #8e44ad);
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
         }
         
         .monitor-btn:hover {
-            border-color: #ff00ff;
-            box-shadow: 
-                0 0 25px rgba(255, 0, 255, 0.4),
-                0 8px 20px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 6px 20px rgba(155, 89, 182, 0.6);
         }
         
         .monitor-btn.active {
-            background: linear-gradient(145deg, #6a2a2a, #8a4a4a);
-            border-color: #ff4444;
-            box-shadow: 
-                0 0 25px rgba(255, 68, 68, 0.6),
-                0 8px 20px rgba(0, 0, 0, 0.6);
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.6);
         }
         
-        .pitch-control, .volume-control {
+        .pitch-control {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 15px;
         }
         
-        .pitch-label, .volume-label {
-            font-weight: 600;
-            color: #ffffff;
+        .pitch-label {
+            font-weight: bold;
+            color: #4ecdc4;
             text-align: center;
-            font-size: 1rem;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
         
-        .pitch-slider-container, .volume-slider-container {
+        .pitch-slider-container {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
         
-        .pitch-slider, .volume-slider {
+        .pitch-slider {
             flex: 1;
-            height: 8px;
-            border-radius: 4px;
-            background: linear-gradient(90deg, #333, #666, #333);
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.3);
             outline: none;
             -webkit-appearance: none;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
         }
         
-        .pitch-slider::-webkit-slider-thumb, .volume-slider::-webkit-slider-thumb {
+        .pitch-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            background: linear-gradient(145deg, #00ffff, #0088aa);
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
             cursor: pointer;
-            box-shadow: 
-                0 0 15px rgba(0, 255, 255, 0.6),
-                0 2px 6px rgba(0, 0, 0, 0.5);
-            border: 2px solid #333;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
         
         .pitch-value {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: bold;
-            min-width: 60px;
+            min-width: 50px;
             text-align: center;
-            color: #00ffff;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
         
         .pitch-reset {
-            background: linear-gradient(145deg, #6a2a2a, #8a4a4a);
-            border: 2px solid rgba(255, 68, 68, 0.5);
-            padding: 8px 16px;
-            border-radius: 20px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 15px;
             color: white;
             font-size: 0.8rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-weight: 600;
         }
         
         .pitch-reset:hover {
             transform: translateY(-1px);
-            box-shadow: 0 0 15px rgba(255, 68, 68, 0.6);
         }
         
         .progress-container {
-            margin: 20px 0;
+            margin: 15px 0;
         }
         
         .progress-bar {
             width: 100%;
-            height: 8px;
-            background: linear-gradient(90deg, #222, #444, #222);
-            border-radius: 4px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
             overflow: hidden;
             cursor: pointer;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
         }
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00);
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
             width: 0%;
             transition: width 0.1s;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
         
         .time-display {
             text-align: center;
-            margin-top: 8px;
-            font-size: 1rem;
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .volume-control {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .volume-label {
+            font-weight: bold;
+            color: #4ecdc4;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .volume-slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .volume-slider {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.3);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
         
         .master-controls {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin-top: 25px;
+            gap: 20px;
+            margin-top: 20px;
             flex-wrap: wrap;
         }
         
         .record-btn {
-            background: linear-gradient(145deg, #6a2a2a, #8a4a4a);
-            border-color: rgba(255, 68, 68, 0.5);
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
         }
         
         .record-btn:hover {
-            border-color: #ff4444;
-            box-shadow: 
-                0 0 25px rgba(255, 68, 68, 0.6),
-                0 8px 20px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
         }
         
         .record-btn.recording {
             animation: recordPulse 1s ease-in-out infinite alternate;
-            box-shadow: 0 0 30px rgba(255, 68, 68, 0.8);
         }
         
         @keyframes recordPulse {
-            from { 
-                transform: scale(1);
-                box-shadow: 0 0 30px rgba(255, 68, 68, 0.8);
-            }
-            to { 
-                transform: scale(1.05);
-                box-shadow: 0 0 40px rgba(255, 68, 68, 1);
-            }
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
         }
         
-        .bpm-display, .filename-display {
-            background: linear-gradient(145deg, rgba(10, 10, 10, 0.9), rgba(30, 30, 30, 0.8));
-            border-radius: 15px;
-            padding: 15px;
+        .bpm-display {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 10px;
             text-align: center;
-            margin: 10px 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 
-                0 0 15px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            min-width: 120px;
-            max-width: 120px;
-            width: 120px;
+            margin-top: 10px;
         }
         
-        .bpm-label, .filename-label {
+        .bpm-label {
             font-size: 0.8rem;
-            color: #aaa;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #ccc;
         }
         
         .bpm-value {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            color: #00ffff;
-            text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+            color: #4ecdc4;
         }
         
         .current-bpm {
-            font-size: 1rem;
-            color: #ff00ff;
-            margin-top: 8px;
-            text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
+            font-size: 0.9rem;
+            color: #ff6b6b;
+            margin-top: 5px;
+        }
+        
+        .filename-display {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px;
+            min-height: 50px;
+        }
+        
+        .filename-label {
+            font-size: 0.8rem;
+            color: #ccc;
         }
         
         .filename-value {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: bold;
-            color: #ffffff;
-            margin-top: 8px;
-            line-height: 1.3;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            width: 100%;
-            display: block;
-        }
-        
-        .info-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 20px;
+            color: #4ecdc4;
+            margin-top: 5px;
+            word-break: break-all;
+            line-height: 1.2;
         }
         
         .keyboard-section {
-            background: linear-gradient(145deg, rgba(20, 20, 20, 0.9), rgba(40, 40, 40, 0.8));
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
             margin-bottom: 30px;
-            border: 2px solid rgba(255, 255, 0, 0.3);
-            box-shadow: 
-                0 0 30px rgba(255, 255, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                0 20px 40px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
-        .sample-upload {
-            margin-bottom: 25px;
+        .preset-samples {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .preset-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
             text-align: center;
+            color: #4ecdc4;
         }
         
         .preset-controls {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 25px;
+            align-items: center;
+            gap: 20px;
             flex-wrap: wrap;
         }
         
-        .preset-btn {
-            background: linear-gradient(145deg, #4a2a6a, #6a4a8a);
-            border: 2px solid rgba(255, 0, 255, 0.3);
-            padding: 12px 25px;
-            border-radius: 30px;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 
-                0 0 15px rgba(255, 0, 255, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .preset-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        .preset-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 
-                0 0 25px rgba(255, 0, 255, 0.6),
-                0 8px 20px rgba(0, 0, 0, 0.6);
-            border-color: #ff00ff;
-            background: linear-gradient(145deg, #5a3a7a, #7a5a9a);
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-switch.active {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(30px);
+        }
+        
+        .toggle-label {
+            font-weight: bold;
+            color: #fff;
+            font-size: 1rem;
+        }
+        
+        .sample-upload {
+            margin-bottom: 20px;
+            text-align: center;
         }
         
         .keyboard {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 8px;
             max-width: 1200px;
             margin: 0 auto;
         }
         
         .key {
-            background: linear-gradient(145deg, #2a2a2a, #4a4a4a);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            padding: 18px 10px;
-            border-radius: 15px;
+            background: linear-gradient(145deg, #667eea, #764ba2);
+            border: none;
+            padding: 15px 8px;
+            border-radius: 12px;
             color: white;
-            font-weight: 600;
+            font-weight: bold;
             font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 
-                0 0 15px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
-            min-height: 65px;
+            min-height: 55px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -671,94 +609,72 @@
         
         .key:hover {
             transform: translateY(-3px);
-            box-shadow: 
-                0 0 25px rgba(0, 255, 255, 0.4),
-                0 8px 20px rgba(0, 0, 0, 0.6);
-            border-color: #00ffff;
-            background: linear-gradient(145deg, #3a3a3a, #5a5a5a);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
         }
         
         .key:active, .key.active {
             transform: translateY(0);
-            box-shadow: 
-                0 0 30px rgba(255, 0, 255, 0.6),
-                0 4px 12px rgba(0, 0, 0, 0.8);
-            background: linear-gradient(145deg, #6a2a6a, #8a4a8a);
-            border-color: #ff00ff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(145deg, #ff6b6b, #ee5a52);
         }
         
         .key.playing {
-            background: linear-gradient(145deg, #2a6a2a, #4a8a4a);
-            border-color: #00ff00;
+            background: linear-gradient(145deg, #2ecc71, #27ae60);
             animation: keyPulse 0.5s ease-in-out;
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
         }
         
         @keyframes keyPulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
         
         .key-label {
             font-size: 0.7rem;
-            opacity: 0.9;
-            margin-top: 4px;
+            opacity: 0.8;
+            margin-top: 3px;
             text-align: center;
-            line-height: 1.2;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            line-height: 1.1;
         }
         
         .key-number {
             font-size: 0.8rem;
             font-weight: bold;
-            color: #00ffff;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
         
         .status {
             text-align: center;
-            margin: 25px 0;
-            font-size: 1.2rem;
-            color: #ffffff;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-            font-weight: 500;
+            margin: 20px 0;
+            font-size: 1.1rem;
         }
         
         .recording-indicator {
             display: inline-block;
-            width: 15px;
-            height: 15px;
-            background: #ff4444;
+            width: 12px;
+            height: 12px;
+            background: #ff6b6b;
             border-radius: 50%;
-            margin-right: 10px;
+            margin-right: 8px;
             animation: blink 1s infinite;
-            box-shadow: 0 0 15px rgba(255, 68, 68, 0.8);
         }
         
         @keyframes blink {
             0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0.3; }
+            51%, 100% { opacity: 0; }
         }
         
         .instructions {
-            background: linear-gradient(145deg, rgba(20, 20, 20, 0.9), rgba(40, 40, 40, 0.8));
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 25px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 
-                0 0 25px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
         .instructions h3 {
-            margin-bottom: 15px;
-            color: #00ffff;
-            text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
-            font-size: 1.3rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 10px;
+            color: #4ecdc4;
         }
         
         .instructions ul {
@@ -767,66 +683,39 @@
         }
         
         .instructions li {
-            margin: 10px 0;
-            padding-left: 25px;
+            margin: 8px 0;
+            padding-left: 20px;
             position: relative;
-            color: #cccccc;
-            line-height: 1.5;
         }
         
         .instructions li::before {
             content: '♪';
             position: absolute;
             left: 0;
-            color: #ff00ff;
+            color: #ff6b6b;
             font-weight: bold;
-            font-size: 1.2rem;
-            text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
         }
         
         @media (max-width: 1200px) {
             .dj-controls {
                 grid-template-columns: 1fr;
-                gap: 25px;
+                gap: 20px;
             }
             
             .crossfader-section {
                 order: -1;
-            }
-            
-            .keyboard {
-                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-                gap: 8px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            
-            .dj-section, .keyboard-section {
-                padding: 20px;
-            }
-            
-            .turntable {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .crossfader-container {
-                padding: 20px;
-            }
-            
-            .info-section {
-                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="header">
+            <h1 class="logo">DJミキサー</h1>
+        </div>
+        
         <div class="dj-section">
+            <h2 class="section-title">🎧 DJ コントロール</h2>
             <div class="dj-controls">
                 <!-- デッキA -->
                 <div class="deck deck-a">
@@ -846,6 +735,8 @@
                             <button class="control-btn" id="playBtnA" disabled>再生</button>
                             <button class="control-btn" id="pauseBtnA" disabled>一時停止</button>
                             <button class="control-btn" id="stopBtnA" disabled>停止</button>
+                        </div>
+                        <div class="control-row">
                             <button class="control-btn monitor-btn" id="monitorBtnA" disabled>モニター</button>
                         </div>
                     </div>
@@ -882,6 +773,17 @@
                             <span id="currentTimeA">0:00</span> / <span id="totalTimeA">0:00</span>
                         </div>
                     </div>
+                    
+                    <div class="bpm-display">
+                        <div class="bpm-label">元BPM</div>
+                        <div class="bpm-value" id="bpmValueA">--</div>
+                        <div class="current-bpm">現在: <span id="currentBpmA">--</span></div>
+                    </div>
+                    
+                    <div class="filename-display">
+                        <div class="filename-label">再生中</div>
+                        <div class="filename-value" id="filenameA">ファイルなし</div>
+                    </div>
                 </div>
                 
                 <!-- クロスフェーダー -->
@@ -892,30 +794,6 @@
                         <div class="crossfader-indicators">
                             <span class="indicator-a">A</span>
                             <span class="indicator-b">B</span>
-                        </div>
-                    </div>
-                    
-                    <div class="info-section">
-                        <div class="bpm-display">
-                            <div class="bpm-label">デッキA BPM</div>
-                            <div class="bpm-value" id="bpmValueA">--</div>
-                            <div class="current-bpm">現在: <span id="currentBpmA">--</span></div>
-                        </div>
-                        
-                        <div class="bpm-display">
-                            <div class="bpm-label">デッキB BPM</div>
-                            <div class="bpm-value" id="bpmValueB">--</div>
-                            <div class="current-bpm">現在: <span id="currentBpmB">--</span></div>
-                        </div>
-                        
-                        <div class="filename-display">
-                            <div class="filename-label">デッキA</div>
-                            <div class="filename-value" id="filenameA">ファイルなし</div>
-                        </div>
-                        
-                        <div class="filename-display">
-                            <div class="filename-label">デッキB</div>
-                            <div class="filename-value" id="filenameB">ファイルなし</div>
                         </div>
                     </div>
                     
@@ -943,6 +821,8 @@
                             <button class="control-btn" id="playBtnB" disabled>再生</button>
                             <button class="control-btn" id="pauseBtnB" disabled>一時停止</button>
                             <button class="control-btn" id="stopBtnB" disabled>停止</button>
+                        </div>
+                        <div class="control-row">
                             <button class="control-btn monitor-btn" id="monitorBtnB" disabled>モニター</button>
                         </div>
                     </div>
@@ -979,21 +859,41 @@
                             <span id="currentTimeB">0:00</span> / <span id="totalTimeB">0:00</span>
                         </div>
                     </div>
+                    
+                    <div class="bpm-display">
+                        <div class="bpm-label">元BPM</div>
+                        <div class="bpm-value" id="bpmValueB">--</div>
+                        <div class="current-bpm">現在: <span id="currentBpmB">--</span></div>
+                    </div>
+                    
+                    <div class="filename-display">
+                        <div class="filename-label">再生中</div>
+                        <div class="filename-value" id="filenameB">ファイルなし</div>
+                    </div>
                 </div>
             </div>
         </div>
         
         <div class="keyboard-section">
+            <h2 class="section-title">🎹 サンプリングキーボード（50ボタン）</h2>
+            
+            <div class="preset-samples">
+                <div class="preset-title">📁 プリセットサンプル（27個）</div>
+                <div class="preset-controls">
+                    <div class="preset-toggle">
+                        <span class="toggle-label">プリセット音源</span>
+                        <div class="toggle-switch" id="presetToggle">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="sample-upload">
                 <label class="file-input-wrapper">
                     <input type="file" id="sampleFiles" accept="audio/*" multiple>
-                    サンプル音声を追加選択（最大23個）
+                    追加サンプル音声を選択（最大23個）
                 </label>
-            </div>
-            
-            <div class="preset-controls">
-                <button class="preset-btn" id="loadPresetSamples">プリセット音源読み込み</button>
-                <button class="preset-btn" id="clearAllSamples">全サンプルクリア</button>
             </div>
             
             <div class="volume-control">
@@ -1011,22 +911,22 @@
         </div>
         
         <div class="status" id="status">
-            クリックしてオーディオシステムを開始してください
+            音楽ファイルとサンプル音声を読み込んでください
         </div>
         
         <div class="instructions">
             <h3>使い方</h3>
             <ul>
                 <li>デッキAとBに音楽ファイルを読み込んで再生できます</li>
-                <li>ターンテーブルをドラッグして微調整・動的スクラッチ音を生成</li>
+                <li>ターンテーブルをドラッグして微調整・スクラッチ音を生成</li>
                 <li>ピッチスライダーで再生速度を調整（-50%〜+50%）</li>
                 <li>音程保持チェックボックスで、ピッチ変更時の音程変化を制御</li>
                 <li>クロスフェーダーでデッキA/B間の音量バランスを調整</li>
                 <li>BPM表示で楽曲の元テンポと現在のテンポを確認</li>
                 <li>モニターボタンで各デッキの音源をヘッドフォンで確認可能</li>
                 <li>再生中のファイル名がリアルタイムで表示されます</li>
-                <li>プリセット音源読み込みボタンで27個の内蔵サンプル音を読み込めます</li>
-                <li>残り23個のスロットに追加のサンプル音声ファイルを読み込めます</li>
+                <li>プリセット音源をオンにすると27個のサンプル音が自動で読み込まれます</li>
+                <li>追加で最大23個のサンプル音声ファイルを読み込めます（合計50個）</li>
                 <li>キーボードのボタンまたはキー（1-9, 0, Q-P, A-L, Z-N）でサンプル音を再生</li>
                 <li>録音ボタンで全ての音を同時録音できます</li>
                 <li>録音した音声はMP3形式で自動ダウンロードされます</li>
@@ -1037,7 +937,7 @@
     <script>
         class DJMixer {
             constructor() {
-                // 音楽再生用のBufferSourceを使用
+                // 音楽再生用のBufferSourceを使用（MediaElementSourceを完全に回避）
                 this.audioBufferA = null;
                 this.audioBufferB = null;
                 this.bufferSourceA = null;
@@ -1058,10 +958,10 @@
                 this.isDraggingB = false;
                 this.lastAngleA = 0;
                 this.lastAngleB = 0;
+                this.scratchBufferA = null;
+                this.scratchBufferB = null;
                 this.scratchSourceA = null;
                 this.scratchSourceB = null;
-                this.lastScratchTimeA = 0;
-                this.lastScratchTimeB = 0;
                 
                 // サンプリング
                 this.samples = [];
@@ -1084,6 +984,7 @@
                 this.monitorGainB = null;
                 this.scratchGainA = null;
                 this.scratchGainB = null;
+                this.presetEnabled = false;
                 this.monitoringA = false;
                 this.monitoringB = false;
                 
@@ -1094,35 +995,15 @@
                 this.currentFilenameB = null;
                 this.objectUrls = new Set();
                 
-                // プリセットサンプルのファイル名リスト
-                this.presetSampleFiles = [
-                    '01Laser1.mp3',
-                    '2Laser2.mp3',
-                    '3Laser3.mp3',
-                    '4explo1.mp3',
-                    '5explo2.mp3',
-                    '6expro3.mp3',
-                    '7heyDJ.mp3',
-                    '8GiveMeafatbeat.mp3',
-                    '9Hah.mp3',
-                    '10Fuh.mp3',
-                    '11Letsgo.mp3',
-                    '12comon.mp3',
-                    '13AhYhe.mp3',
-                    '14DoIt.mp3',
-                    '15.123Doit.mp3',
-                    '16AHaHa.mp3',
-                    '17sweet.mp3',
-                    '18Hoo.mp3',
-                    '19scratch.mp3',
-                    '20James.mp3',
-                    '21partytime.mp3',
-                    '22Unity.mp3',
-                    '23tonty.mp3',
-                    '24.123Hoo.mp3',
-                    '25AaaHa.mp3',
-                    '26.Swing.mp3',
-                    '27.Hit.mp3'
+                // プリセットサンプル
+                this.presetSamples = [
+                    './01Laser1.mp3', './2Laser2.mp3', './3Laser3.mp3', './4explo1.mp3',
+                    './5explo2.mp3', './6expro3.mp3', './7heyDJ.mp3', './8GiveMeafatbeat.mp3',
+                    './9Hah.mp3', './10Fuh.mp3', './11Letsgo.mp3', './12comon.mp3',
+                    './13AhYhe.mp3', './14DoIt.mp3', './15.123Doit.mp3', './16AHaHa.mp3',
+                    './17sweet.mp3', './18Hoo.mp3', './19scratch.mp3', './20James.mp3',
+                    './21partytime.mp3', './22Unity.mp3', './23tonty.mp3', './24.123Hoo.mp3',
+                    './25AaaHa.mp3', './26.Swing.mp3', './27.Hit.mp3'
                 ];
                 
                 this.keyMapping = [
@@ -1136,6 +1017,9 @@
                 this.initializeElements();
                 this.bindEvents();
                 this.createKeyboard();
+                this.initializeAudioContext();
+                this.initializeTurntables();
+                this.createScratchBuffer();
                 
                 // プログレス更新用タイマー
                 this.progressIntervalA = null;
@@ -1201,22 +1085,14 @@
                     sampleVolumeSlider: document.getElementById('sampleVolumeSlider'),
                     sampleVolumeValue: document.getElementById('sampleVolumeValue'),
                     keyboard: document.getElementById('keyboard'),
-                    status: document.getElementById('status'),
-                    
-                    // プリセットボタン
-                    loadPresetSamples: document.getElementById('loadPresetSamples'),
-                    clearAllSamples: document.getElementById('clearAllSamples')
+                    presetToggle: document.getElementById('presetToggle'),
+                    status: document.getElementById('status')
                 };
             }
             
             async initializeAudioContext() {
                 try {
                     this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                    
-                    // AudioContextが suspended 状態の場合は resume
-                    if (this.audioContext.state === 'suspended') {
-                        await this.audioContext.resume();
-                    }
                     
                     // ゲインノードの作成
                     this.deckAGainNode = this.audioContext.createGain();
@@ -1238,8 +1114,8 @@
                     this.crossfaderGainB.gain.value = 0.5;
                     this.monitorGainA.gain.value = 0;
                     this.monitorGainB.gain.value = 0;
-                    this.scratchGainA.gain.value = 1.2;
-                    this.scratchGainB.gain.value = 1.2;
+                    this.scratchGainA.gain.value = 0.3;
+                    this.scratchGainB.gain.value = 0.3;
                     
                     // 接続設定
                     this.deckAGainNode.connect(this.crossfaderGainA);
@@ -1262,11 +1138,6 @@
                     this.scratchGainA.connect(this.destination);
                     this.scratchGainB.connect(this.audioContext.destination);
                     this.scratchGainB.connect(this.destination);
-                    
-                    // ターンテーブル初期化
-                    this.initializeTurntables();
-                    
-                    this.updateStatus('オーディオシステムが初期化されました');
                     
                 } catch (error) {
                     console.error('Audio Context initialization error:', error);
@@ -1291,6 +1162,29 @@
                 document.addEventListener('touchmove', (e) => this.handleTurntableDrag(e));
                 document.addEventListener('mouseup', () => this.stopTurntableDrag());
                 document.addEventListener('touchend', () => this.stopTurntableDrag());
+            }
+            
+            async createScratchBuffer() {
+                try {
+                    // スクラッチ音用のノイズバッファを生成
+                    const sampleRate = this.audioContext.sampleRate;
+                    const bufferLength = sampleRate * 0.1; // 0.1秒
+                    
+                    this.scratchBufferA = this.audioContext.createBuffer(1, bufferLength, sampleRate);
+                    this.scratchBufferB = this.audioContext.createBuffer(1, bufferLength, sampleRate);
+                    
+                    const dataA = this.scratchBufferA.getChannelData(0);
+                    const dataB = this.scratchBufferB.getChannelData(0);
+                    
+                    // ピンクノイズ生成（スクラッチ音らしい音）
+                    for (let i = 0; i < bufferLength; i++) {
+                        dataA[i] = (Math.random() * 2 - 1) * 0.3;
+                        dataB[i] = (Math.random() * 2 - 1) * 0.3;
+                    }
+                    
+                } catch (error) {
+                    console.error('Scratch buffer creation error:', error);
+                }
             }
             
             startTurntableDrag(event, deck) {
@@ -1343,13 +1237,13 @@
                 const rotation = (angle * 180 / Math.PI);
                 turntable.style.transform = `rotate(${rotation}deg)`;
                 
-                // スクラッチ音を生成
-                if (Math.abs(angleDiff) > 0.03) {
-                    this.generateScratchSound(deck, Math.abs(angleDiff));
+                // 大きな動きでスクラッチ音を生成
+                if (Math.abs(angleDiff) > 0.1) {
+                    this.playScratchSound(deck, Math.abs(angleDiff));
                 }
                 
                 // 微調整（再生位置の調整）
-                if (Math.abs(angleDiff) > 0.02) {
+                if (Math.abs(angleDiff) > 0.05) {
                     this.adjustPlaybackPosition(deck, angleDiff);
                 }
                 
@@ -1365,1262 +1259,1178 @@
                 this.isDraggingB = false;
             }
             
-           // 動的スクラッチ音生成（Web Audio APIを使用）
-generateScratchSound(deck, intensity) {
-    try {
-        if (!this.audioContext) return;
-        
-        const scratchGain = deck === 'A' ? this.scratchGainA : this.scratchGainB;
-        if (!scratchGain) return;
-        
-        // 既存のスクラッチ音を停止
-        const existingSource = deck === 'A' ? this.scratchSourceA : this.scratchSourceB;
-        if (existingSource) {
-            try {
-                existingSource.stop();
-            } catch (error) {
-                // エラーを無視
-            }
-        }
-        
-                // 現在時刻を取得
-        const currentTime = Date.now();
-        const lastScratchTime = deck === 'A' ? this.lastScratchTimeA : this.lastScratchTimeB;
-        const timeDiff = Math.max(currentTime - lastScratchTime, 10);
-        
-        // ノイズジェネレーターとオシレーターを組み合わせてスクラッチ音を生成
-        const bufferSize = this.audioContext.sampleRate * 0.1; // 0.1秒
-        const buffer = this.audioContext.createBuffer(1, bufferSize, this.audioContext.sampleRate);
-        const data = buffer.getChannelData(0);
-        
-        // ピンクノイズ生成（スクラッチ音らしい音）
-        let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
-        for (let i = 0; i < bufferSize; i++) {
-            const white = Math.random() * 2 - 1;
-            b0 = 0.99886 * b0 + white * 0.0555179;
-            b1 = 0.99332 * b1 + white * 0.0750759;
-            b2 = 0.96900 * b2 + white * 0.1538520;
-            b3 = 0.86650 * b3 + white * 0.3104856;
-            b4 = 0.55000 * b4 + white * 0.5329522;
-            b5 = -0.7616 * b5 - white * 0.0168980;
-            const pink = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
-            b6 = white * 0.115926;
-            
-            // フェードアウト効果とフィルタリング
-            const fadeOut = 1 - (i / bufferSize);
-            const filtered = pink * fadeOut * 0.3;
-            data[i] = filtered;
-        }
-        
-        // BufferSourceを作成
-        const source = this.audioContext.createBufferSource();
-        source.buffer = buffer;
-        
-        // 強度と時間間隔に応じてピッチとボリュームを調整
-        const pitchMultiplier = 0.5 + intensity * 4;
-        const speedMultiplier = Math.max(timeDiff / 100, 0.5);
-        source.playbackRate.value = Math.min(pitchMultiplier * speedMultiplier, 6.0);
-        
-        // 追加のゲインノードでボリュームを調整
-        const amplifierGain = this.audioContext.createGain();
-        const volumeMultiplier = Math.min(1.0 + intensity * 2, 3.0);
-        amplifierGain.gain.value = volumeMultiplier;
-        
-        // 動きの速さに応じて再生時間を調整
-        const playDuration = Math.max(100, Math.min(400 - timeDiff, 400));
-        
-        source.connect(amplifierGain);
-        amplifierGain.connect(scratchGain);
-        source.start();
-        
-        if (deck === 'A') {
-            this.scratchSourceA = source;
-            this.lastScratchTimeA = currentTime;
-        } else {
-            this.scratchSourceB = source;
-            this.lastScratchTimeB = currentTime;
-        }
-        
-        // 動的な時間で自動停止
-        setTimeout(() => {
-            try {
-                source.stop();
-            } catch (error) {
-                // エラーを無視
-            }
-        }, playDuration);
-        
-    } catch (error) {
-        console.error('Scratch sound error:', error);
-    }
-}
-
-adjustPlaybackPosition(deck, angleDiff) {
-    const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
-    const audioBuffer = deck === 'A' ? this.audioBufferA : this.audioBufferB;
-    
-    if (!audioBuffer) return;
-    
-    // 角度差を時間差に変換（微調整）
-    const timeAdjustment = angleDiff * 0.1; // 調整係数
-    
-    if (deck === 'A') {
-        this.pauseTimeA = Math.max(0, Math.min(this.pauseTimeA + timeAdjustment, audioBuffer.duration));
-    } else {
-        this.pauseTimeB = Math.max(0, Math.min(this.pauseTimeB + timeAdjustment, audioBuffer.duration));
-    }
-    
-    // 再生中の場合は再開
-    if (isPlaying) {
-        this.pauseAudio(deck);
-        setTimeout(() => this.playAudio(deck), 10);
-    } else {
-        this.updateProgress(deck);
-    }
-}
-
-// プリセットサンプルのファイル名リスト
-initializePresetSamples() {
-    this.presetSampleFiles = [
-        '01Laser1.mp3',
-        '2Laser2.mp3',
-        '3Laser3.mp3',
-        '4explo1.mp3',
-        '5explo2.mp3',
-        '6expro3.mp3',
-        '7heyDJ.mp3',
-        '8GiveMeafatbeat.mp3',
-        '9Hah.mp3',
-        '10Fuh.mp3',
-        '11Letsgo.mp3',
-        '12comon.mp3',
-        '13AhYhe.mp3',
-        '14DoIt.mp3',
-        '15.123Doit.mp3',
-        '16AHaHa.mp3',
-        '17sweet.mp3',
-        '18Hoo.mp3',
-        '19scratch.mp3',
-        '20James.mp3',
-        '21partytime.mp3',
-        '22Unity.mp3',
-        '23tonty.mp3',
-        '24.123Hoo.mp3',
-        '25AaaHa.mp3',
-        '26.Swing.mp3',
-        '27.Hit.mp3'
-    ];
-}
-
-// プリセット音源読み込み
-async loadPresetSamples() {
-    if (!this.audioContext) {
-        this.updateStatus('オーディオシステムが初期化されていません');
-        return;
-    }
-    
-    try {
-        this.updateStatus('プリセット音源を読み込み中...');
-        
-        // 既存のサンプルをクリア
-        for (let i = 0; i < 50; i++) {
-            this.samples[i] = null;
-            const keyElement = document.querySelector(`[data-index="${i}"]`);
-            if (keyElement) {
-                const label = keyElement.querySelector('.key-label');
-                label.textContent = 'Empty';
-            }
-        }
-        
-        let loadedCount = 0;
-        
-        // 最初の27個にプリセット音源を読み込み
-        for (let i = 0; i < this.presetSampleFiles.length && i < 27; i++) {
-            try {
-                const response = await fetch(this.presetSampleFiles[i]);
-                if (response.ok) {
-                    const arrayBuffer = await response.arrayBuffer();
-                    const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+            playScratchSound(deck, intensity) {
+                try {
+                    const scratchBuffer = deck === 'A' ? this.scratchBufferA : this.scratchBufferB;
+                    const scratchGain = deck === 'A' ? this.scratchGainA : this.scratchGainB;
                     
-                    this.samples[i] = {
-                        buffer: audioBuffer,
-                        name: this.presetSampleFiles[i].replace('.mp3', ''),
-                        isPreset: true
-                    };
+                    if (!scratchBuffer || !scratchGain) return;
                     
-                    const keyElement = document.querySelector(`[data-index="${i}"]`);
-                    if (keyElement) {
-                        const label = keyElement.querySelector('.key-label');
-                        label.textContent = this.samples[i].name.substring(0, 8);
+                    // 既存のスクラッチ音を停止
+                    const existingSource = deck === 'A' ? this.scratchSourceA : this.scratchSourceB;
+                    if (existingSource) {
+                        try {
+                            existingSource.stop();
+                        } catch (error) {
+                            // エラーを無視
+                        }
                     }
                     
-                    loadedCount++;
-                } else {
-                    console.warn(`Failed to load preset sample: ${this.presetSampleFiles[i]}`);
+                    // 新しいスクラッチ音を生成
+                    const source = this.audioContext.createBufferSource();
+                    source.buffer = scratchBuffer;
+                    source.playbackRate.value = 0.5 + intensity * 2; // 強度に応じてピッチ変更
+                    source.connect(scratchGain);
+                    source.start();
+                    
+                    if (deck === 'A') {
+                        this.scratchSourceA = source;
+                    } else {
+                        this.scratchSourceB = source;
+                    }
+                    
+                    // 短時間で自動停止
+                    setTimeout(() => {
+                        try {
+                            source.stop();
+                        } catch (error) {
+                            // エラーを無視
+                        }
+                    }, 100);
+                    
+                } catch (error) {
+                    console.error('Scratch sound error:', error);
                 }
-            } catch (error) {
-                console.error(`Error loading preset sample ${this.presetSampleFiles[i]}:`, error);
-            }
-        }
-        
-        this.updateStatus(`プリセット音源を${loadedCount}個読み込みました（残り23個は追加ファイルで登録可能）`);
-        
-    } catch (error) {
-        console.error('Preset sample loading error:', error);
-        this.updateStatus(`プリセット音源の読み込みに失敗しました: ${error.message}`);
-    }
-}
-
-// サンプルファイル読み込み（追加分）
-async loadSampleFiles(event) {
-    const files = Array.from(event.target.files);
-    const maxAdditionalSamples = 23; // 残りの23個
-    
-    if (files.length > maxAdditionalSamples) {
-        alert(`追加できるサンプルファイルは最大${maxAdditionalSamples}個です。`);
-        return;
-    }
-    
-    let loadedCount = 0;
-    
-    // 28番目から50番目のスロットに追加ファイルを読み込み
-    for (let i = 0; i < files.length && i < maxAdditionalSamples; i++) {
-        const file = files[i];
-        const slotIndex = 27 + i; // 28番目から開始
-        
-        try {
-            const arrayBuffer = await file.arrayBuffer();
-            const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
-            
-            this.samples[slotIndex] = {
-                buffer: audioBuffer,
-                name: file.name.split('.')[0],
-                isPreset: false
-            };
-            
-            const keyElement = document.querySelector(`[data-index="${slotIndex}"]`);
-            if (keyElement) {
-                const label = keyElement.querySelector('.key-label');
-                label.textContent = this.samples[slotIndex].name.substring(0, 8);
             }
             
-            loadedCount++;
-        } catch (error) {
-            console.error(`Sample ${file.name} loading error:`, error);
-        }
-    }
-    
-    this.updateStatus(`追加サンプル音声を${loadedCount}個読み込みました`);
-}
-
-// 全サンプルクリア
-clearAllSamples() {
-    for (let i = 0; i < 50; i++) {
-        this.samples[i] = null;
-        const keyElement = document.querySelector(`[data-index="${i}"]`);
-        if (keyElement) {
-            const label = keyElement.querySelector('.key-label');
-            label.textContent = 'Empty';
-        }
-    }
-    this.updateStatus('全てのサンプルをクリアしました');
-}
-
-bindEvents() {
-    // デッキA
-    this.elements.audioFileA.addEventListener('change', (e) => this.loadAudioFile(e, 'A'));
-    this.elements.playBtnA.addEventListener('click', () => this.playAudio('A'));
-    this.elements.pauseBtnA.addEventListener('click', () => this.pauseAudio('A'));
-    this.elements.stopBtnA.addEventListener('click', () => this.stopAudio('A'));
-    this.elements.monitorBtnA.addEventListener('click', () => this.toggleMonitor('A'));
-    this.elements.pitchSliderA.addEventListener('input', (e) => this.updatePitch(e, 'A'));
-    this.elements.pitchResetA.addEventListener('click', () => this.resetPitch('A'));
-    this.elements.preservePitchA.addEventListener('change', (e) => this.updatePreservePitch(e, 'A'));
-    this.elements.volumeSliderA.addEventListener('input', (e) => this.updateVolume(e, 'A'));
-    this.elements.progressBarA.addEventListener('click', (e) => this.seekAudio(e, 'A'));
-    
-    // デッキB
-    this.elements.audioFileB.addEventListener('change', (e) => this.loadAudioFile(e, 'B'));
-    this.elements.playBtnB.addEventListener('click', () => this.playAudio('B'));
-    this.elements.pauseBtnB.addEventListener('click', () => this.pauseAudio('B'));
-    this.elements.stopBtnB.addEventListener('click', () => this.stopAudio('B'));
-    this.elements.monitorBtnB.addEventListener('click', () => this.toggleMonitor('B'));
-    this.elements.pitchSliderB.addEventListener('input', (e) => this.updatePitch(e, 'B'));
-    this.elements.pitchResetB.addEventListener('click', () => this.resetPitch('B'));
-    this.elements.preservePitchB.addEventListener('change', (e) => this.updatePreservePitch(e, 'B'));
-    this.elements.volumeSliderB.addEventListener('input', (e) => this.updateVolume(e, 'B'));
-    this.elements.progressBarB.addEventListener('click', (e) => this.seekAudio(e, 'B'));
-    
-    // 共通コントロール
-    this.elements.crossfader.addEventListener('input', (e) => this.updateCrossfader(e));
-    this.elements.recordBtn.addEventListener('click', () => this.toggleRecording());
-    this.elements.stopAllBtn.addEventListener('click', () => this.stopAllSounds());
-    
-    // サンプリング
-    this.elements.sampleFiles.addEventListener('change', (e) => this.loadSampleFiles(e));
-    this.elements.sampleVolumeSlider.addEventListener('input', (e) => this.updateSampleVolume(e));
-    
-    // プリセットボタン
-    this.elements.loadPresetSamples.addEventListener('click', () => this.loadPresetSamples());
-    this.elements.clearAllSamples.addEventListener('click', () => this.clearAllSamples());
-    
-    // キーボードイベント
-    document.addEventListener('keydown', (e) => this.handleKeyPress(e));
-    document.addEventListener('keyup', (e) => this.handleKeyRelease(e));
-
-    // オーディオコンテキスト初期化（ユーザーアクション後）
-    document.addEventListener('click', async () => {
-        if (!this.audioContext) {
-            await this.initializeAudioContext();
-        }
-    }, { once: true });
-}
-
-createKeyboard() {
-    this.keyMapping.forEach((key, index) => {
-        const keyElement = document.createElement('button');
-        keyElement.className = 'key';
-        keyElement.innerHTML = `
-            <div class="key-number">${index + 1}</div>
-            <div>${key.toUpperCase()}</div>
-            <div class="key-label">Empty</div>
-        `;
-        keyElement.dataset.key = key;
-        keyElement.dataset.index = index;
-        keyElement.addEventListener('mousedown', () => this.playSample(index));
-        keyElement.addEventListener('mouseup', () => this.releaseKey(key));
-        keyElement.addEventListener('mouseleave', () => this.releaseKey(key));
-        this.elements.keyboard.appendChild(keyElement);
-    });
-}
-
-async loadAudioFile(event, deck) {
-    const file = event.target.files[0];
-    if (!file) return;
-    
-    try {
-        this.updateStatus(`デッキ${deck}にファイルを読み込み中...`);
-        
-        // AudioContextの状態を確認・復帰
-        if (this.audioContext && this.audioContext.state === 'suspended') {
-            await this.audioContext.resume();
-        }
-        
-        // 既存のリソースを完全にクリーンアップ
-        await this.cleanupDeck(deck);
-        
-        // ファイルをArrayBufferとして読み込み
-        const arrayBuffer = await file.arrayBuffer();
-        const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
-        
-        // AudioBufferを保存
-        if (deck === 'A') {
-            this.audioBufferA = audioBuffer;
-            this.currentFilenameA = file.name;
-            this.elements.filenameA.textContent = file.name;
-        } else {
-            this.audioBufferB = audioBuffer;
-            this.currentFilenameB = file.name;
-            this.elements.filenameB.textContent = file.name;
-        }
-        
-        // 総再生時間を更新
-        this.updateTotalTime(deck);
-        
-        // UI要素を有効化
-        this.enableDeckControls(deck);
-        
-        // BPM検出（非同期で実行）
-        this.detectBPM(audioBuffer, deck).catch(error => {
-            console.error('BPM detection failed:', error);
-        });
-        
-        this.updateStatus(`デッキ${deck}に "${file.name}" を読み込みました`);
-        
-    } catch (error) {
-        console.error(`Failed to load audio file for deck ${deck}:`, error);
-        this.updateStatus(`デッキ${deck}のファイル読み込みに失敗しました: ${error.message}`);
-        this.resetDeck(deck);
-    }
-}
-
-async cleanupDeck(deck) {
-    // 再生中のBufferSourceを停止
-    if (deck === 'A' && this.bufferSourceA) {
-        try {
-            this.bufferSourceA.stop();
-        } catch (error) {
-            console.warn('Failed to stop buffer source A:', error);
-        }
-        this.bufferSourceA = null;
-        this.isPlayingA = false;
-    } else if (deck === 'B' && this.bufferSourceB) {
-        try {
-            this.bufferSourceB.stop();
-        } catch (error) {
-            console.warn('Failed to stop buffer source B:', error);
-        }
-        this.bufferSourceB = null;
-        this.isPlayingB = false;
-    }
-    
-    // プログレス更新タイマーをクリア
-    if (deck === 'A') {
-        clearInterval(this.progressIntervalA);
-        this.progressIntervalA = null;
-    } else {
-        clearInterval(this.progressIntervalB);
-        this.progressIntervalB = null;
-    }
-    
-    // モニターを強制的にオフ（修正版）
-    if ((deck === 'A' && this.monitoringA) || (deck === 'B' && this.monitoringB)) {
-        this.forceMonitorOff(deck);
-    }
-}
-
-forceMonitorOff(deck) {
-    const monitorBtn = this.elements[`monitorBtn${deck}`];
-    const monitorGain = deck === 'A' ? this.monitorGainA : this.monitorGainB;
-    
-    if (monitorGain) {
-        // ゲインを段階的に下げて音が止まらないエラーを防ぐ
-        const currentTime = this.audioContext.currentTime;
-        monitorGain.gain.setValueAtTime(monitorGain.gain.value, currentTime);
-        monitorGain.gain.linearRampToValueAtTime(0, currentTime + 0.1);
-    }
-    
-    if (monitorBtn) {
-        monitorBtn.classList.remove('active');
-        monitorBtn.textContent = 'モニター';
-    }
-    
-    if (deck === 'A') {
-        this.monitoringA = false;
-    } else {
-        this.monitoringB = false;
-    }
-}
-
-enableDeckControls(deck) {
-    try {
-        this.elements[`playBtn${deck}`].disabled = false;
-        this.elements[`pauseBtn${deck}`].disabled = false;
-        this.elements[`stopBtn${deck}`].disabled = false;
-        this.elements[`monitorBtn${deck}`].disabled = false;
-        this.elements.recordBtn.disabled = false;
-    } catch (error) {
-        console.error(`Failed to enable controls for deck ${deck}:`, error);
-    }
-}
-
-resetDeck(deck) {
-    try {
-        // 再生停止
-        this.stopAudio(deck);
-        
-        // UI要素をリセット
-        this.elements[`playBtn${deck}`].disabled = true;
-        this.elements[`pauseBtn${deck}`].disabled = true;
-        this.elements[`stopBtn${deck}`].disabled = true;
-        this.elements[`monitorBtn${deck}`].disabled = true;
-        
-        // モニターを強制的にオフ
-        this.forceMonitorOff(deck);
-        
-        // ピッチとボリュームをリセット
-        this.elements[`pitchSlider${deck}`].value = 0;
-        this.elements[`pitchValue${deck}`].textContent = '0%';
-        this.elements[`volumeSlider${deck}`].value = 75;
-        this.elements[`volumeValue${deck}`].textContent = '75%';
-        
-        // 表示をリセット
-        this.elements[`filename${deck}`].textContent = 'ファイルなし';
-        this.elements[`bpmValue${deck}`].textContent = '--';
-        this.elements[`currentBpm${deck}`].textContent = '--';
-        this.elements[`progressFill${deck}`].style.width = '0%';
-        this.elements[`currentTime${deck}`].textContent = '0:00';
-        this.elements[`totalTime${deck}`].textContent = '0:00';
-        
-        // データをクリア
-        if (deck === 'A') {
-            this.audioBufferA = null;
-            this.currentFilenameA = null;
-            this.originalBpmA = null;
-            this.playbackRateA = 1;
-            this.pauseTimeA = 0;
-        } else {
-            this.audioBufferB = null;
-            this.currentFilenameB = null;
-            this.originalBpmB = null;
-            this.playbackRateB = 1;
-            this.pauseTimeB = 0;
-        }
-        
-    } catch (error) {
-        console.error(`Failed to reset deck ${deck}:`, error);
-    }
-}
-
-async detectBPM(audioBuffer, deck) {
-    try {
-        this.updateStatus(`デッキ${deck}のBPMを検出中...`);
-        
-        const bpm = await Promise.race([
-            this.calculateBPMImproved(audioBuffer),
-            new Promise((_, reject) => 
-                setTimeout(() => reject(new Error('BPM detection timeout')), 15000)
-            )
-        ]);
-        
-        if (deck === 'A') {
-            this.originalBpmA = bpm;
-        } else {
-            this.originalBpmB = bpm;
-        }
-        
-        this.elements[`bpmValue${deck}`].textContent = Math.round(bpm);
-        this.updateCurrentBPM(deck);
-        
-        this.updateStatus(`デッキ${deck}のBPM検出完了: ${Math.round(bpm)}`);
-        
-    } catch (error) {
-        console.error('BPM detection error:', error);
-        this.elements[`bpmValue${deck}`].textContent = '120';
-        this.elements[`currentBpm${deck}`].textContent = '120';
-        
-        if (deck === 'A') {
-            this.originalBpmA = 120;
-        } else {
-            this.originalBpmB = 120;
-        }
-        
-        this.updateStatus(`デッキ${deck}のBPM検出に失敗、デフォルト値(120)を使用`);
-    }
-}
-
-calculateBPMImproved(audioBuffer) {
-    return new Promise((resolve) => {
-        const sampleRate = audioBuffer.sampleRate;
-        const samples = audioBuffer.getChannelData(0);
-        
-        // 分析する長さを制限（最初の60秒または全体の1/3）
-        const maxSamples = Math.min(samples.length, sampleRate * 60, samples.length / 3);
-        const analysisBuffer = samples.slice(0, maxSamples);
-        
-        // ローパスフィルターを適用してノイズを除去
-        const filteredSamples = this.applyLowPassFilter(analysisBuffer, sampleRate);
-        
-        // エネルギーベースのオンセット検出
-        const onsets = this.detectOnsets(filteredSamples, sampleRate);
-        
-        if (onsets.length < 4) {
-            resolve(120);
-            return;
-        }
-        
-        // インターバル分析
-        const intervals = [];
-        for (let i = 1; i < onsets.length; i++) {
-            const interval = onsets[i] - onsets[i - 1];
-            if (interval > 0.2 && interval < 2.0) {
-                intervals.push(interval);
+            adjustPlaybackPosition(deck, angleDiff) {
+                const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
+                const audioBuffer = deck === 'A' ? this.audioBufferA : this.audioBufferB;
+                
+                if (!audioBuffer) return;
+                
+                // 角度差を時間差に変換（微調整）
+                const timeAdjustment = angleDiff * 0.1; // 調整係数
+                
+                if (deck === 'A') {
+                    this.pauseTimeA = Math.max(0, Math.min(this.pauseTimeA + timeAdjustment, audioBuffer.duration));
+                } else {
+                    this.pauseTimeB = Math.max(0, Math.min(this.pauseTimeB + timeAdjustment, audioBuffer.duration));
+                }
+                
+                // 再生中の場合は再開
+                if (isPlaying) {
+                    this.pauseAudio(deck);
+                    setTimeout(() => this.playAudio(deck), 10);
+                } else {
+                    this.updateProgress(deck);
+                }
             }
-        }
-        
-        if (intervals.length === 0) {
-            resolve(120);
-            return;
-        }
-        
-        // インターバルのヒストグラム分析
-        const bpmCandidates = intervals.map(interval => 60 / interval);
-        const histogram = this.createBPMHistogram(bpmCandidates);
-        
-        // 最も頻繁なBPMを選択
-        let maxCount = 0;
-        let bestBPM = 120;
-        
-        for (const [bpm, count] of histogram.entries()) {
-            if (count > maxCount && bpm >= 60 && bpm <= 200) {
-                maxCount = count;
-                bestBPM = bpm;
-            }
-        }
-        
-        resolve(bestBPM);
-    });
-}
-
-applyLowPassFilter(samples, sampleRate) {
-    const cutoff = 200;
-    const rc = 1.0 / (cutoff * 2 * Math.PI);
-    const dt = 1.0 / sampleRate;
-    const alpha = dt / (rc + dt);
-    
-    const filtered = new Float32Array(samples.length);
-    filtered[0] = samples[0];
-    
-    for (let i = 1; i < samples.length; i++) {
-        filtered[i] = alpha * samples[i] + (1 - alpha) * filtered[i - 1];
-    }
-    
-    return filtered;
-}
-
-detectOnsets(samples, sampleRate) {
-    const hopSize = Math.floor(sampleRate * 0.01);
-    const windowSize = hopSize * 4;
-    const onsets = [];
-    
-    let previousEnergy = 0;
-    const threshold = 0.1;
-    
-    for (let i = 0; i < samples.length - windowSize; i += hopSize) {
-        let energy = 0;
-        for (let j = 0; j < windowSize; j++) {
-            const sample = samples[i + j];
-            energy += sample * sample;
-        }
-        energy = Math.sqrt(energy / windowSize);
-        
-        if (energy > previousEnergy + threshold && energy > 0.05) {
-            const time = i / sampleRate;
-            if (onsets.length === 0 || time - onsets[onsets.length - 1] > 0.1) {
-                onsets.push(time);
-            }
-        }
-        
-        previousEnergy = energy * 0.9;
-    }
-    
-    return onsets;
-}
-
-createBPMHistogram(bpmCandidates) {
-    const histogram = new Map();
-    const tolerance = 3;
-    
-    for (const bpm of bpmCandidates) {
-        let found = false;
-        
-        for (const [existingBPM, count] of histogram.entries()) {
-            if (Math.abs(bpm - existingBPM) <= tolerance) {
-                histogram.set(existingBPM, count + 1);
-                found = true;
-                break;
-            }
-        }
-        
-        if (!found) {
-            histogram.set(Math.round(bpm), 1);
-        }
-    }
-    
-    return histogram;
-}
-
-updateCurrentBPM(deck) {
-    const originalBpm = deck === 'A' ? this.originalBpmA : this.originalBpmB;
-    const playbackRate = deck === 'A' ? this.playbackRateA : this.playbackRateB;
-    if (originalBpm) {
-        const currentBpm = originalBpm * playbackRate;
-        this.elements[`currentBpm${deck}`].textContent = Math.round(currentBpm);
-    }
-}
-
-playAudio(deck) {
-    try {
-        if (this.audioContext.state === 'suspended') {
-            this.audioContext.resume();
-        }
-        
-        const audioBuffer = deck === 'A' ? this.audioBufferA : this.audioBufferB;
-        if (!audioBuffer) {
-            throw new Error(`Audio buffer for deck ${deck} not loaded`);
-        }
-        
-        // 既存のBufferSourceを停止
-        if (deck === 'A' && this.bufferSourceA) {
-            this.bufferSourceA.stop();
-            this.bufferSourceA = null;
-        } else if (deck === 'B' && this.bufferSourceB) {
-            this.bufferSourceB.stop();
-            this.bufferSourceB = null;
-        }
-        
-        // 新しいBufferSourceを作成
-        const bufferSource = this.audioContext.createBufferSource();
-        bufferSource.buffer = audioBuffer;
-        
-        // ピッチ調整を適用
-        const playbackRate = deck === 'A' ? this.playbackRateA : this.playbackRateB;
-        bufferSource.playbackRate.value = playbackRate;
-        
-        // 接続
-        const gainNode = deck === 'A' ? this.deckAGainNode : this.deckBGainNode;
-        bufferSource.connect(gainNode);
-        
-        // 再生開始位置を計算
-        const pauseTime = deck === 'A' ? this.pauseTimeA : this.pauseTimeB;
-        const startOffset = Math.min(pauseTime, audioBuffer.duration - 0.1);
-        
-        // 再生開始
-        bufferSource.start(0, startOffset);
-        
-        // 状態更新
-        if (deck === 'A') {
-            this.bufferSourceA = bufferSource;
-            this.isPlayingA = true;
-            this.startTimeA = this.audioContext.currentTime - startOffset / playbackRate;
-            this.pauseTimeA = 0;
             
-            bufferSource.onended = () => {
-                this.isPlayingA = false;
-                this.bufferSourceA = null;
-                this.updateStatus('デッキAの再生が終了しました');
+            bindEvents() {
+                // デッキA
+                this.elements.audioFileA.addEventListener('change', (e) => this.loadAudioFile(e, 'A'));
+                this.elements.playBtnA.addEventListener('click', () => this.playAudio('A'));
+                this.elements.pauseBtnA.addEventListener('click', () => this.pauseAudio('A'));
+                this.elements.stopBtnA.addEventListener('click', () => this.stopAudio('A'));
+                this.elements.monitorBtnA.addEventListener('click', () => this.toggleMonitor('A'));
+                this.elements.pitchSliderA.addEventListener('input', (e) => this.updatePitch(e, 'A'));
+                this.elements.pitchResetA.addEventListener('click', () => this.resetPitch('A'));
+                this.elements.preservePitchA.addEventListener('change', (e) => this.updatePreservePitch(e, 'A'));
+                this.elements.volumeSliderA.addEventListener('input', (e) => this.updateVolume(e, 'A'));
+                this.elements.progressBarA.addEventListener('click', (e) => this.seekAudio(e, 'A'));
+                
+                // デッキB
+                this.elements.audioFileB.addEventListener('change', (e) => this.loadAudioFile(e, 'B'));
+                this.elements.playBtnB.addEventListener('click', () => this.playAudio('B'));
+                this.elements.pauseBtnB.addEventListener('click', () => this.pauseAudio('B'));
+                this.elements.stopBtnB.addEventListener('click', () => this.stopAudio('B'));
+                this.elements.monitorBtnB.addEventListener('click', () => this.toggleMonitor('B'));
+                this.elements.pitchSliderB.addEventListener('input', (e) => this.updatePitch(e, 'B'));
+                this.elements.pitchResetB.addEventListener('click', () => this.resetPitch('B'));
+                this.elements.preservePitchB.addEventListener('change', (e) => this.updatePreservePitch(e, 'B'));
+                this.elements.volumeSliderB.addEventListener('input', (e) => this.updateVolume(e, 'B'));
+                this.elements.progressBarB.addEventListener('click', (e) => this.seekAudio(e, 'B'));
+                
+                // 共通コントロール
+                this.elements.crossfader.addEventListener('input', (e) => this.updateCrossfader(e));
+                this.elements.recordBtn.addEventListener('click', () => this.toggleRecording());
+                this.elements.stopAllBtn.addEventListener('click', () => this.stopAllSounds());
+                
+                // サンプリング
+                this.elements.sampleFiles.addEventListener('change', (e) => this.loadSampleFiles(e));
+                this.elements.sampleVolumeSlider.addEventListener('input', (e) => this.updateSampleVolume(e));
+                this.elements.presetToggle.addEventListener('click', () => this.togglePreset());
+                
+                // キーボードイベント
+                document.addEventListener('keydown', (e) => this.handleKeyPress(e));
+                document.addEventListener('keyup', (e) => this.handleKeyRelease(e));
+                
+                // オーディオコンテキスト再開
+                document.addEventListener('click', () => {
+                    if (this.audioContext && this.audioContext.state === 'suspended') {
+                        this.audioContext.resume();
+                    }
+                }, { once: true });
+            }
+            
+            createKeyboard() {
+                this.keyMapping.forEach((key, index) => {
+                    const keyElement = document.createElement('button');
+                    keyElement.className = 'key';
+                    keyElement.innerHTML = `
+                        <div class="key-number">${index + 1}</div>
+                        <div>${key.toUpperCase()}</div>
+                        <div class="key-label">Empty</div>
+                    `;
+                    keyElement.dataset.key = key;
+                    keyElement.dataset.index = index;
+                    keyElement.addEventListener('mousedown', () => this.playSample(index));
+                    keyElement.addEventListener('mouseup', () => this.releaseKey(key));
+                    keyElement.addEventListener('mouseleave', () => this.releaseKey(key));
+                    this.elements.keyboard.appendChild(keyElement);
+                });
+            }
+            
+            async loadAudioFile(event, deck) {
+                const file = event.target.files[0];
+                if (!file) return;
+                
+                try {
+                    this.updateStatus(`デッキ${deck}にファイルを読み込み中...`);
+                    
+                    // AudioContextの状態を確認・復帰
+                    if (this.audioContext.state === 'suspended') {
+                        await this.audioContext.resume();
+                    }
+                    
+                    // 既存のリソースを完全にクリーンアップ
+                    await this.cleanupDeck(deck);
+                    
+                    // ファイルをArrayBufferとして読み込み
+                    const arrayBuffer = await file.arrayBuffer();
+                    const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+                    
+                    // AudioBufferを保存
+                    if (deck === 'A') {
+                        this.audioBufferA = audioBuffer;
+                        this.currentFilenameA = file.name;
+                        this.elements.filenameA.textContent = file.name;
+                    } else {
+                        this.audioBufferB = audioBuffer;
+                        this.currentFilenameB = file.name;
+                        this.elements.filenameB.textContent = file.name;
+                    }
+                    
+                    // 総再生時間を更新
+                    this.updateTotalTime(deck);
+                    
+                    // UI要素を有効化
+                    this.enableDeckControls(deck);
+                    
+                    // BPM検出（非同期で実行）
+                    this.detectBPM(audioBuffer, deck).catch(error => {
+                        console.error('BPM detection failed:', error);
+                    });
+                    
+                    this.updateStatus(`デッキ${deck}に "${file.name}" を読み込みました`);
+                    
+                                   
+                } catch (error) {
+                    console.error(`Failed to load audio file for deck ${deck}:`, error);
+                    this.updateStatus(`デッキ${deck}のファイル読み込みに失敗しました: ${error.message}`);
+                    this.resetDeck(deck);
+                }
+            }
+            
+            async cleanupDeck(deck) {
+                // 再生中のBufferSourceを停止
+                if (deck === 'A' && this.bufferSourceA) {
+                    try {
+                        this.bufferSourceA.stop();
+                    } catch (error) {
+                        console.warn('Failed to stop buffer source A:', error);
+                    }
+                    this.bufferSourceA = null;
+                    this.isPlayingA = false;
+                } else if (deck === 'B' && this.bufferSourceB) {
+                    try {
+                        this.bufferSourceB.stop();
+                    } catch (error) {
+                        console.warn('Failed to stop buffer source B:', error);
+                    }
+                    this.bufferSourceB = null;
+                    this.isPlayingB = false;
+                }
+                
+                // プログレス更新タイマーをクリア
+                if (deck === 'A') {
+                    clearInterval(this.progressIntervalA);
+                    this.progressIntervalA = null;
+                } else {
+                    clearInterval(this.progressIntervalB);
+                    this.progressIntervalB = null;
+                }
+                
+                // モニターを強制的にオフ
+                if ((deck === 'A' && this.monitoringA) || (deck === 'B' && this.monitoringB)) {
+                    this.forceMonitorOff(deck);
+                }
+            }
+            
+            forceMonitorOff(deck) {
+                const monitorBtn = this.elements[`monitorBtn${deck}`];
+                const monitorGain = deck === 'A' ? this.monitorGainA : this.monitorGainB;
+                
+                if (monitorGain) {
+                    monitorGain.gain.value = 0;
+                }
+                monitorBtn.classList.remove('active');
+                monitorBtn.textContent = 'モニター';
+                
+                if (deck === 'A') {
+                    this.monitoringA = false;
+                } else {
+                    this.monitoringB = false;
+                }
+            }
+            
+            enableDeckControls(deck) {
+                try {
+                    this.elements[`playBtn${deck}`].disabled = false;
+                    this.elements[`pauseBtn${deck}`].disabled = false;
+                    this.elements[`stopBtn${deck}`].disabled = false;
+                    this.elements[`monitorBtn${deck}`].disabled = false;
+                    this.elements.recordBtn.disabled = false;
+                } catch (error) {
+                    console.error(`Failed to enable controls for deck ${deck}:`, error);
+                }
+            }
+            
+            resetDeck(deck) {
+                try {
+                    // 再生停止
+                    this.stopAudio(deck);
+                    
+                    // UI要素をリセット
+                    this.elements[`playBtn${deck}`].disabled = true;
+                    this.elements[`pauseBtn${deck}`].disabled = true;
+                    this.elements[`stopBtn${deck}`].disabled = true;
+                    this.elements[`monitorBtn${deck}`].disabled = true;
+                    
+                    // モニターを強制的にオフ
+                    this.forceMonitorOff(deck);
+                    
+                    // ピッチとボリュームをリセット
+                    this.elements[`pitchSlider${deck}`].value = 0;
+                    this.elements[`pitchValue${deck}`].textContent = '0%';
+                    this.elements[`volumeSlider${deck}`].value = 75;
+                    this.elements[`volumeValue${deck}`].textContent = '75%';
+                    
+                    // 表示をリセット
+                    this.elements[`filename${deck}`].textContent = 'ファイルなし';
+                    this.elements[`bpmValue${deck}`].textContent = '--';
+                    this.elements[`currentBpm${deck}`].textContent = '--';
+                    this.elements[`progressFill${deck}`].style.width = '0%';
+                    this.elements[`currentTime${deck}`].textContent = '0:00';
+                    this.elements[`totalTime${deck}`].textContent = '0:00';
+                    
+                    // データをクリア
+                    if (deck === 'A') {
+                        this.audioBufferA = null;
+                        this.currentFilenameA = null;
+                        this.originalBpmA = null;
+                        this.playbackRateA = 1;
+                        this.pauseTimeA = 0;
+                    } else {
+                        this.audioBufferB = null;
+                        this.currentFilenameB = null;
+                        this.originalBpmB = null;
+                        this.playbackRateB = 1;
+                        this.pauseTimeB = 0;
+                    }
+                    
+                } catch (error) {
+                    console.error(`Failed to reset deck ${deck}:`, error);
+                }
+            }
+            
+            async detectBPM(audioBuffer, deck) {
+                try {
+                    this.updateStatus(`デッキ${deck}のBPMを検出中...`);
+                    
+                    const bpm = await Promise.race([
+                        this.calculateBPMImproved(audioBuffer),
+                        new Promise((_, reject) => 
+                            setTimeout(() => reject(new Error('BPM detection timeout')), 15000)
+                        )
+                    ]);
+                    
+                    if (deck === 'A') {
+                        this.originalBpmA = bpm;
+                    } else {
+                        this.originalBpmB = bpm;
+                    }
+                    
+                    this.elements[`bpmValue${deck}`].textContent = Math.round(bpm);
+                    this.updateCurrentBPM(deck);
+                    
+                    this.updateStatus(`デッキ${deck}のBPM検出完了: ${Math.round(bpm)}`);
+                    
+                } catch (error) {
+                    console.error('BPM detection error:', error);
+                    this.elements[`bpmValue${deck}`].textContent = '120';
+                    this.elements[`currentBpm${deck}`].textContent = '120';
+                    
+                    if (deck === 'A') {
+                        this.originalBpmA = 120;
+                    } else {
+                        this.originalBpmB = 120;
+                    }
+                    
+                    this.updateStatus(`デッキ${deck}のBPM検出に失敗、デフォルト値(120)を使用`);
+                }
+            }
+            
+            calculateBPMImproved(audioBuffer) {
+                return new Promise((resolve) => {
+                    const sampleRate = audioBuffer.sampleRate;
+                    const samples = audioBuffer.getChannelData(0);
+                    
+                    // 分析する長さを制限（最初の60秒または全体の1/3）
+                    const maxSamples = Math.min(samples.length, sampleRate * 60, samples.length / 3);
+                    const analysisBuffer = samples.slice(0, maxSamples);
+                    
+                    // ローパスフィルターを適用してノイズを除去
+                    const filteredSamples = this.applyLowPassFilter(analysisBuffer, sampleRate);
+                    
+                    // エネルギーベースのオンセット検出
+                    const onsets = this.detectOnsets(filteredSamples, sampleRate);
+                    
+                    if (onsets.length < 4) {
+                        resolve(120);
+                        return;
+                    }
+                    
+                    // インターバル分析
+                    const intervals = [];
+                    for (let i = 1; i < onsets.length; i++) {
+                        const interval = onsets[i] - onsets[i - 1];
+                        if (interval > 0.2 && interval < 2.0) {
+                            intervals.push(interval);
+                        }
+                    }
+                    
+                    if (intervals.length === 0) {
+                        resolve(120);
+                        return;
+                    }
+                    
+                    // インターバルのヒストグラム分析
+                    const bpmCandidates = intervals.map(interval => 60 / interval);
+                    const histogram = this.createBPMHistogram(bpmCandidates);
+                    
+                    // 最も頻繁なBPMを選択
+                    let maxCount = 0;
+                    let bestBPM = 120;
+                    
+                    for (const [bpm, count] of histogram.entries()) {
+                        if (count > maxCount && bpm >= 60 && bpm <= 200) {
+                            maxCount = count;
+                            bestBPM = bpm;
+                        }
+                    }
+                    
+                    resolve(bestBPM);
+                });
+            }
+            
+            applyLowPassFilter(samples, sampleRate) {
+                const cutoff = 200;
+                const rc = 1.0 / (cutoff * 2 * Math.PI);
+                const dt = 1.0 / sampleRate;
+                const alpha = dt / (rc + dt);
+                
+                const filtered = new Float32Array(samples.length);
+                filtered[0] = samples[0];
+                
+                for (let i = 1; i < samples.length; i++) {
+                    filtered[i] = alpha * samples[i] + (1 - alpha) * filtered[i - 1];
+                }
+                
+                return filtered;
+            }
+            
+            detectOnsets(samples, sampleRate) {
+                const hopSize = Math.floor(sampleRate * 0.01);
+                const windowSize = hopSize * 4;
+                const onsets = [];
+                
+                let previousEnergy = 0;
+                const threshold = 0.1;
+                
+                for (let i = 0; i < samples.length - windowSize; i += hopSize) {
+                    let energy = 0;
+                    for (let j = 0; j < windowSize; j++) {
+                        const sample = samples[i + j];
+                        energy += sample * sample;
+                    }
+                    energy = Math.sqrt(energy / windowSize);
+                    
+                    if (energy > previousEnergy + threshold && energy > 0.05) {
+                        const time = i / sampleRate;
+                        if (onsets.length === 0 || time - onsets[onsets.length - 1] > 0.1) {
+                            onsets.push(time);
+                        }
+                    }
+                    
+                    previousEnergy = energy * 0.9;
+                }
+                
+                return onsets;
+            }
+            
+            createBPMHistogram(bpmCandidates) {
+                const histogram = new Map();
+                const tolerance = 3;
+                
+                for (const bpm of bpmCandidates) {
+                    let found = false;
+                    
+                    for (const [existingBPM, count] of histogram.entries()) {
+                        if (Math.abs(bpm - existingBPM) <= tolerance) {
+                            histogram.set(existingBPM, count + 1);
+                            found = true;
+                            break;
+                        }
+                    }
+                    
+                    if (!found) {
+                        histogram.set(Math.round(bpm), 1);
+                    }
+                }
+                
+                return histogram;
+            }
+            
+            updateCurrentBPM(deck) {
+                const originalBpm = deck === 'A' ? this.originalBpmA : this.originalBpmB;
+                const playbackRate = deck === 'A' ? this.playbackRateA : this.playbackRateB;
+                if (originalBpm) {
+                    const currentBpm = originalBpm * playbackRate;
+                    this.elements[`currentBpm${deck}`].textContent = Math.round(currentBpm);
+                }
+            }
+            
+            playAudio(deck) {
+                try {
+                    if (this.audioContext.state === 'suspended') {
+                        this.audioContext.resume();
+                    }
+                    
+                    const audioBuffer = deck === 'A' ? this.audioBufferA : this.audioBufferB;
+                    if (!audioBuffer) {
+                        throw new Error(`Audio buffer for deck ${deck} not loaded`);
+                    }
+                    
+                    // 既存のBufferSourceを停止
+                    if (deck === 'A' && this.bufferSourceA) {
+                        this.bufferSourceA.stop();
+                        this.bufferSourceA = null;
+                    } else if (deck === 'B' && this.bufferSourceB) {
+                        this.bufferSourceB.stop();
+                        this.bufferSourceB = null;
+                    }
+                    
+                    // 新しいBufferSourceを作成
+                    const bufferSource = this.audioContext.createBufferSource();
+                    bufferSource.buffer = audioBuffer;
+                    
+                    // ピッチ調整を適用
+                    const playbackRate = deck === 'A' ? this.playbackRateA : this.playbackRateB;
+                    bufferSource.playbackRate.value = playbackRate;
+                    
+                    // 接続
+                    const gainNode = deck === 'A' ? this.deckAGainNode : this.deckBGainNode;
+                    bufferSource.connect(gainNode);
+                    
+                    // 再生開始位置を計算
+                    const pauseTime = deck === 'A' ? this.pauseTimeA : this.pauseTimeB;
+                    const startOffset = Math.min(pauseTime, audioBuffer.duration - 0.1);
+                    
+                    // 再生開始
+                    bufferSource.start(0, startOffset);
+                    
+                    // 状態更新
+                    if (deck === 'A') {
+                        this.bufferSourceA = bufferSource;
+                        this.isPlayingA = true;
+                        this.startTimeA = this.audioContext.currentTime - startOffset / playbackRate;
+                        this.pauseTimeA = 0;
+                        
+                        bufferSource.onended = () => {
+                            this.isPlayingA = false;
+                            this.bufferSourceA = null;
+                            this.updateStatus('デッキAの再生が終了しました');
+                            clearInterval(this.progressIntervalA);
+                            this.updateProgress('A');
+                        };
+                        
+                        // 再生進捗更新
+                        this.progressIntervalA = setInterval(() => this.updateProgress('A'), 100);
+                    } else {
+                        this.bufferSourceB = bufferSource;
+                        this.isPlayingB = true;
+                        this.startTimeB = this.audioContext.currentTime - startOffset / playbackRate;
+                        this.pauseTimeB = 0;
+                        
+                        bufferSource.onended = () => {
+                            this.isPlayingB = false;
+                            this.bufferSourceB = null;
+                            this.updateStatus('デッキBの再生が終了しました');
+                            clearInterval(this.progressIntervalB);
+                            this.updateProgress('B');
+                        };
+                        
+                        // 再生進捗更新
+                        this.progressIntervalB = setInterval(() => this.updateProgress('B'), 100);
+                    }
+                    
+                    this.updateStatus(`デッキ${deck}を再生中...`);
+                    
+                } catch (error) {
+                    console.error(`Audio play error for deck ${deck}:`, error);
+                    this.updateStatus(`デッキ${deck}の再生でエラーが発生しました`);
+                }
+            }
+            
+            pauseAudio(deck) {
+                try {
+                    const bufferSource = deck === 'A' ? this.bufferSourceA : this.bufferSourceB;
+                    const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
+                    const startTime = deck === 'A' ? this.startTimeA : this.startTimeB;
+                    
+                    if (bufferSource && isPlaying) {
+                        bufferSource.stop();
+                        
+                        // 現在の再生位置を計算
+                        const currentTime = this.audioContext.currentTime;
+                        const elapsedTime = currentTime - startTime;
+                        const playbackRate = deck === 'A' ? this.playbackRateA : this.playbackRateB;
+                        const currentPosition = elapsedTime * playbackRate;
+                        
+                        if (deck === 'A') {
+                            this.pauseTimeA = currentPosition;
+                            this.isPlayingA = false;
+                            this.bufferSourceA = null;
+                            clearInterval(this.progressIntervalA);
+                        } else {
+                            this.pauseTimeB = currentPosition;
+                            this.isPlayingB = false;
+                            this.bufferSourceB = null;
+                            clearInterval(this.progressIntervalB);
+                        }
+                        
+                        this.updateStatus(`デッキ${deck}を一時停止中`);
+                    }
+                } catch (error) {
+                    console.error(`Pause error for deck ${deck}:`, error);
+                }
+            }
+            
+            stopAudio(deck) {
+                try {
+                    const bufferSource = deck === 'A' ? this.bufferSourceA : this.bufferSourceB;
+                    
+                    if (bufferSource) {
+                        bufferSource.stop();
+                    }
+                    
+                    if (deck === 'A') {
+                        this.isPlayingA = false;
+                        this.bufferSourceA = null;
+                        this.pauseTimeA = 0;
+                        clearInterval(this.progressIntervalA);
+                    } else {
+                        this.isPlayingB = false;
+                        this.bufferSourceB = null;
+                        this.pauseTimeB = 0;
+                        clearInterval(this.progressIntervalB);
+                    }
+                    
+                    this.updateProgress(deck);
+                    this.updateStatus(`デッキ${deck}を停止しました`);
+                } catch (error) {
+                    console.error(`Stop error for deck ${deck}:`, error);
+                }
+            }
+            
+            updatePitch(event, deck) {
+                const value = parseInt(event.target.value);
+                const pitchMultiplier = 1 + (value / 100);
+                
+                if (deck === 'A') {
+                    this.playbackRateA = pitchMultiplier;
+                } else {
+                    this.playbackRateB = pitchMultiplier;
+                }
+                
+                // 再生中の場合は再開
+                const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
+                if (isPlaying) {
+                    this.pauseAudio(deck);
+                    setTimeout(() => this.playAudio(deck), 50);
+                }
+                
+                this.elements[`pitchValue${deck}`].textContent = `${value > 0 ? '+' : ''}${value}%`;
+                this.updateCurrentBPM(deck);
+            }
+            
+            resetPitch(deck) {
+                this.elements[`pitchSlider${deck}`].value = 0;
+                
+                if (deck === 'A') {
+                    this.playbackRateA = 1;
+                } else {
+                    this.playbackRateB = 1;
+                }
+                
+                // 再生中の場合は再開
+                const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
+                if (isPlaying) {
+                    this.pauseAudio(deck);
+                    setTimeout(() => this.playAudio(deck), 50);
+                }
+                
+                this.elements[`pitchValue${deck}`].textContent = '0%';
+                this.updateCurrentBPM(deck);
+            }
+            
+            updatePreservePitch(event, deck) {
+                // BufferSourceNodeでは音程保持機能は直接サポートされていないため、
+                // この機能は無効化されます
+                console.log(`Preserve pitch setting for deck ${deck}: ${event.target.checked}`);
+            }
+            
+            updateVolume(event, deck) {
+                const volume = event.target.value / 100;
+                const gainNode = deck === 'A' ? this.deckAGainNode : this.deckBGainNode;
+                if (gainNode) {
+                    gainNode.gain.value = volume;
+                }
+                this.elements[`volumeValue${deck}`].textContent = event.target.value + '%';
+            }
+            
+            updateCrossfader(event) {
+                const value = parseInt(event.target.value);
+                
+                // クロスフェーダーの値に基づいてゲインを調整
+                const gainA = Math.cos((value / 100) * (Math.PI / 2));
+                const gainB = Math.sin((value / 100) * (Math.PI / 2));
+                
+                if (this.crossfaderGainA) {
+                    this.crossfaderGainA.gain.value = gainA;
+                }
+                if (this.crossfaderGainB) {
+                    this.crossfaderGainB.gain.value = gainB;
+                }
+            }
+            
+            seekAudio(event, deck) {
+                try {
+                    const audioBuffer = deck === 'A' ? this.audioBufferA : this.audioBufferB;
+                    if (!audioBuffer) return;
+                    
+                    const rect = this.elements[`progressBar${deck}`].getBoundingClientRect();
+                    const clickX = event.clientX - rect.left;
+                    const percentage = clickX / rect.width;
+                    const newPosition = percentage * audioBuffer.duration;
+                    
+                    // 新しい位置を設定
+                    if (deck === 'A') {
+                        this.pauseTimeA = newPosition;
+                    } else {
+                        this.pauseTimeB = newPosition;
+                    }
+                    
+                    // 再生中の場合は再開
+                    const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
+                    if (isPlaying) {
+                        this.pauseAudio(deck);
+                        setTimeout(() => this.playAudio(deck), 50);
+                    } else {
+                        this.updateProgress(deck);
+                    }
+                } catch (error) {
+                    console.error(`Seek error for deck ${deck}:`, error);
+                }
+            }
+            
+            updateTotalTime(deck) {
+                const audioBuffer = deck === 'A' ? this.audioBufferA : this.audioBufferB;
+                if (audioBuffer) {
+                    const duration = audioBuffer.duration;
+                    this.elements[`totalTime${deck}`].textContent = this.formatTime(duration);
+                }
+            }
+            
+            updateProgress(deck) {
+                try {
+                    const audioBuffer = deck === 'A' ? this.audioBufferA : this.audioBufferB;
+                    const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
+                    const startTime = deck === 'A' ? this.startTimeA : this.startTimeB;
+                    const pauseTime = deck === 'A' ? this.pauseTimeA : this.pauseTimeB;
+                    const playbackRate = deck === 'A' ? this.playbackRateA : this.playbackRateB;
+                    
+                    if (!audioBuffer) return;
+                    
+                    let currentTime;
+                    if (isPlaying) {
+                        const elapsedTime = this.audioContext.currentTime - startTime;
+                        currentTime = pauseTime + (elapsedTime * playbackRate);
+                    } else {
+                        currentTime = pauseTime;
+                    }
+                    
+                    // 範囲チェック
+                    currentTime = Math.max(0, Math.min(currentTime, audioBuffer.duration));
+                    
+                    const percentage = (currentTime / audioBuffer.duration) * 100;
+                    this.elements[`progressFill${deck}`].style.width = percentage + '%';
+                    this.elements[`currentTime${deck}`].textContent = this.formatTime(currentTime);
+                } catch (error) {
+                    console.error(`Progress update error for deck ${deck}:`, error);
+                }
+            }
+            
+            toggleMonitor(deck) {
+                const isMonitoring = deck === 'A' ? this.monitoringA : this.monitoringB;
+                const monitorBtn = this.elements[`monitorBtn${deck}`];
+                const monitorGain = deck === 'A' ? this.monitorGainA : this.monitorGainB;
+                
+                if (isMonitoring) {
+                    if (monitorGain) {
+                        monitorGain.gain.value = 0;
+                    }
+                    monitorBtn.classList.remove('active');
+                    monitorBtn.textContent = 'モニター';
+                    if (deck === 'A') {
+                        this.monitoringA = false;
+                    } else {
+                        this.monitoringB = false;
+                    }
+                    this.updateStatus(`デッキ${deck}のモニターをオフにしました`);
+                } else {
+                    if (monitorGain) {
+                        monitorGain.gain.value = 0.5;
+                    }
+                    monitorBtn.classList.add('active');
+                    monitorBtn.textContent = 'モニター中';
+                    if (deck === 'A') {
+                        this.monitoringA = true;
+                    } else {
+                        this.monitoringB = true;
+                    }
+                    this.updateStatus(`デッキ${deck}のモニターをオンにしました`);
+                }
+            }
+            
+            stopAllSounds() {
+                this.stopAudio('A');
+                this.stopAudio('B');
+                
+                this.playingSamples.forEach(source => {
+                    try {
+                        source.stop();
+                    } catch (error) {
+                        // エラーを無視（既に停止済みの場合）
+                    }
+                });
+                this.playingSamples.clear();
+                
+                document.querySelectorAll('.key').forEach(key => {
+                    key.classList.remove('active', 'playing');
+                });
+                
+                this.updateStatus('全ての音を停止しました');
+            }
+            
+            // サンプリング機能
+            async togglePreset() {
+                this.presetEnabled = !this.presetEnabled;
+                
+                if (this.presetEnabled) {
+                    this.elements.presetToggle.classList.add('active');
+                    await this.loadPresetSamples();
+                } else {
+                    this.elements.presetToggle.classList.remove('active');
+                    this.clearPresetSamples();
+                }
+            }
+            
+            async loadPresetSamples() {
+                this.updateStatus('プリセットサンプルを読み込み中...');
+                
+                let loadedCount = 0;
+                
+                for (let i = 0; i < this.presetSamples.length; i++) {
+                    try {
+                        const response = await fetch(this.presetSamples[i]);
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        
+                        const arrayBuffer = await response.arrayBuffer();
+                        const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+                        
+                        const fileName = this.presetSamples[i].split('/').pop().split('.')[0];
+                        this.samples[i] = {
+                            buffer: audioBuffer,
+                            name: fileName,
+                            isPreset: true
+                        };
+                        
+                        const keyElement = document.querySelector(`[data-index="${i}"]`);
+                        if (keyElement) {
+                            const label = keyElement.querySelector('.key-label');
+                            label.textContent = fileName.substring(0, 6);
+                        }
+                        
+                        loadedCount++;
+                        
+                    } catch (error) {
+                        console.error(`Sample ${this.presetSamples[i]} loading error:`, error);
+                        const keyElement = document.querySelector(`[data-index="${i}"]`);
+                        if (keyElement) {
+                            const label = keyElement.querySelector('.key-label');
+                            label.textContent = 'Error';
+                        }
+                    }
+                }
+                
+                this.updateStatus(`${loadedCount}個のプリセットサンプルを読み込みました`);
+            }
+            
+            clearPresetSamples() {
+                for (let i = 0; i < this.presetSamples.length; i++) {
+                    if (this.samples[i] && this.samples[i].isPreset) {
+                        this.samples[i] = null;
+                        const keyElement = document.querySelector(`[data-index="${i}"]`);
+                        if (keyElement) {
+                            const label = keyElement.querySelector('.key-label');
+                            label.textContent = 'Empty';
+                        }
+                    }
+                }
+                
+                this.updateStatus('プリセットサンプルをクリアしました');
+            }
+            
+            async loadSampleFiles(event) {
+                const files = Array.from(event.target.files);
+                const maxAdditionalSamples = 23;
+                const startIndex = this.presetSamples.length;
+                
+                if (files.length > maxAdditionalSamples) {
+                    alert(`最大${maxAdditionalSamples}個のサンプルファイルまで選択できます。`);
+                    return;
+                }
+                
+                // 既存の追加サンプルをクリア
+                for (let i = startIndex; i < 50; i++) {
+                    if (this.samples[i] && !this.samples[i].isPreset) {
+                        this.samples[i] = null;
+                        const keyElement = document.querySelector(`[data-index="${i}"]`);
+                        if (keyElement) {
+                            const label = keyElement.querySelector('.key-label');
+                            label.textContent = 'Empty';
+                        }
+                    }
+                }
+                
+                let loadedCount = 0;
+                
+                for (let i = 0; i < files.length && (startIndex + i) < 50; i++) {
+                    const file = files[i];
+                    try {
+                        const arrayBuffer = await file.arrayBuffer();
+                        const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+                        
+                        const sampleIndex = startIndex + i;
+                        this.samples[sampleIndex] = {
+                            buffer: audioBuffer,
+                            name: file.name.split('.')[0],
+                            isPreset: false
+                        };
+                        
+                        const keyElement = document.querySelector(`[data-index="${sampleIndex}"]`);
+                        if (keyElement) {
+                            const label = keyElement.querySelector('.key-label');
+                            label.textContent = this.samples[sampleIndex].name.substring(0, 6);
+                        }
+                        
+                        loadedCount++;
+                    } catch (error) {
+                        console.error(`Sample ${file.name} loading error:`, error);
+                    }
+                }
+                
+                this.updateStatus(`${loadedCount}個の追加サンプル音声を読み込みました`);
+            }
+            
+            playSample(index) {
+                if (this.samples[index] && this.audioContext) {
+                    try {
+                        const source = this.audioContext.createBufferSource();
+                        source.buffer = this.samples[index].buffer;
+                        source.connect(this.sampleGainNode);
+                        
+                        source.onended = () => {
+                            this.playingSamples.delete(source);
+                            this.releaseKey(this.keyMapping[index]);
+                        };
+                        
+                        source.start();
+                        this.playingSamples.add(source);
+                        this.activateKey(this.keyMapping[index]);
+                        
+                    } catch (error) {
+                        console.error('Sample play error:', error);
+                    }
+                }
+            }
+            
+            activateKey(key) {
+                const keyElement = document.querySelector(`[data-key="${key}"]`);
+                if (keyElement) {
+                    keyElement.classList.add('active', 'playing');
+                }
+            }
+            
+            releaseKey(key) {
+                const keyElement = document.querySelector(`[data-key="${key}"]`);
+                if (keyElement) {
+                    keyElement.classList.remove('active');
+                    setTimeout(() => {
+                        keyElement.classList.remove('playing');
+                    }, 100);
+                }
+            }
+            
+            handleKeyPress(event) {
+                if (event.repeat) return;
+                
+                const key = event.key.toLowerCase();
+                const index = this.keyMapping.indexOf(key);
+                
+                if (index !== -1) {
+                    event.preventDefault();
+                    this.playSample(index);
+                }
+            }
+            
+            handleKeyRelease(event) {
+                const key = event.key.toLowerCase();
+                if (this.keyMapping.includes(key)) {
+                    this.releaseKey(key);
+                }
+            }
+            
+            updateSampleVolume(event) {
+                const volume = event.target.value / 100;
+                if (this.sampleGainNode) {
+                    this.sampleGainNode.gain.value = volume;
+                }
+                this.elements.sampleVolumeValue.textContent = event.target.value + '%';
+            }
+            
+            // 録音機能
+            async toggleRecording() {
+                if (!this.isRecording) {
+                    await this.startRecording();
+                } else {
+                    this.stopRecording();
+                }
+            }
+            
+            async startRecording() {
+                try {
+                    if (!this.audioContext || !this.destination) {
+                        throw new Error('Audio context not initialized');
+                    }
+                    
+                    const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus') 
+                        ? 'audio/webm;codecs=opus' 
+                        : 'audio/webm';
+                    
+                    this.mediaRecorder = new MediaRecorder(this.destination.stream, {
+                        mimeType: mimeType,
+                        audioBitsPerSecond: 128000
+                    });
+                    
+                    this.recordedChunks = [];
+                    
+                    this.mediaRecorder.ondataavailable = (event) => {
+                        if (event.data.size > 0) {
+                            this.recordedChunks.push(event.data);
+                        }
+                    };
+                    
+                    this.mediaRecorder.onstop = () => {
+                        this.saveRecording();
+                    };
+                    
+                    this.mediaRecorder.start(100);
+                    this.isRecording = true;
+                    this.elements.recordBtn.textContent = '録音停止';
+                    this.elements.recordBtn.classList.add('recording');
+                    this.updateStatus('🔴 録音中... 全ての音が録音されています');
+                    
+                } catch (error) {
+                    console.error('録音開始エラー:', error);
+                    this.updateStatus('録音の開始に失敗しました。ブラウザが対応していない可能性があります。');
+                }
+            }
+            
+            stopRecording() {
+                if (this.mediaRecorder && this.mediaRecorder.state === 'recording') {
+                    this.mediaRecorder.stop();
+                }
+                
+                this.isRecording = false;
+                this.elements.recordBtn.textContent = '録音開始';
+                this.elements.recordBtn.classList.remove('recording');
+                this.updateStatus('録音を停止しました');
+            }
+            
+            async saveRecording() {
+                if (this.recordedChunks.length > 0) {
+                    const blob = new Blob(this.recordedChunks, { 
+                        type: this.recordedChunks[0].type || 'audio/webm' 
+                    });
+                    
+                    await this.convertToMP3(blob);
+                }
+            }
+            
+            async convertToMP3(webmBlob) {
+                try {
+                    this.updateStatus('MP3形式に変換中...');
+                    
+                    const arrayBuffer = await webmBlob.arrayBuffer();
+                    const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+                    
+                    const mp3encoder = new lamejs.Mp3Encoder(1, audioBuffer.sampleRate, 128);
+                    
+                    const samples = audioBuffer.getChannelData(0);
+                    const sampleBlockSize = 1152;
+                    const mp3Data = [];
+                    
+                    for (let i = 0; i < samples.length; i += sampleBlockSize) {
+                        const sampleChunk = samples.subarray(i, i + sampleBlockSize);
+                        const mp3buf = mp3encoder.encodeBuffer(this.convertFloat32ToInt16(sampleChunk));
+                        if (mp3buf.length > 0) {
+                            mp3Data.push(mp3buf);
+                        }
+                    }
+                    
+                    const mp3buf = mp3encoder.flush();
+                    if (mp3buf.length > 0) {
+                        mp3Data.push(mp3buf);
+                    }
+                    
+                    const mp3Blob = new Blob(mp3Data, { type: 'audio/mp3' });
+                    this.downloadFile(mp3Blob, 'mp3');
+                    
+                } catch (error) {
+                    console.error('MP3変換エラー:', error);
+                    this.updateStatus('MP3変換に失敗しました。WebM形式でダウンロードします。');
+                    this.downloadFile(webmBlob, 'webm');
+                }
+            }
+            
+            convertFloat32ToInt16(buffer) {
+                const l = buffer.length;
+                const buf = new Int16Array(l);
+                
+                for (let i = 0; i < l; i++) {
+                    buf[i] = Math.min(1, buffer[i]) * 0x7FFF;
+                }
+                return buf;
+            }
+            
+            getJSTTimestamp() {
+                const now = new Date();
+                const jstTime = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+                
+                const year = jstTime.getUTCFullYear();
+                const month = String(jstTime.getUTCMonth() + 1).padStart(2, '0');
+                const day = String(jstTime.getUTCDate()).padStart(2, '0');
+                const hours = String(jstTime.getUTCHours()).padStart(2, '0');
+                const minutes = String(jstTime.getUTCMinutes()).padStart(2, '0');
+                const seconds = String(jstTime.getUTCSeconds()).padStart(2, '0');
+                
+                return `${year}-${month}-${day}_${hours}-${minutes}-${seconds}`;
+            }
+            
+            downloadFile(blob, format) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                const timestamp = this.getJSTTimestamp();
+                a.download = `dj_mix_${timestamp}.${format}`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                this.updateStatus(`録音ファイル（${format.toUpperCase()}形式）をダウンロードしました！`);
+            }
+            
+            formatTime(seconds) {
+                if (isNaN(seconds)) return '0:00';
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs.toString().padStart(2, '0')}`;
+            }
+            
+            updateStatus(message) {
+                this.elements.status.innerHTML = this.isRecording ? 
+                    `<span class="recording-indicator"></span>${message}` : message;
+            }
+            
+            cleanup() {
+                // ObjectURLsをすべて解放
+                this.objectUrls.forEach(url => {
+                    URL.revokeObjectURL(url);
+                });
+                this.objectUrls.clear();
+                
+                // BufferSourcesを停止
+                if (this.bufferSourceA) {
+                    this.bufferSourceA.stop();
+                    this.bufferSourceA = null;
+                }
+                if (this.bufferSourceB) {
+                    this.bufferSourceB.stop();
+                    this.bufferSourceB = null;
+                }
+                
+                // インターバルをクリア
                 clearInterval(this.progressIntervalA);
-                this.updateProgress('A');
-            };
-            
-            // 再生進捗更新
-            this.progressIntervalA = setInterval(() => this.updateProgress('A'), 100);
-        } else {
-            this.bufferSourceB = bufferSource;
-            this.isPlayingB = true;
-            this.startTimeB = this.audioContext.currentTime - startOffset / playbackRate;
-            this.pauseTimeB = 0;
-            
-            bufferSource.onended = () => {
-                this.isPlayingB = false;
-                this.bufferSourceB = null;
-                this.updateStatus('デッキBの再生が終了しました');
                 clearInterval(this.progressIntervalB);
-                this.updateProgress('B');
-            };
-            
-            // 再生進捗更新
-            this.progressIntervalB = setInterval(() => this.updateProgress('B'), 100);
-        }
-        
-        this.updateStatus(`デッキ${deck}を再生中...`);
-        
-    } catch (error) {
-        console.error(`Audio play error for deck ${deck}:`, error);
-        this.updateStatus(`デッキ${deck}の再生でエラーが発生しました`);
-    }
-}
-
-pauseAudio(deck) {
-    try {
-        const bufferSource = deck === 'A' ? this.bufferSourceA : this.bufferSourceB;
-        const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
-        const startTime = deck === 'A' ? this.startTimeA : this.startTimeB;
-        
-        if (bufferSource && isPlaying) {
-            bufferSource.stop();
-            
-            // 現在の再生位置を計算
-            const currentTime = this.audioContext.currentTime;
-            const elapsedTime = currentTime - startTime;
-            const playbackRate = deck === 'A' ? this.playbackRateA : this.playbackRateB;
-            const currentPosition = elapsedTime * playbackRate;
-            
-            if (deck === 'A') {
-                this.pauseTimeA = currentPosition;
-                this.isPlayingA = false;
-                this.bufferSourceA = null;
-                clearInterval(this.progressIntervalA);
-            } else {
-                this.pauseTimeB = currentPosition;
-                this.isPlayingB = false;
-                this.bufferSourceB = null;
-                clearInterval(this.progressIntervalB);
+                
+                // AudioContextを閉じる
+                if (this.audioContext && this.audioContext.state !== 'closed') {
+                    this.audioContext.close();
+                }
             }
-            
-            this.updateStatus(`デッキ${deck}を一時停止中`);
-        }
-    } catch (error) {
-        console.error(`Pause error for deck ${deck}:`, error);
-    }
-}
-
-stopAudio(deck) {
-    try {
-        const bufferSource = deck === 'A' ? this.bufferSourceA : this.bufferSourceB;
-        
-        if (bufferSource) {
-            bufferSource.stop();
         }
         
-        if (deck === 'A') {
-            this.isPlayingA = false;
-            this.bufferSourceA = null;
-            this.pauseTimeA = 0;
-            clearInterval(this.progressIntervalA);
-        } else {
-            this.isPlayingB = false;
-            this.bufferSourceB = null;
-            this.pauseTimeB = 0;
-            clearInterval(this.progressIntervalB);
-        }
-        
-        this.updateProgress(deck);
-        this.updateStatus(`デッキ${deck}を停止しました`);
-    } catch (error) {
-        console.error(`Stop error for deck ${deck}:`, error);
-    }
-}
-
-updatePitch(event, deck) {
-    const value = parseInt(event.target.value);
-    const pitchMultiplier = 1 + (value / 100);
-    
-    if (deck === 'A') {
-        this.playbackRateA = pitchMultiplier;
-    } else {
-        this.playbackRateB = pitchMultiplier;
-    }
-    
-    // 再生中の場合は再開
-    const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
-    if (isPlaying) {
-        this.pauseAudio(deck);
-        setTimeout(() => this.playAudio(deck), 50);
-    }
-    
-    this.elements[`pitchValue${deck}`].textContent = `${value > 0 ? '+' : ''}${value}%`;
-    this.updateCurrentBPM(deck);
-}
-
-resetPitch(deck) {
-    this.elements[`pitchSlider${deck}`].value = 0;
-    
-    if (deck === 'A') {
-        this.playbackRateA = 1;
-    } else {
-        this.playbackRateB = 1;
-    }
-    
-    // 再生中の場合は再開
-    const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
-    if (isPlaying) {
-        this.pauseAudio(deck);
-        setTimeout(() => this.playAudio(deck), 50);
-    }
-    
-    this.elements[`pitchValue${deck}`].textContent = '0%';
-    this.updateCurrentBPM(deck);
-}
-
-updatePreservePitch(event, deck) {
-    // BufferSourceNodeでは音程保持機能は直接サポートされていないため、
-    // この機能は無効化されます
-    console.log(`Preserve pitch setting for deck ${deck}: ${event.target.checked}`);
-}
-
-updateVolume(event, deck) {
-    const volume = event.target.value / 100;
-    const gainNode = deck === 'A' ? this.deckAGainNode : this.deckBGainNode;
-    if (gainNode) {
-        gainNode.gain.value = volume;
-    }
-    this.elements[`volumeValue${deck}`].textContent = event.target.value + '%';
-}
-
-updateCrossfader(event) {
-    const value = parseInt(event.target.value);
-    
-    // クロスフェーダーの値に基づいてゲインを調整
-    const gainA = Math.cos((value / 100) * (Math.PI / 2));
-    const gainB = Math.sin((value / 100) * (Math.PI / 2));
-    
-    if (this.crossfaderGainA) {
-        this.crossfaderGainA.gain.value = gainA;
-    }
-    if (this.crossfaderGainB) {
-        this.crossfaderGainB.gain.value = gainB;
-    }
-}
-
-seekAudio(event, deck) {
-    try {
-        const audioBuffer = deck === 'A' ? this.audioBufferA : this.audioBufferB;
-        if (!audioBuffer) return;
-        
-        const rect = this.elements[`progressBar${deck}`].getBoundingClientRect();
-        const clickX = event.clientX - rect.left;
-        const percentage = clickX / rect.width;
-        const newPosition = percentage * audioBuffer.duration;
-        
-        // 新しい位置を設定
-        if (deck === 'A') {
-            this.pauseTimeA = newPosition;
-        } else {
-            this.pauseTimeB = newPosition;
-        }
-        
-        // 再生中の場合は再開
-        const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
-        if (isPlaying) {
-            this.pauseAudio(deck);
-            setTimeout(() => this.playAudio(deck), 50);
-        } else {
-            this.updateProgress(deck);
-        }
-    } catch (error) {
-        console.error(`Seek error for deck ${deck}:`, error);
-    }
-}
-
-updateTotalTime(deck) {
-    const audioBuffer = deck === 'A' ? this.audioBufferA : this.audioBufferB;
-    if (audioBuffer) {
-        const duration = audioBuffer.duration;
-        this.elements[`totalTime${deck}`].textContent = this.formatTime(duration);
-    }
-}
-
-updateProgress(deck) {
-    try {
-        const audioBuffer = deck === 'A' ? this.audioBufferA : this.audioBufferB;
-        const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
-        const startTime = deck === 'A' ? this.startTimeA : this.startTimeB;
-        const pauseTime = deck === 'A' ? this.pauseTimeA : this.pauseTimeB;
-        const playbackRate = deck === 'A' ? this.playbackRateA : this.playbackRateB;
-        
-        if (!audioBuffer) return;
-        
-        let currentTime;
-        if (isPlaying) {
-            const elapsedTime = this.audioContext.currentTime - startTime;
-            currentTime = pauseTime + (elapsedTime * playbackRate);
-        } else {
-            currentTime = pauseTime;
-        }
-        
-        // 範囲チェック
-        currentTime = Math.max(0, Math.min(currentTime, audioBuffer.duration));
-        
-        const percentage = (currentTime / audioBuffer.duration) * 100;
-        this.elements[`progressFill${deck}`].style.width = percentage + '%';
-        this.elements[`currentTime${deck}`].textContent = this.formatTime(currentTime);
-    } catch (error) {
-        console.error(`Progress update error for deck ${deck}:`, error);
-    }
-}
-
-toggleMonitor(deck) {
-    const isMonitoring = deck === 'A' ? this.monitoringA : this.monitoringB;
-    const monitorBtn = this.elements[`monitorBtn${deck}`];
-    const monitorGain = deck === 'A' ? this.monitorGainA : this.monitorGainB;
-    
-    if (isMonitoring) {
-        // モニターをオフにする（修正版）
-        if (monitorGain) {
-            const currentTime = this.audioContext.currentTime;
-            monitorGain.gain.setValueAtTime(monitorGain.gain.value, currentTime);
-            monitorGain.gain.linearRampToValueAtTime(0, currentTime + 0.1);
-        }
-        monitorBtn.classList.remove('active');
-        monitorBtn.textContent = 'モニター';
-        if (deck === 'A') {
-            this.monitoringA = false;
-        } else {
-            this.monitoringB = false;
-        }
-        this.updateStatus(`デッキ${deck}のモニターをオフにしました`);
-    } else {
-        // モニターをオンにする（修正版）
-        if (monitorGain) {
-            const currentTime = this.audioContext.currentTime;
-            monitorGain.gain.setValueAtTime(monitorGain.gain.value, currentTime);
-            monitorGain.gain.linearRampToValueAtTime(0.5, currentTime + 0.1);
-        }
-        monitorBtn.classList.add('active');
-        monitorBtn.textContent = 'モニター中';
-        if (deck === 'A') {
-            this.monitoringA = true;
-        } else {
-            this.monitoringB = true;
-        }
-        this.updateStatus(`デッキ${deck}のモニターをオンにしました`);
-    }
-}
-
-stopAllSounds() {
-    this.stopAudio('A');
-    this.stopAudio('B');
-    
-    this.playingSamples.forEach(source => {
-        try {
-            source.stop();
-        } catch (error) {
-            // エラーを無視（既に停止済みの場合）
-        }
-    });
-    this.playingSamples.clear();
-    
-    document.querySelectorAll('.key').forEach(key => {
-        key.classList.remove('active', 'playing');
-    });
-    
-    this.updateStatus('全ての音を停止しました');
-}
-
-playSample(index) {
-    if (this.samples[index] && this.audioContext) {
-        try {
-            const source = this.audioContext.createBufferSource();
-            source.buffer = this.samples[index].buffer;
-            source.connect(this.sampleGainNode);
-            
-            source.onended = () => {
-                this.playingSamples.delete(source);
-                this.releaseKey(this.keyMapping[index]);
-            };
-            
-            source.start();
-            this.playingSamples.add(source);
-            this.activateKey(this.keyMapping[index]);
-            
-        } catch (error) {
-            console.error('Sample play error:', error);
-        }
-    }
-}
-
-activateKey(key) {
-    const keyElement = document.querySelector(`[data-key="${key}"]`);
-    if (keyElement) {
-        keyElement.classList.add('active', 'playing');
-    }
-}
-
-releaseKey(key) {
-    const keyElement = document.querySelector(`[data-key="${key}"]`);
-    if (keyElement) {
-        keyElement.classList.remove('active');
-        setTimeout(() => {
-            keyElement.classList.remove('playing');
-        }, 100);
-    }
-}
-
-handleKeyPress(event) {
-    if (event.repeat) return;
-    
-    const key = event.key.toLowerCase();
-    const index = this.keyMapping.indexOf(key);
-    
-    if (index !== -1) {
-        event.preventDefault();
-        this.playSample(index);
-    }
-}
-
-handleKeyRelease(event) {
-    const key = event.key.toLowerCase();
-    if (this.keyMapping.includes(key)) {
-        this.releaseKey(key);
-    }
-}
-
-updateSampleVolume(event) {
-    const volume = event.target.value / 100;
-    if (this.sampleGainNode) {
-        this.sampleGainNode.gain.value = volume;
-    }
-    this.elements.sampleVolumeValue.textContent = event.target.value + '%';
-}
-
-// 録音機能
-async toggleRecording() {
-    if (!this.isRecording) {
-        await this.startRecording();
-    } else {
-        this.stopRecording();
-    }
-}
-
-async startRecording() {
-    try {
-        if (!this.audioContext || !this.destination) {
-            throw new Error('Audio context not initialized');
-        }
-        
-        const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus') 
-            ? 'audio/webm;codecs=opus' 
-            : 'audio/webm';
-        
-        this.mediaRecorder = new MediaRecorder(this.destination.stream, {
-            mimeType: mimeType,
-            audioBitsPerSecond: 128000
+        // アプリケーション初期化
+        document.addEventListener('DOMContentLoaded', () => {
+            new DJMixer();
         });
-        
-        this.recordedChunks = [];
-        
-        this.mediaRecorder.ondataavailable = (event) => {
-            if (event.data.size > 0) {
-                this.recordedChunks.push(event.data);
-            }
-        };
-        
-        this.mediaRecorder.onstop = () => {
-            this.saveRecording();
-        };
-        
-        this.mediaRecorder.start(100);
-        this.isRecording = true;
-        this.elements.recordBtn.textContent = '録音停止';
-        this.elements.recordBtn.classList.add('recording');
-        this.updateStatus('🔴 録音中... 全ての音が録音されています');
-        
-    } catch (error) {
-        console.error('録音開始エラー:', error);
-        this.updateStatus('録音の開始に失敗しました。ブラウザが対応していない可能性があります。');
-    }
-}
-
-stopRecording() {
-    if (this.mediaRecorder && this.mediaRecorder.state === 'recording') {
-        this.mediaRecorder.stop();
-    }
-    
-    this.isRecording = false;
-    this.elements.recordBtn.textContent = '録音開始';
-    this.elements.recordBtn.classList.remove('recording');
-    this.updateStatus('録音を停止しました');
-}
-
-async saveRecording() {
-    if (this.recordedChunks.length > 0) {
-        const blob = new Blob(this.recordedChunks, { 
-            type: this.recordedChunks[0].type || 'audio/webm' 
-        });
-        
-        await this.convertToMP3(blob);
-    }
-}
-
-async convertToMP3(webmBlob) {
-    try {
-        this.updateStatus('MP3形式に変換中...');
-        
-        const arrayBuffer = await webmBlob.arrayBuffer();
-        const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
-        
-        const mp3encoder = new lamejs.Mp3Encoder(1, audioBuffer.sampleRate, 128);
-        
-        const samples = audioBuffer.getChannelData(0);
-        const sampleBlockSize = 1152;
-        const mp3Data = [];
-        
-        for (let i = 0; i < samples.length; i += sampleBlockSize) {
-            const sampleChunk = samples.subarray(i, i + sampleBlockSize);
-            const mp3buf = mp3encoder.encodeBuffer(this.convertFloat32ToInt16(sampleChunk));
-            if (mp3buf.length > 0) {
-                mp3Data.push(mp3buf);
-            }
-        }
-        
-        const mp3buf = mp3encoder.flush();
-        if (mp3buf.length > 0) {
-            mp3Data.push(mp3buf);
-        }
-        
-        const mp3Blob = new Blob(mp3Data, { type: 'audio/mp3' });
-        this.downloadFile(mp3Blob, 'mp3');
-        
-    } catch (error) {
-        console.error('MP3変換エラー:', error);
-        this.updateStatus('MP3変換に失敗しました。WebM形式でダウンロードします。');
-        this.downloadFile(webmBlob, 'webm');
-    }
-}
-
-convertFloat32ToInt16(buffer) {
-    const l = buffer.length;
-    const buf = new Int16Array(l);
-    
-    for (let i = 0; i < l; i++) {
-        buf[i] = Math.min(1, buffer[i]) * 0x7FFF;
-    }
-    return buf;
-}
-
-getJSTTimestamp() {
-    const now = new Date();
-    const jstTime = new Date(now.getTime() + (9 * 60 * 60 * 1000));
-    
-    const year = jstTime.getUTCFullYear();
-    const month = String(jstTime.getUTCMonth() + 1).padStart(2, '0');
-    const day = String(jstTime.getUTCDate()).padStart(2, '0');
-    const hours = String(jstTime.getUTCHours()).padStart(2, '0');
-    const minutes = String(jstTime.getUTCMinutes()).padStart(2, '0');
-    const seconds = String(jstTime.getUTCSeconds()).padStart(2, '0');
-    
-    return `${year}-${month}-${day}_${hours}-${minutes}-${seconds}`;
-}
-
-downloadFile(blob, format) {
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    const timestamp = this.getJSTTimestamp();
-    a.download = `dj_sampling_mix_${timestamp}.${format}`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    
-    this.updateStatus(`録音ファイル（${format.toUpperCase()}形式）をダウンロードしました！`);
-}
-
-formatTime(seconds) {
-    if (isNaN(seconds)) return '0:00';
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-}
-
-updateStatus(message) {
-    this.elements.status.innerHTML = this.isRecording ? 
-        `<span class="recording-indicator"></span>${message}` : message;
-}
-
-cleanup() {
-    // ObjectURLsをすべて解放
-    this.objectUrls.forEach(url => {
-        URL.revokeObjectURL(url);
-    });
-    this.objectUrls.clear();
-    
-    // BufferSourcesを停止
-    if (this.bufferSourceA) {
-        this.bufferSourceA.stop();
-        this.bufferSourceA = null;
-    }
-    if (this.bufferSourceB) {
-        this.bufferSourceB.stop();
-        this.bufferSourceB = null;
-    }
-    
-    // インターバルをクリア
-    clearInterval(this.progressIntervalA);
-    clearInterval(this.progressIntervalB);
-    
-    // AudioContextを閉じる
-    if (this.audioContext && this.audioContext.state !== 'closed') {
-        this.audioContext.close();
-    }
-}
-}
-
-// アプリケーション初期化
-document.addEventListener('DOMContentLoaded', () => {
-    new DJMixer();
-});
-</script>
+    </script>
 </body>
 </html>
