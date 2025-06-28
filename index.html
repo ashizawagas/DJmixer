@@ -13,107 +13,223 @@
         }
         
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Roboto', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #0f0f0f 50%, #1a1a1a 75%, #0a0a0a 100%);
+            background-attachment: fixed;
             min-height: 100vh;
-            color: white;
+            color: #ffffff;
             overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(255, 255, 0, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
         
         .container {
             max-width: 1600px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
         
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            position: relative;
         }
         
         .logo {
-            font-size: 3rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ffff);
+            background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-            animation: pulse 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            animation: neonGlow 3s ease-in-out infinite alternate, gradientShift 8s ease-in-out infinite;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            position: relative;
         }
         
-        @keyframes pulse {
-            from { transform: scale(1); }
-            to { transform: scale(1.05); }
+        .logo::before {
+            content: 'DJミキサー';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ffff);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(2px);
+            z-index: -1;
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+        
+        @keyframes neonGlow {
+            from { 
+                text-shadow: 0 0 30px rgba(0, 255, 255, 0.5), 0 0 60px rgba(0, 255, 255, 0.3);
+            }
+            to { 
+                text-shadow: 0 0 50px rgba(255, 0, 255, 0.8), 0 0 100px rgba(255, 0, 255, 0.4);
+            }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         .dj-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 25px;
+            background: linear-gradient(145deg, rgba(20, 20, 20, 0.9), rgba(40, 40, 40, 0.8));
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 30px;
             margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 
+                0 0 30px rgba(0, 255, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 20px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dj-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            animation: scanLine 4s linear infinite;
+        }
+        
+        @keyframes scanLine {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
         
         .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 25px;
             text-align: center;
-            color: #fff;
+            color: #00ffff;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
         
         .dj-controls {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
-            gap: 30px;
+            gap: 40px;
             align-items: start;
         }
         
         .deck {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.95), rgba(50, 50, 50, 0.9));
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 0 25px rgba(0, 0, 0, 0.8),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .deck::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.8), transparent);
+            animation: deckGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes deckGlow {
+            from { opacity: 0.3; }
+            to { opacity: 1; }
         }
         
         .deck-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
             text-align: center;
-            color: #4ecdc4;
+            color: #ffffff;
+            font-weight: 600;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
         }
         
         .deck-a {
-            border-left: 4px solid #ff6b6b;
+            border-left: 4px solid #00ffff;
+            box-shadow: 
+                0 0 25px rgba(0, 0, 0, 0.8),
+                -5px 0 15px rgba(0, 255, 255, 0.3);
         }
         
         .deck-b {
-            border-right: 4px solid #4ecdc4;
+            border-right: 4px solid #ff00ff;
+            box-shadow: 
+                0 0 25px rgba(0, 0, 0, 0.8),
+                5px 0 15px rgba(255, 0, 255, 0.3);
         }
         
         .turntable-container {
             display: flex;
             justify-content: center;
-            margin: 20px 0;
+            margin: 25px 0;
         }
         
         .turntable {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            background: radial-gradient(circle at center, #333 0%, #111 70%, #000 100%);
-            border: 3px solid #666;
+            background: 
+                radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 40%, #333 70%, #000 100%);
+            border: 4px solid #444;
             position: relative;
             cursor: grab;
             user-select: none;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            transition: transform 0.1s ease;
+            box-shadow: 
+                0 0 30px rgba(0, 0, 0, 0.8),
+                inset 0 0 20px rgba(0, 255, 255, 0.2);
+            transition: all 0.2s ease;
+        }
+        
+        .turntable:hover {
+            box-shadow: 
+                0 0 40px rgba(0, 255, 255, 0.4),
+                inset 0 0 30px rgba(0, 255, 255, 0.3);
+            border-color: #00ffff;
         }
         
         .turntable:active {
             cursor: grabbing;
+            box-shadow: 
+                0 0 50px rgba(255, 0, 255, 0.6),
+                inset 0 0 40px rgba(255, 0, 255, 0.4);
         }
         
         .turntable::before {
@@ -121,122 +237,144 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 8px;
-            height: 8px;
-            background: #ff6b6b;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #00ffff, #0088aa);
             border-radius: 50%;
             transform: translate(-50%, -50%);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
         }
         
         .turntable::after {
             content: '';
             position: absolute;
-            top: 20px;
+            top: 25px;
             left: 50%;
-            width: 2px;
-            height: 40px;
-            background: #666;
+            width: 3px;
+            height: 50px;
+            background: linear-gradient(to bottom, #666, #333);
             transform: translateX(-50%);
+            border-radius: 2px;
         }
         
         .turntable-label {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 15px;
             font-size: 0.9rem;
-            color: #ccc;
+            color: #aaa;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
         
         .crossfader-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
-            min-width: 200px;
+            gap: 25px;
+            min-width: 250px;
         }
         
         .crossfader-container {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 20px;
+            background: linear-gradient(145deg, rgba(10, 10, 10, 0.95), rgba(30, 30, 30, 0.9));
+            border-radius: 20px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+            border: 2px solid rgba(255, 255, 0, 0.3);
+            box-shadow: 
+                0 0 25px rgba(255, 255, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
         
         .crossfader-label {
-            font-weight: bold;
-            color: #fff;
-            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffff00;
+            font-size: 1.2rem;
+            text-shadow: 0 0 15px rgba(255, 255, 0, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .crossfader {
-            width: 150px;
-            height: 8px;
-            border-radius: 4px;
-            background: linear-gradient(90deg, #ff6b6b 0%, rgba(255,255,255,0.3) 50%, #4ecdc4 100%);
+            width: 180px;
+            height: 10px;
+            border-radius: 5px;
+            background: linear-gradient(90deg, #00ffff 0%, rgba(255,255,255,0.3) 50%, #ff00ff 100%);
             outline: none;
             -webkit-appearance: none;
             cursor: pointer;
+            box-shadow: 
+                0 0 15px rgba(0, 0, 0, 0.5),
+                inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .crossfader::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #fff, #ddd);
+            background: linear-gradient(145deg, #ffffff, #cccccc);
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            border: 2px solid #333;
+            box-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.5),
+                0 4px 15px rgba(0, 0, 0, 0.8);
+            border: 3px solid #333;
+            transition: all 0.2s ease;
         }
         
-        .crossfader::-moz-range-thumb {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #fff, #ddd);
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            border: 2px solid #333;
+        .crossfader::-webkit-slider-thumb:hover {
+            box-shadow: 
+                0 0 30px rgba(255, 255, 0, 0.8),
+                0 6px 20px rgba(0, 0, 0, 0.9);
         }
         
         .crossfader-indicators {
             display: flex;
             justify-content: space-between;
-            width: 150px;
-            font-size: 0.9rem;
+            width: 180px;
+            font-size: 1rem;
             font-weight: bold;
         }
         
         .indicator-a {
-            color: #ff6b6b;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
         }
         
         .indicator-b {
-            color: #4ecdc4;
+            color: #ff00ff;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
         }
         
         .file-input-wrapper {
             position: relative;
             display: inline-block;
             cursor: pointer;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
-            padding: 12px 24px;
+            background: linear-gradient(145deg, #333, #555);
+            padding: 15px 30px;
             border-radius: 50px;
-            border: none;
+            border: 2px solid rgba(0, 255, 255, 0.5);
             color: white;
-            font-weight: bold;
+            font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-            margin: 5px;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            margin: 8px;
             width: 100%;
             text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .file-input-wrapper:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 0 30px rgba(0, 255, 255, 0.6),
+                0 10px 25px rgba(0, 0, 0, 0.5);
+            border-color: #00ffff;
+            background: linear-gradient(145deg, #444, #666);
         }
         
         .file-input-wrapper input {
@@ -250,357 +388,302 @@
         .deck-controls {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-top: 15px;
+            gap: 20px;
+            margin-top: 20px;
         }
         
         .control-row {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
         }
         
         .control-btn {
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
-            border: none;
-            padding: 8px 16px;
-            border-radius: 25px;
+            background: linear-gradient(145deg, #2a2a2a, #4a4a4a);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 30px;
             color: white;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
+            box-shadow: 
+                0 0 15px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .control-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(78, 205, 196, 0.6);
+            box-shadow: 
+                0 0 25px rgba(0, 255, 255, 0.4),
+                0 8px 20px rgba(0, 0, 0, 0.6);
+            border-color: #00ffff;
+            background: linear-gradient(145deg, #3a3a3a, #5a5a5a);
         }
         
         .control-btn:disabled {
-            opacity: 0.5;
+            opacity: 0.4;
             cursor: not-allowed;
             transform: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
         
         .monitor-btn {
-            background: linear-gradient(45deg, #9b59b6, #8e44ad);
-            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
+            background: linear-gradient(145deg, #4a2a4a, #6a4a6a);
+            border-color: rgba(255, 0, 255, 0.3);
         }
         
         .monitor-btn:hover {
-            box-shadow: 0 6px 20px rgba(155, 89, 182, 0.6);
+            border-color: #ff00ff;
+            box-shadow: 
+                0 0 25px rgba(255, 0, 255, 0.4),
+                0 8px 20px rgba(0, 0, 0, 0.6);
         }
         
         .monitor-btn.active {
-            background: linear-gradient(45deg, #e74c3c, #c0392b);
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.6);
+            background: linear-gradient(145deg, #6a2a2a, #8a4a4a);
+            border-color: #ff4444;
+            box-shadow: 
+                0 0 25px rgba(255, 68, 68, 0.6),
+                0 8px 20px rgba(0, 0, 0, 0.6);
         }
         
-        .pitch-control {
+        .pitch-control, .volume-control {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 12px;
+            margin-top: 20px;
         }
         
-        .pitch-label {
-            font-weight: bold;
-            color: #4ecdc4;
+        .pitch-label, .volume-label {
+            font-weight: 600;
+            color: #ffffff;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
-        .pitch-slider-container {
+        .pitch-slider-container, .volume-slider-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         
-        .pitch-slider {
+        .pitch-slider, .volume-slider {
             flex: 1;
-            height: 6px;
-            border-radius: 3px;
-            background: rgba(255, 255, 255, 0.3);
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #333, #666, #333);
             outline: none;
             -webkit-appearance: none;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
         }
         
-        .pitch-slider::-webkit-slider-thumb {
+        .pitch-slider::-webkit-slider-thumb, .volume-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            background: linear-gradient(145deg, #00ffff, #0088aa);
             cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 
+                0 0 15px rgba(0, 255, 255, 0.6),
+                0 2px 6px rgba(0, 0, 0, 0.5);
+            border: 2px solid #333;
         }
         
         .pitch-value {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: bold;
-            min-width: 50px;
+            min-width: 60px;
             text-align: center;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
         
         .pitch-reset {
-            background: linear-gradient(45deg, #e74c3c, #c0392b);
-            border: none;
-            padding: 5px 10px;
-            border-radius: 15px;
+            background: linear-gradient(145deg, #6a2a2a, #8a4a4a);
+            border: 2px solid rgba(255, 68, 68, 0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
             color: white;
             font-size: 0.8rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: 600;
         }
         
         .pitch-reset:hover {
             transform: translateY(-1px);
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.6);
         }
         
         .progress-container {
-            margin: 15px 0;
+            margin: 20px 0;
         }
         
         .progress-bar {
             width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
+            height: 8px;
+            background: linear-gradient(90deg, #222, #444, #222);
+            border-radius: 4px;
             overflow: hidden;
             cursor: pointer;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
         }
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00);
             width: 0%;
             transition: width 0.1s;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
         
         .time-display {
             text-align: center;
-            margin-top: 5px;
-            font-size: 0.9rem;
-        }
-        
-        .volume-control {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .volume-label {
-            font-weight: bold;
-            color: #4ecdc4;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-        
-        .volume-slider-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .volume-slider {
-            flex: 1;
-            height: 6px;
-            border-radius: 3px;
-            background: rgba(255, 255, 255, 0.3);
-            outline: none;
-            -webkit-appearance: none;
-        }
-        
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            margin-top: 8px;
+            font-size: 1rem;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
         
         .master-controls {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 25px;
+            margin-top: 25px;
             flex-wrap: wrap;
         }
         
         .record-btn {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            background: linear-gradient(145deg, #6a2a2a, #8a4a4a);
+            border-color: rgba(255, 68, 68, 0.5);
         }
         
         .record-btn:hover {
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+            border-color: #ff4444;
+            box-shadow: 
+                0 0 25px rgba(255, 68, 68, 0.6),
+                0 8px 20px rgba(0, 0, 0, 0.6);
         }
         
         .record-btn.recording {
             animation: recordPulse 1s ease-in-out infinite alternate;
+            box-shadow: 0 0 30px rgba(255, 68, 68, 0.8);
         }
         
         @keyframes recordPulse {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
+            from { 
+                transform: scale(1);
+                box-shadow: 0 0 30px rgba(255, 68, 68, 0.8);
+            }
+            to { 
+                transform: scale(1.05);
+                box-shadow: 0 0 40px rgba(255, 68, 68, 1);
+            }
         }
         
-        .bpm-display {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 10px;
+        .bpm-display, .filename-display {
+            background: linear-gradient(145deg, rgba(10, 10, 10, 0.9), rgba(30, 30, 30, 0.8));
+            border-radius: 15px;
+            padding: 15px;
             text-align: center;
-            margin-top: 10px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 0 15px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
         
-        .bpm-label {
+        .bpm-label, .filename-label {
             font-size: 0.8rem;
-            color: #ccc;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .bpm-value {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: bold;
-            color: #4ecdc4;
+            color: #00ffff;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
         }
         
         .current-bpm {
-            font-size: 0.9rem;
-            color: #ff6b6b;
-            margin-top: 5px;
-        }
-        
-        .filename-display {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 10px;
-            text-align: center;
-            margin-top: 10px;
-            min-height: 50px;
-        }
-        
-        .filename-label {
-            font-size: 0.8rem;
-            color: #ccc;
+            font-size: 1rem;
+            color: #ff00ff;
+            margin-top: 8px;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
         }
         
         .filename-value {
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: bold;
-            color: #4ecdc4;
-            margin-top: 5px;
+            color: #ffffff;
+            margin-top: 8px;
             word-break: break-all;
-            line-height: 1.2;
+            line-height: 1.3;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        .info-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
         }
         
         .keyboard-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 25px;
+            background: linear-gradient(145deg, rgba(20, 20, 20, 0.9), rgba(40, 40, 40, 0.8));
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 30px;
             margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-        
-        .preset-samples {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .preset-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            text-align: center;
-            color: #4ecdc4;
-        }
-        
-        .preset-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .preset-toggle {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .toggle-switch {
+            border: 2px solid rgba(255, 255, 0, 0.3);
+            box-shadow: 
+                0 0 30px rgba(255, 255, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 20px 40px rgba(0, 0, 0, 0.5);
             position: relative;
-            width: 60px;
-            height: 30px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .toggle-switch.active {
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
-        }
-        
-        .toggle-slider {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 24px;
-            height: 24px;
-            background: white;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        }
-        
-        .toggle-switch.active .toggle-slider {
-            transform: translateX(30px);
-        }
-        
-        .toggle-label {
-            font-weight: bold;
-            color: #fff;
-            font-size: 1rem;
+            overflow: hidden;
         }
         
         .sample-upload {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: center;
         }
         
         .keyboard {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 8px;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 10px;
             max-width: 1200px;
             margin: 0 auto;
         }
         
         .key {
-            background: linear-gradient(145deg, #667eea, #764ba2);
-            border: none;
-            padding: 15px 8px;
-            border-radius: 12px;
+            background: linear-gradient(145deg, #2a2a2a, #4a4a4a);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 18px 10px;
+            border-radius: 15px;
             color: white;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 
+                0 0 15px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
-            min-height: 55px;
+            min-height: 65px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -609,72 +692,94 @@
         
         .key:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 
+                0 0 25px rgba(0, 255, 255, 0.4),
+                0 8px 20px rgba(0, 0, 0, 0.6);
+            border-color: #00ffff;
+            background: linear-gradient(145deg, #3a3a3a, #5a5a5a);
         }
         
         .key:active, .key.active {
             transform: translateY(0);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-            background: linear-gradient(145deg, #ff6b6b, #ee5a52);
+            box-shadow: 
+                0 0 30px rgba(255, 0, 255, 0.6),
+                0 4px 12px rgba(0, 0, 0, 0.8);
+            background: linear-gradient(145deg, #6a2a6a, #8a4a8a);
+            border-color: #ff00ff;
         }
         
         .key.playing {
-            background: linear-gradient(145deg, #2ecc71, #27ae60);
+            background: linear-gradient(145deg, #2a6a2a, #4a8a4a);
+            border-color: #00ff00;
             animation: keyPulse 0.5s ease-in-out;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
         }
         
         @keyframes keyPulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
         
         .key-label {
             font-size: 0.7rem;
-            opacity: 0.8;
-            margin-top: 3px;
+            opacity: 0.9;
+            margin-top: 4px;
             text-align: center;
-            line-height: 1.1;
+            line-height: 1.2;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
         }
         
         .key-number {
             font-size: 0.8rem;
             font-weight: bold;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
         
         .status {
             text-align: center;
-            margin: 20px 0;
-            font-size: 1.1rem;
+            margin: 25px 0;
+            font-size: 1.2rem;
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            font-weight: 500;
         }
         
         .recording-indicator {
             display: inline-block;
-            width: 12px;
-            height: 12px;
-            background: #ff6b6b;
+            width: 15px;
+            height: 15px;
+            background: #ff4444;
             border-radius: 50%;
-            margin-right: 8px;
+            margin-right: 10px;
             animation: blink 1s infinite;
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.8);
         }
         
         @keyframes blink {
             0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
+            51%, 100% { opacity: 0.3; }
         }
         
         .instructions {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(145deg, rgba(20, 20, 20, 0.9), rgba(40, 40, 40, 0.8));
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 0 25px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
         
         .instructions h3 {
-            margin-bottom: 10px;
-            color: #4ecdc4;
+            margin-bottom: 15px;
+            color: #00ffff;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .instructions ul {
@@ -683,27 +788,67 @@
         }
         
         .instructions li {
-            margin: 8px 0;
-            padding-left: 20px;
+            margin: 10px 0;
+            padding-left: 25px;
             position: relative;
+            color: #cccccc;
+            line-height: 1.5;
         }
         
         .instructions li::before {
             content: '♪';
             position: absolute;
             left: 0;
-            color: #ff6b6b;
+            color: #ff00ff;
             font-weight: bold;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
         }
         
         @media (max-width: 1200px) {
             .dj-controls {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 25px;
             }
             
             .crossfader-section {
                 order: -1;
+            }
+            
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .keyboard {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                gap: 8px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .dj-section, .keyboard-section {
+                padding: 20px;
+            }
+            
+            .turntable {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .crossfader-container {
+                padding: 20px;
+            }
+            
+            .info-section {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -735,8 +880,6 @@
                             <button class="control-btn" id="playBtnA" disabled>再生</button>
                             <button class="control-btn" id="pauseBtnA" disabled>一時停止</button>
                             <button class="control-btn" id="stopBtnA" disabled>停止</button>
-                        </div>
-                        <div class="control-row">
                             <button class="control-btn monitor-btn" id="monitorBtnA" disabled>モニター</button>
                         </div>
                     </div>
@@ -773,17 +916,6 @@
                             <span id="currentTimeA">0:00</span> / <span id="totalTimeA">0:00</span>
                         </div>
                     </div>
-                    
-                    <div class="bpm-display">
-                        <div class="bpm-label">元BPM</div>
-                        <div class="bpm-value" id="bpmValueA">--</div>
-                        <div class="current-bpm">現在: <span id="currentBpmA">--</span></div>
-                    </div>
-                    
-                    <div class="filename-display">
-                        <div class="filename-label">再生中</div>
-                        <div class="filename-value" id="filenameA">ファイルなし</div>
-                    </div>
                 </div>
                 
                 <!-- クロスフェーダー -->
@@ -794,6 +926,30 @@
                         <div class="crossfader-indicators">
                             <span class="indicator-a">A</span>
                             <span class="indicator-b">B</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-section">
+                        <div class="bpm-display">
+                            <div class="bpm-label">デッキA BPM</div>
+                            <div class="bpm-value" id="bpmValueA">--</div>
+                            <div class="current-bpm">現在: <span id="currentBpmA">--</span></div>
+                        </div>
+                        
+                        <div class="bpm-display">
+                            <div class="bpm-label">デッキB BPM</div>
+                            <div class="bpm-value" id="bpmValueB">--</div>
+                            <div class="current-bpm">現在: <span id="currentBpmB">--</span></div>
+                        </div>
+                        
+                        <div class="filename-display">
+                            <div class="filename-label">デッキA</div>
+                            <div class="filename-value" id="filenameA">ファイルなし</div>
+                        </div>
+                        
+                        <div class="filename-display">
+                            <div class="filename-label">デッキB</div>
+                            <div class="filename-value" id="filenameB">ファイルなし</div>
                         </div>
                     </div>
                     
@@ -821,8 +977,6 @@
                             <button class="control-btn" id="playBtnB" disabled>再生</button>
                             <button class="control-btn" id="pauseBtnB" disabled>一時停止</button>
                             <button class="control-btn" id="stopBtnB" disabled>停止</button>
-                        </div>
-                        <div class="control-row">
                             <button class="control-btn monitor-btn" id="monitorBtnB" disabled>モニター</button>
                         </div>
                     </div>
@@ -859,36 +1013,11 @@
                             <span id="currentTimeB">0:00</span> / <span id="totalTimeB">0:00</span>
                         </div>
                     </div>
-                    
-                    <div class="bpm-display">
-                        <div class="bpm-label">元BPM</div>
-                        <div class="bpm-value" id="bpmValueB">--</div>
-                        <div class="current-bpm">現在: <span id="currentBpmB">--</span></div>
-                    </div>
-                    
-                    <div class="filename-display">
-                        <div class="filename-label">再生中</div>
-                        <div class="filename-value" id="filenameB">ファイルなし</div>
-                    </div>
                 </div>
             </div>
         </div>
         
         <div class="keyboard-section">
-            <h2 class="section-title">🎹 サンプリングキーボード（50ボタン）</h2>
-            
-            <div class="preset-samples">
-                <div class="preset-title">📁 プリセットサンプル（27個）</div>
-                <div class="preset-controls">
-                    <div class="preset-toggle">
-                        <span class="toggle-label">プリセット音源</span>
-                        <div class="toggle-switch" id="presetToggle">
-                            <div class="toggle-slider"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
             <div class="sample-upload">
                 <label class="file-input-wrapper">
                     <input type="file" id="sampleFiles" accept="audio/*" multiple>
@@ -925,7 +1054,7 @@
                 <li>BPM表示で楽曲の元テンポと現在のテンポを確認</li>
                 <li>モニターボタンで各デッキの音源をヘッドフォンで確認可能</li>
                 <li>再生中のファイル名がリアルタイムで表示されます</li>
-                <li>プリセット音源をオンにすると27個のサンプル音が自動で読み込まれます</li>
+                <li>プリセット音源27個が自動で読み込まれます</li>
                 <li>追加で最大23個のサンプル音声ファイルを読み込めます（合計50個）</li>
                 <li>キーボードのボタンまたはキー（1-9, 0, Q-P, A-L, Z-N）でサンプル音を再生</li>
                 <li>録音ボタンで全ての音を同時録音できます</li>
@@ -962,6 +1091,8 @@
                 this.scratchBufferB = null;
                 this.scratchSourceA = null;
                 this.scratchSourceB = null;
+                this.lastScratchTimeA = 0;
+                this.lastScratchTimeB = 0;
                 
                 // サンプリング
                 this.samples = [];
@@ -984,7 +1115,7 @@
                 this.monitorGainB = null;
                 this.scratchGainA = null;
                 this.scratchGainB = null;
-                this.presetEnabled = false;
+                this.presetEnabled = true; // プリセットは常にオン
                 this.monitoringA = false;
                 this.monitoringB = false;
                 
@@ -1019,7 +1150,9 @@
                 this.createKeyboard();
                 this.initializeAudioContext();
                 this.initializeTurntables();
-                this.createScratchBuffer();
+                
+                // プリセットサンプルを自動で読み込み
+                this.loadPresetSamples();
                 
                 // プログレス更新用タイマー
                 this.progressIntervalA = null;
@@ -1085,7 +1218,6 @@
                     sampleVolumeSlider: document.getElementById('sampleVolumeSlider'),
                     sampleVolumeValue: document.getElementById('sampleVolumeValue'),
                     keyboard: document.getElementById('keyboard'),
-                    presetToggle: document.getElementById('presetToggle'),
                     status: document.getElementById('status')
                 };
             }
@@ -1165,32 +1297,6 @@
                 document.addEventListener('touchend', () => this.stopTurntableDrag());
             }
             
-            async createScratchBuffer() {
-                try {
-                    // スクラッチ音用のノイズバッファを生成
-                    const sampleRate = this.audioContext.sampleRate;
-                    const bufferLength = sampleRate * 0.2; // 0.2秒に延長
-                    
-                    this.scratchBufferA = this.audioContext.createBuffer(1, bufferLength, sampleRate);
-                    this.scratchBufferB = this.audioContext.createBuffer(1, bufferLength, sampleRate);
-                    
-                    const dataA = this.scratchBufferA.getChannelData(0);
-                    const dataB = this.scratchBufferB.getChannelData(0);
-                    
-                    // より強いピンクノイズ生成（スクラッチ音らしい音）
-                    for (let i = 0; i < bufferLength; i++) {
-                        // より強いノイズとフィルタリング効果
-                        const noise = (Math.random() * 2 - 1) * 0.8;
-                        const filtered = noise * (1 - i / bufferLength); // フェードアウト効果
-                        dataA[i] = filtered;
-                        dataB[i] = filtered;
-                    }
-                    
-                } catch (error) {
-                    console.error('Scratch buffer creation error:', error);
-                }
-            }
-            
             startTurntableDrag(event, deck) {
                 event.preventDefault();
                 
@@ -1265,10 +1371,12 @@
             
             playScratchSound(deck, intensity) {
                 try {
-                    const scratchBuffer = deck === 'A' ? this.scratchBufferA : this.scratchBufferB;
-                    const scratchGain = deck === 'A' ? this.scratchGainA : this.scratchGainB;
+                                        // スクラッチサンプル（19scratch.mp3）を使用
+                    const scratchSample = this.samples[18]; // インデックス18が19scratch.mp3
+                    if (!scratchSample || !scratchSample.buffer) return;
                     
-                    if (!scratchBuffer || !scratchGain) return;
+                    const scratchGain = deck === 'A' ? this.scratchGainA : this.scratchGainB;
+                    if (!scratchGain) return;
                     
                     // 既存のスクラッチ音を停止
                     const existingSource = deck === 'A' ? this.scratchSourceA : this.scratchSourceB;
@@ -1280,17 +1388,29 @@
                         }
                     }
                     
+                    // 現在時刻を取得
+                    const currentTime = Date.now();
+                    const lastScratchTime = deck === 'A' ? this.lastScratchTimeA : this.lastScratchTimeB;
+                    
+                    // 連続スクラッチの時間間隔を計算
+                    const timeDiff = currentTime - lastScratchTime;
+                    
                     // 新しいスクラッチ音を生成
                     const source = this.audioContext.createBufferSource();
-                    source.buffer = scratchBuffer;
+                    source.buffer = scratchSample.buffer;
                     
-                    // より強いピッチ変更とボリューム調整
-                    const pitchMultiplier = 0.8 + intensity * 3; // より大きなピッチ変化
-                    source.playbackRate.value = Math.min(pitchMultiplier, 4.0);
+                    // 強度と時間間隔に応じてピッチとボリュームを調整
+                    const pitchMultiplier = 0.5 + intensity * 2; // より大きなピッチ変化
+                    const speedMultiplier = Math.min(timeDiff / 100, 2.0); // 速い動きほど高速再生
+                    source.playbackRate.value = Math.min(pitchMultiplier * speedMultiplier, 4.0);
                     
-                    // 追加のゲインノードでボリュームをさらに増幅
+                    // 追加のゲインノードでボリュームを調整
                     const amplifierGain = this.audioContext.createGain();
-                    amplifierGain.gain.value = Math.min(1.0 + intensity * 2, 2.0);
+                    const volumeMultiplier = Math.min(0.8 + intensity * 1.5, 2.0);
+                    amplifierGain.gain.value = volumeMultiplier;
+                    
+                    // 動きの速さに応じて再生時間を調整
+                    const playDuration = Math.max(50, Math.min(300 - timeDiff, 300));
                     
                     source.connect(amplifierGain);
                     amplifierGain.connect(scratchGain);
@@ -1298,18 +1418,20 @@
                     
                     if (deck === 'A') {
                         this.scratchSourceA = source;
+                        this.lastScratchTimeA = currentTime;
                     } else {
                         this.scratchSourceB = source;
+                        this.lastScratchTimeB = currentTime;
                     }
                     
-                    // 少し長めに再生
+                    // 動的な時間で自動停止
                     setTimeout(() => {
                         try {
                             source.stop();
                         } catch (error) {
                             // エラーを無視
                         }
-                    }, 200);
+                    }, playDuration);
                     
                 } catch (error) {
                     console.error('Scratch sound error:', error);
@@ -1373,7 +1495,6 @@
                 // サンプリング
                 this.elements.sampleFiles.addEventListener('change', (e) => this.loadSampleFiles(e));
                 this.elements.sampleVolumeSlider.addEventListener('input', (e) => this.updateSampleVolume(e));
-                this.elements.presetToggle.addEventListener('click', () => this.togglePreset());
                 
                 // キーボードイベント
                 document.addEventListener('keydown', (e) => this.handleKeyPress(e));
@@ -1420,7 +1541,7 @@
                     // 既存のリソースを完全にクリーンアップ
                     await this.cleanupDeck(deck);
                     
-                                        // ファイルをArrayBufferとして読み込み
+                    // ファイルをArrayBufferとして読み込み
                     const arrayBuffer = await file.arrayBuffer();
                     const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
                     
@@ -2080,18 +2201,6 @@
             }
             
             // サンプリング機能
-            async togglePreset() {
-                this.presetEnabled = !this.presetEnabled;
-                
-                if (this.presetEnabled) {
-                    this.elements.presetToggle.classList.add('active');
-                    await this.loadPresetSamples();
-                } else {
-                    this.elements.presetToggle.classList.remove('active');
-                    this.clearPresetSamples();
-                }
-            }
-            
             async loadPresetSamples() {
                 this.updateStatus('プリセットサンプルを読み込み中...');
                 
@@ -2133,21 +2242,6 @@
                 }
                 
                 this.updateStatus(`${loadedCount}個のプリセットサンプルを読み込みました`);
-            }
-            
-            clearPresetSamples() {
-                for (let i = 0; i < this.presetSamples.length; i++) {
-                    if (this.samples[i] && this.samples[i].isPreset) {
-                        this.samples[i] = null;
-                        const keyElement = document.querySelector(`[data-index="${i}"]`);
-                        if (keyElement) {
-                            const label = keyElement.querySelector('.key-label');
-                            label.textContent = 'Empty';
-                        }
-                    }
-                }
-                
-                this.updateStatus('プリセットサンプルをクリアしました');
             }
             
             async loadSampleFiles(event) {
