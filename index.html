@@ -996,7 +996,7 @@
             <div class="sample-upload">
                 <label class="file-input-wrapper">
                     <input type="file" id="sampleFiles" accept="audio/*" multiple>
-                    追加サンプル音声を選択（最大23個）
+                    追加サンプル音声を選択（最大27個）
                 </label>
             </div>
             
@@ -1030,7 +1030,7 @@
                 <li>モニターボタンで各デッキの音源をヘッドフォンで確認可能</li>
                 <li>再生中のファイル名がリアルタイムで表示されます</li>
                 <li>プリセット音源が自動で読み込まれます（27個）</li>
-                <li>追加で最大23個のサンプル音声ファイルを読み込めます（合計50個）</li>
+                <li>追加で最大27個のサンプル音声ファイルを読み込めます（合計54個）</li>
                 <li>QWERTYキーボード配列でサンプル音を再生できます</li>
                 <li>録音ボタンで全ての音を同時録音できます</li>
                 <li>録音した音声はMP3形式で自動ダウンロードされます</li>
@@ -1109,7 +1109,7 @@
                     './25AaaHa.mp3', './26.Swing.mp3', './27.Hit.mp3'
                 ];
                 
-                // QWERTYキーボード配列のキーマッピング
+                // QWERTYキーボード配列のキーマッピング（54個に拡張）
                 this.keyMapping = [
                     // 数字行
                     '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=',
@@ -1120,7 +1120,9 @@
                     // ZXCV行
                     'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/',
                     // 機能キー
-                    'tab', 'caps', 'shift', 'ctrl', 'alt', 'space', 'enter', 'backspace'
+                    'tab', 'caps', 'shift', 'ctrl', 'alt', 'space', 'enter', 'backspace',
+                    // 追加キー（F1-F12から6個選択）
+                    'f1', 'f2', 'f3', 'f4', 'f5', 'f6'
                 ];
                 
                 // QWERTYキーボードレイアウト定義
@@ -1132,9 +1134,9 @@
                     // ASDF行
                     ['caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'enter'],
                     // ZXCV行
-                    ['shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'rshift'],
-                    // 下段
-                    ['ctrl', 'alt', 'space', 'ralt', 'rctrl']
+                    ['shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'f1'],
+                    // 下段（F2-F6を追加）
+                    ['ctrl', 'alt', 'space', 'f2', 'f3', 'f4', 'f5', 'f6']
                 ];
                 
                 this.initializeElements();
@@ -1318,11 +1320,11 @@
                 for (let i = 0; i < bufferLength; i++) {
                     const t = i / sampleRate;
                     
-                    // 1. 基本的な摩擦音（低周波）
+                                        // 1. 基本的な摩擦音（低周波）
                     const frictionBase = Math.sin(2 * Math.PI * 45 * t) * 0.2; // 45Hz基本周波数
                     const frictionVariation = Math.sin(2 * Math.PI * 0.8 * t) * 0.1; // 変動
                     
-                                        // 2. 針とレコード溝の物理的相互作用
+                    // 2. 針とレコード溝の物理的相互作用
                     const needleGroove = Math.sin(2 * Math.PI * 1200 * t) * 0.35;
                     const grooveTexture = Math.sin(2 * Math.PI * 2400 * t) * 0.25;
                     
@@ -2409,7 +2411,7 @@
             
             async loadSampleFiles(event) {
                 const files = Array.from(event.target.files);
-                const maxAdditionalSamples = 23;
+                const maxAdditionalSamples = 27;
                 const startIndex = this.presetSamples.length;
                 
                 if (files.length > maxAdditionalSamples) {
@@ -2418,7 +2420,7 @@
                 }
                 
                 // 既存の追加サンプルをクリア
-                for (let i = startIndex; i < 50; i++) {
+                for (let i = startIndex; i < this.keyMapping.length; i++) {
                     if (this.samples[i] && !this.samples[i].isPreset) {
                         this.samples[i] = null;
                         const keyElement = document.querySelector(`[data-index="${i}"]`);
@@ -2430,8 +2432,7 @@
                 }
                 
                 let loadedCount = 0;
-                
-                for (let i = 0; i < files.length && (startIndex + i) < 50; i++) {
+                for (let i = 0; i < files.length && (startIndex + i) < this.keyMapping.length; i++) {
                     const file = files[i];
                     try {
                         const arrayBuffer = await file.arrayBuffer();
@@ -2624,124 +2625,124 @@
                     this.downloadFile(mp3Blob, 'mp3');
                     
                 } catch (error) {
-                    console.error('MP3変換エラー:', error);
-                    this.updateStatus('MP3変換に失敗しました。WebM形式でダウンロードします。');
-                    this.downloadFile(webmBlob, 'webm');
-                }
-            }
-            
-            convertFloat32ToInt16(buffer) {
-                const l = buffer.length;
-                const buf = new Int16Array(l);
-                for (let i = 0; i < l; i++) {
-                    buf[i] = Math.min(1, buffer[i]) * 0x7FFF;
-                }
-                return buf;
-            }
-            
-                        getJSTTimestamp() {
-                const now = new Date();
-                const jstTime = new Date(now.getTime() + (9 * 60 * 60 * 1000));
-                
-                const year = jstTime.getUTCFullYear();
-                const month = String(jstTime.getUTCMonth() + 1).padStart(2, '0');
-                const day = String(jstTime.getUTCDate()).padStart(2, '0');
-                const hours = String(jstTime.getUTCHours()).padStart(2, '0');
-                const minutes = String(jstTime.getUTCMinutes()).padStart(2, '0');
-                const seconds = String(jstTime.getUTCSeconds()).padStart(2, '0');
-                
-                return `${year}-${month}-${day}_${hours}-${minutes}-${seconds}`;
-            }
-            
-            downloadFile(blob, format) {
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                const timestamp = this.getJSTTimestamp();
-                a.download = `dj_mix_${timestamp}.${format}`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-                
-                this.updateStatus(`録音ファイル（${format.toUpperCase()}形式）をダウンロードしました！`);
-            }
-            
-            formatTime(seconds) {
-                if (isNaN(seconds)) return '0:00';
-                const mins = Math.floor(seconds / 60);
-                const secs = Math.floor(seconds % 60);
-                return `${mins}:${secs.toString().padStart(2, '0')}`;
-            }
-            
-            updateStatus(message) {
-                this.elements.status.innerHTML = this.isRecording ? 
-                    `<span class="recording-indicator"></span>${message}` : message;
-            }
-            
-            cleanup() {
-                // ObjectURLsをすべて解放
-                this.objectUrls.forEach(url => {
-                    URL.revokeObjectURL(url);
-                });
-                this.objectUrls.clear();
-                
-                // BufferSourcesを停止
-                if (this.bufferSourceA) {
-                    try {
-                        this.bufferSourceA.stop();
-                    } catch (error) {
-                        // エラーを無視
-                    }
-                    this.bufferSourceA = null;
-                }
-                if (this.bufferSourceB) {
-                    try {
-                        this.bufferSourceB.stop();
-                    } catch (error) {
-                        // エラーを無視
-                    }
-                    this.bufferSourceB = null;
-                }
-                
-                // サンプル音源を停止
-                this.playingSamples.forEach(source => {
-                    try {
-                        source.stop();
-                    } catch (error) {
-                        // エラーを無視
-                    }
-                });
-                this.playingSamples.clear();
-                
-                // インターバルをクリア
-                if (this.progressIntervalA) {
-                    clearInterval(this.progressIntervalA);
-                    this.progressIntervalA = null;
-                }
-                if (this.progressIntervalB) {
-                    clearInterval(this.progressIntervalB);
-                    this.progressIntervalB = null;
-                }
-                
-                // 録音を停止
-                if (this.mediaRecorder && this.mediaRecorder.state === 'recording') {
-                    this.mediaRecorder.stop();
-                }
-                
-                // AudioContextを閉じる
-                if (this.audioContext && this.audioContext.state !== 'closed') {
-                    this.audioContext.close().catch(error => {
-                        console.warn('AudioContext close error:', error);
-                    });
-                }
+                                    console.error('MP3変換エラー:', error);
+                this.updateStatus('MP3変換に失敗しました。WebM形式でダウンロードします。');
+                this.downloadFile(webmBlob, 'webm');
             }
         }
         
-        // アプリケーション初期化
-        document.addEventListener('DOMContentLoaded', () => {
-            new DJMixer();
-        });
-    </script>
+        convertFloat32ToInt16(buffer) {
+            const l = buffer.length;
+            const buf = new Int16Array(l);
+            for (let i = 0; i < l; i++) {
+                buf[i] = Math.min(1, buffer[i]) * 0x7FFF;
+            }
+            return buf;
+        }
+        
+        getJSTTimestamp() {
+            const now = new Date();
+            const jstTime = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+            
+            const year = jstTime.getUTCFullYear();
+            const month = String(jstTime.getUTCMonth() + 1).padStart(2, '0');
+            const day = String(jstTime.getUTCDate()).padStart(2, '0');
+            const hours = String(jstTime.getUTCHours()).padStart(2, '0');
+            const minutes = String(jstTime.getUTCMinutes()).padStart(2, '0');
+            const seconds = String(jstTime.getUTCSeconds()).padStart(2, '0');
+            
+            return `${year}-${month}-${day}_${hours}-${minutes}-${seconds}`;
+        }
+        
+        downloadFile(blob, format) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const timestamp = this.getJSTTimestamp();
+            a.download = `dj_mix_${timestamp}.${format}`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            this.updateStatus(`録音ファイル（${format.toUpperCase()}形式）をダウンロードしました！`);
+        }
+        
+        formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        updateStatus(message) {
+            this.elements.status.innerHTML = this.isRecording ? 
+                `<span class="recording-indicator"></span>${message}` : message;
+        }
+        
+        cleanup() {
+            // ObjectURLsをすべて解放
+            this.objectUrls.forEach(url => {
+                URL.revokeObjectURL(url);
+            });
+            this.objectUrls.clear();
+            
+            // BufferSourcesを停止
+            if (this.bufferSourceA) {
+                try {
+                    this.bufferSourceA.stop();
+                } catch (error) {
+                    // エラーを無視
+                }
+                this.bufferSourceA = null;
+            }
+            if (this.bufferSourceB) {
+                try {
+                    this.bufferSourceB.stop();
+                } catch (error) {
+                    // エラーを無視
+                }
+                this.bufferSourceB = null;
+            }
+            
+            // サンプル音源を停止
+            this.playingSamples.forEach(source => {
+                try {
+                    source.stop();
+                } catch (error) {
+                    // エラーを無視
+                }
+            });
+            this.playingSamples.clear();
+            
+            // インターバルをクリア
+            if (this.progressIntervalA) {
+                clearInterval(this.progressIntervalA);
+                this.progressIntervalA = null;
+            }
+            if (this.progressIntervalB) {
+                clearInterval(this.progressIntervalB);
+                this.progressIntervalB = null;
+            }
+            
+            // 録音を停止
+            if (this.mediaRecorder && this.mediaRecorder.state === 'recording') {
+                this.mediaRecorder.stop();
+            }
+            
+            // AudioContextを閉じる
+            if (this.audioContext && this.audioContext.state !== 'closed') {
+                this.audioContext.close().catch(error => {
+                    console.warn('AudioContext close error:', error);
+                });
+            }
+        }
+    }
+    
+    // アプリケーション初期化
+    document.addEventListener('DOMContentLoaded', () => {
+        new DJMixer();
+    });
+</script>
 </body>
 </html>
