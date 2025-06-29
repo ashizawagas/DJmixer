@@ -460,12 +460,13 @@
         
         .progress-bar {
             width: 100%;
-            height: 8px;
+            height: 12px;
             background: linear-gradient(90deg, #333, #555);
-            border-radius: 4px;
+            border-radius: 6px;
             overflow: hidden;
             cursor: pointer;
             box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+            position: relative;
         }
         
         .progress-fill {
@@ -474,6 +475,44 @@
             width: 0%;
             transition: width 0.1s;
             box-shadow: 0 0 10px rgba(255, 0, 128, 0.5);
+            pointer-events: none;
+        }
+        
+        .progress-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            -webkit-appearance: none;
+            appearance: none;
+            cursor: pointer;
+            outline: none;
+            opacity: 0;
+        }
+        
+        .progress-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #fff, #ccc);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            border: 2px solid #333;
+            opacity: 1;
+        }
+        
+        .progress-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #fff, #ccc);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            border: 2px solid #333;
+            opacity: 1;
         }
         
         .time-display {
@@ -883,6 +922,7 @@
                     <div class="progress-container">
                         <div class="progress-bar" id="progressBarA">
                             <div class="progress-fill" id="progressFillA"></div>
+                            <input type="range" class="progress-slider" id="progressSliderA" min="0" max="100" value="0" step="0.1">
                         </div>
                         <div class="time-display">
                             <span id="currentTimeA">0:00</span> / <span id="totalTimeA">0:00</span>
@@ -983,6 +1023,7 @@
                     <div class="progress-container">
                         <div class="progress-bar" id="progressBarB">
                             <div class="progress-fill" id="progressFillB"></div>
+                            <input type="range" class="progress-slider" id="progressSliderB" min="0" max="100" value="0" step="0.1">
                         </div>
                         <div class="time-display">
                             <span id="currentTimeB">0:00</span> / <span id="totalTimeB">0:00</span>
@@ -1034,6 +1075,7 @@
                 <li>QWERTYキーボード配列でサンプル音を再生できます</li>
                 <li>録音ボタンで全ての音を同時録音できます</li>
                 <li>録音した音声はMP3形式で自動ダウンロードされます</li>
+                <li><strong>プログレスバーをクリック・ドラッグして演奏位置を移動できます（再生中でも可能）</strong></li>
             </ul>
         </div>
     </div>
@@ -1054,6 +1096,10 @@
                 this.pauseTimeB = 0;
                 this.playbackRateA = 1;
                 this.playbackRateB = 1;
+                
+                // シーク操作フラグ
+                this.isSeekingA = false;
+                this.isSeekingB = false;
                 
                 // ターンテーブル
                 this.turntableA = null;
@@ -1173,6 +1219,7 @@
                     volumeValueA: document.getElementById('volumeValueA'),
                     progressBarA: document.getElementById('progressBarA'),
                     progressFillA: document.getElementById('progressFillA'),
+                    progressSliderA: document.getElementById('progressSliderA'),
                     currentTimeA: document.getElementById('currentTimeA'),
                     totalTimeA: document.getElementById('totalTimeA'),
                     bpmValueA: document.getElementById('bpmValueA'),
@@ -1194,6 +1241,7 @@
                     volumeValueB: document.getElementById('volumeValueB'),
                     progressBarB: document.getElementById('progressBarB'),
                     progressFillB: document.getElementById('progressFillB'),
+                    progressSliderB: document.getElementById('progressSliderB'),
                     currentTimeB: document.getElementById('currentTimeB'),
                     totalTimeB: document.getElementById('totalTimeB'),
                     bpmValueB: document.getElementById('bpmValueB'),
@@ -1278,7 +1326,7 @@
                 this.turntableA.addEventListener('mousedown', (e) => this.startTurntableDrag(e, 'A'));
                 this.turntableA.addEventListener('touchstart', (e) => this.startTurntableDrag(e, 'A'));
                 
-                // ターンテーブルBのイベント
+                                // ターンテーブルBのイベント
                 this.turntableB.addEventListener('mousedown', (e) => this.startTurntableDrag(e, 'B'));
                 this.turntableB.addEventListener('touchstart', (e) => this.startTurntableDrag(e, 'B'));
                 
@@ -1322,7 +1370,7 @@
                     const frictionBase = Math.sin(2 * Math.PI * 45 * t) * 0.2; // 45Hz基本周波数
                     const frictionVariation = Math.sin(2 * Math.PI * 0.8 * t) * 0.1; // 変動
                     
-                                        // 2. 針とレコード溝の物理的相互作用
+                    // 2. 針とレコード溝の物理的相互作用
                     const needleGroove = Math.sin(2 * Math.PI * 1200 * t) * 0.35;
                     const grooveTexture = Math.sin(2 * Math.PI * 2400 * t) * 0.25;
                     
@@ -1612,6 +1660,9 @@
                 this.elements.preservePitchA.addEventListener('change', (e) => this.updatePreservePitch(e, 'A'));
                 this.elements.volumeSliderA.addEventListener('input', (e) => this.updateVolume(e, 'A'));
                 this.elements.progressBarA.addEventListener('click', (e) => this.seekAudio(e, 'A'));
+                this.elements.progressSliderA.addEventListener('input', (e) => this.seekAudioSlider(e, 'A'));
+                this.elements.progressSliderA.addEventListener('mousedown', () => this.isSeekingA = true);
+                this.elements.progressSliderA.addEventListener('mouseup', () => this.isSeekingA = false);
                 
                 // デッキB
                 this.elements.audioFileB.addEventListener('change', (e) => this.loadAudioFile(e, 'B'));
@@ -1624,6 +1675,9 @@
                 this.elements.preservePitchB.addEventListener('change', (e) => this.updatePreservePitch(e, 'B'));
                 this.elements.volumeSliderB.addEventListener('input', (e) => this.updateVolume(e, 'B'));
                 this.elements.progressBarB.addEventListener('click', (e) => this.seekAudio(e, 'B'));
+                this.elements.progressSliderB.addEventListener('input', (e) => this.seekAudioSlider(e, 'B'));
+                this.elements.progressSliderB.addEventListener('mousedown', () => this.isSeekingB = true);
+                this.elements.progressSliderB.addEventListener('mouseup', () => this.isSeekingB = false);
                 
                 // 共通コントロール
                 this.elements.crossfader.addEventListener('input', (e) => this.updateCrossfader(e));
@@ -1644,6 +1698,48 @@
                         this.audioContext.resume();
                     }
                 }, { once: true });
+            }
+            
+            seekAudioSlider(event, deck) {
+                try {
+                    const audioBuffer = deck === 'A' ? this.audioBufferA : this.audioBufferB;
+                    if (!audioBuffer) return;
+                    
+                    const percentage = parseFloat(event.target.value);
+                    const newPosition = (percentage / 100) * audioBuffer.duration;
+                    
+                    // 新しい位置を設定
+                    if (deck === 'A') {
+                        this.pauseTimeA = newPosition;
+                        this.isSeekingA = true;
+                    } else {
+                        this.pauseTimeB = newPosition;
+                        this.isSeekingB = true;
+                    }
+                    
+                    // 再生中の場合は再開
+                    const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
+                    if (isPlaying) {
+                        this.pauseAudio(deck);
+                        setTimeout(() => {
+                            this.playAudio(deck);
+                            if (deck === 'A') {
+                                this.isSeekingA = false;
+                            } else {
+                                this.isSeekingB = false;
+                            }
+                        }, 50);
+                    } else {
+                        this.updateProgress(deck);
+                        if (deck === 'A') {
+                            this.isSeekingA = false;
+                        } else {
+                            this.isSeekingB = false;
+                        }
+                    }
+                } catch (error) {
+                    console.error(`Slider seek error for deck ${deck}:`, error);
+                }
             }
             
             createQwertyKeyboard() {
@@ -1734,6 +1830,10 @@
                     
                     // 総再生時間を更新
                     this.updateTotalTime(deck);
+                    
+                    // プログレススライダーの最大値を設定
+                    this.elements[`progressSlider${deck}`].max = 100;
+                    this.elements[`progressSlider${deck}`].value = 0;
                     
                     // UI要素を有効化
                     this.enableDeckControls(deck);
@@ -1835,6 +1935,9 @@
                     this.elements[`pitchValue${deck}`].textContent = '0%';
                     this.elements[`volumeSlider${deck}`].value = 75;
                     this.elements[`volumeValue${deck}`].textContent = '75%';
+                    
+                    // プログレススライダーをリセット
+                    this.elements[`progressSlider${deck}`].value = 0;
                     
                     // 表示をリセット
                     this.elements[`filename${deck}`].textContent = 'ファイルなし';
@@ -2258,17 +2361,31 @@
                     // 新しい位置を設定
                     if (deck === 'A') {
                         this.pauseTimeA = newPosition;
+                        this.isSeekingA = true;
                     } else {
                         this.pauseTimeB = newPosition;
+                        this.isSeekingB = true;
                     }
                     
                     // 再生中の場合は再開
                     const isPlaying = deck === 'A' ? this.isPlayingA : this.isPlayingB;
                     if (isPlaying) {
                         this.pauseAudio(deck);
-                        setTimeout(() => this.playAudio(deck), 50);
+                        setTimeout(() => {
+                            this.playAudio(deck);
+                            if (deck === 'A') {
+                                this.isSeekingA = false;
+                            } else {
+                                this.isSeekingB = false;
+                            }
+                        }, 50);
                     } else {
                         this.updateProgress(deck);
+                        if (deck === 'A') {
+                            this.isSeekingA = false;
+                        } else {
+                            this.isSeekingB = false;
+                        }
                     }
                 } catch (error) {
                     console.error(`Seek error for deck ${deck}:`, error);
@@ -2290,6 +2407,7 @@
                     const startTime = deck === 'A' ? this.startTimeA : this.startTimeB;
                     const pauseTime = deck === 'A' ? this.pauseTimeA : this.pauseTimeB;
                     const playbackRate = deck === 'A' ? this.playbackRateA : this.playbackRateB;
+                    const isSeeking = deck === 'A' ? this.isSeekingA : this.isSeekingB;
                     
                     if (!audioBuffer) return;
                     
@@ -2307,6 +2425,11 @@
                     const percentage = (currentTime / audioBuffer.duration) * 100;
                     this.elements[`progressFill${deck}`].style.width = percentage + '%';
                     this.elements[`currentTime${deck}`].textContent = this.formatTime(currentTime);
+                    
+                    // スライダーの値を更新（シーク中でない場合のみ）
+                    if (!isSeeking) {
+                        this.elements[`progressSlider${deck}`].value = percentage;
+                    }
                 } catch (error) {
                     console.error(`Progress update error for deck ${deck}:`, error);
                 }
@@ -2430,7 +2553,6 @@
                 }
                 
                 let loadedCount = 0;
-                
                 for (let i = 0; i < files.length && (startIndex + i) < 50; i++) {
                     const file = files[i];
                     try {
@@ -2481,7 +2603,7 @@
                 }
             }
             
-            activateKey(key) {
+                       activateKey(key) {
                 const keyElement = document.querySelector(`[data-key="${key}"]`);
                 if (keyElement) {
                     keyElement.classList.add('active', 'playing');
@@ -2639,7 +2761,7 @@
                 return buf;
             }
             
-                        getJSTTimestamp() {
+            getJSTTimestamp() {
                 const now = new Date();
                 const jstTime = new Date(now.getTime() + (9 * 60 * 60 * 1000));
                 
